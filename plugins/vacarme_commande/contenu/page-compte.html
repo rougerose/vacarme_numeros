@@ -1,0 +1,126 @@
+[(#REM) visiteur résumé : login + panier ]
+<INCLURE{fond=inclure/visiteur,env}>
+
+<h1><:vacarme_commande:titre_page_compte:></h1>
+
+[(#REM)
+   - Pas de session => formulaire d'inscription
+   - Il existe une session => page de gestion du compte
+]
+<BOUCLE_id_contact(CONTACTS){id_auteur=#SESSION{id_auteur}}>#SET{id_contact,#ID_CONTACT}</BOUCLE_id_contact>
+<BOUCLE_adresse_auteur(ADRESSES adresses_liens auteurs){id_auteur=#SESSION{id_auteur}}>#SET{id_adresse,#ID_ADRESSE}</BOUCLE_adresse_auteur>
+
+   #SET{retour,#SELF}
+   [(#ENV{retour}|=={compte}|oui)#SET{retour,#URL_PAGE{compte}}]
+   [(#ENV{retour}|=={panier}|oui)#SET{retour,#URL_PAGE{panier}}]
+   [(#SET{inscription,#SELF|parametre_url{section,inscription}})]
+   [(#SET{identification,#SELF|parametre_url{section,identification}|parametre_url{retour,compte}})]
+
+<div class="grids compte">
+   [(#SESSION{id_auteur}|non)
+      [(#ENV{section}|non)
+      <div class="grid-6 section inscription etape1">
+         <h2><:vacarme_commande:titre_inscription{url=#GET{inscription}}:></h2>
+      </div><!-- .inscription -->
+
+      <div class="grid-6 section identification etape1">
+         <h2><:vacarme_commande:titre_identification{url=#GET{identification}}:></h2>
+      </div><!-- .identification -->
+      ]
+
+      [(#ENV{section}|=={inscription}|oui)
+      <div class="grid-8 section inscription etape2 formulaire">
+         <h2><:vacarme_commande:titre_inscription_2:></h2>
+         #FORMULAIRE_VACARME_INSCRIPTION_CLIENT{'',#ENV{retour}}
+      </div><!-- .grid-12 inscription -->
+      ]
+
+      [(#ENV{section}|=={identification}|oui)
+      <div class="grid-8 section identification etape2 formulaire">
+         <h2><:vacarme_commande:titre_identification_2:></h2>
+         #LOGIN_PUBLIC{#GET{retour}}
+      </div><!-- .grid-12 inscription -->
+      ]
+   ]
+
+   [(#SESSION{id_auteur}|oui)
+      [(#ENV{composition}|=={compte}|oui)
+         [(#REM) page d'accueil du compte abonné ]
+         [(#ENV{section}|non)
+         <div class="section sommaire">
+            <ul>
+               <li>
+                  <h2>
+                     <a href="[(#URL_PAGE{compte}|parametre_url{section,infos})]"><:vacarme_commande:compte_infos_personnelles:></a>
+                  </h2>
+               </li>
+               <!-- <li><h2><a href="#"><:vacarme_commande:compte_abonnement:></a></h2></li> -->
+               <li>
+                  <h2><a href="[(#URL_PAGE{compte}|parametre_url{section,commandes})]"><:vacarme_commande:compte_commandes:></a></h2>
+               </li>
+               <li>
+                  <h2><a href="[(#URL_PAGE{compte}|parametre_url{section,factures})]"><:vacarme_commande:compte_factures:></a></h2>
+               </li>
+            </ul>
+         </div><!-- section sommaire -->
+         ]
+         [(#REM) infos personnelles ]
+         [(#ENV{section}|=={infos}|oui)
+         <p class="grid-12 compte retour"><a href="#URL_PAGE{compte}" class="btn large"><:vacarme_commande:retour_compte:></a></p>
+         <div class="section sommaire">
+            <ul>
+               <li>
+                  <h2>
+                     <a href="[(#URL_PAGE{compte}|parametre_url{section,identite})]"><:vacarme_commande:compte_identite:></a>
+                  </h2>
+               </li>
+               <li>
+                  <h2><a href="[(#URL_PAGE{compte}|parametre_url{section,email})]"><:vacarme_commande:compte_mail:></a></h2>
+               </li>
+               <li>
+                  <h2><a href="[(#URL_PAGE{compte}|parametre_url{section,password})]"><:vacarme_commande:compte_password:></a></h2>
+               </li>
+               <li>
+                  <h2><a href="[(#URL_PAGE{compte}|parametre_url{section,adresse})]"><:vacarme_commande:label_coordonnees:></a></h2>
+               </li>
+            </ul>
+         </div><!-- .section sommaire -->
+         ]
+         [(#REM) infos personnelles ]
+         [(#ENV{section}|=={identite}|oui)
+         <p class="grid-12 compte retour"><a href="#URL_PAGE{compte}" class="btn large"><:vacarme_commande:retour_compte:></a></p>
+         <div class="grid-8 section infos formulaire">
+            <h2><:vacarme_commande:compte_identite_titre:></h2>
+            #FORMULAIRE_VACARME_EDITER_CONTACT{#GET{id_contact}}
+         </div><!-- .section infos -->
+         ]
+         [(#ENV{section}|=={email}|oui)
+         <p class="grid-12 compte retour"><a href="#URL_PAGE{compte}" class="btn large"><:vacarme_commande:retour_compte:></a></p>
+         <div class="grid-8 section email formulaire">
+            <h2><:vacarme_commande:compte_mail_titre:></h2>
+            #FORMULAIRE_VACARME_EDITER_EMAIL_AUTEUR{#SESSION{id_auteur}}
+         </div><!-- .section email -->
+         ]
+         [(#ENV{section}|=={password}|oui)
+         <p class="grid-12 compte retour"><a href="#URL_PAGE{compte}" class="btn large"><:vacarme_commande:retour_compte:></a></p>
+         <div class="grid-8 section password formulaire">
+            <h2><:vacarme_commande:compte_password_titre:></h2>
+            #FORMULAIRE_VACARME_EDITER_PASSWORD_AUTEUR{#SESSION{id_auteur}}
+         </div><!-- .section password -->
+         ]
+         [(#ENV{section}|=={adresse}|oui)
+         <p class="grid-12 compte retour"><a href="#URL_PAGE{compte}" class="btn large"><:vacarme_commande:retour_compte:></a></p>
+         <div class="grid-8 section adresse formulaire">
+            <h2><:vacarme_commande:compte_adresse_titre:></h2>
+                     #FORMULAIRE_EDITER_ADRESSE{#ENV{id_adresse,#GET{id_adresse}},#ENV{objet,auteur},#ENV{id_objet,#SESSION{id_auteur}},#ENV{retour,#SELF}}
+         </div><!-- .section adresse -->
+         ]
+         [(#ENV{section}|=={commandes}|oui)
+         #INCLURE{fond=inclure/commandes}
+         ]
+         [(#ENV{section}|=={factures}|oui)
+         #INCLURE{fond=inclure/factures}
+         ]
+      ]
+   ]
+</div><!-- .grids -->

@@ -1,0 +1,11 @@
+[(#REM) visiteur résumé : login + panier ]
+<INCLURE{fond=inclure/visiteur,env}>
+
+#INCLURE{fond=inclure/progression,composition=#ENV{composition}}
+
+<h1><:vacarme_commande:votre_panier:></h1>
+<p class="poursuivre-achats retour"><a href="#URL_SITE_SPIP" class="btn large"><:vacarme_commande:continuer_achats:></a></p>
+
+#FORMULAIRE_PANIER
+
+#INCLURE{fond=inclure/panier-session,env}

@@ -1,0 +1,13 @@
+[(#REM) visiteur résumé : login + panier ]
+<INCLURE{fond=inclure/visiteur,env}>
+
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{tout}>
+<h1>#TITRE</h1>
+
+[<div class="intro rubrique">
+   (#TEXTE)
+</div>]
+
+[(#INCLURE{fond=inclure/produits,env,ajax,type_produit=numeros})]
+
+</BOUCLE_rubrique>

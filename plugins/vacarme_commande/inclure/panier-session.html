@@ -1,0 +1,36 @@
+#CACHE{0}
+
+#SET{quantite,''} #SET{cadeau,''} #SET{abonnement,''} #SET{produits,#ARRAY}
+[(#REM)
+   S'il existe un panier, on vérifie qu'il contient quelque chose
+]
+<BOUCLE_test_panier(CONDITION){si #SESSION{id_panier}}>
+<BOUCLE_contenu_panier(PANIERS_LIENS){id_panier=#SESSION{id_panier}}>
+[(#SET{quantite,#GET{quantite}|plus{#QUANTITE}})]
+[(#OBJET|=={abonnement}|oui)#SET{abonnement,oui}]
+[(#OBJET|=={produit}|oui)#SET_PUSH{produits,#ID_OBJET}]
+</BOUCLE_contenu_panier>
+[(#REM) un cadeau parmi les produits ? ]
+<BOUCLE_cadeau(PRODUITS){id_produit IN #GET{produits}}>[(#REFERENCE|match{kdo}|oui)#SET{cadeau,oui}]</BOUCLE_cadeau>
+
+
+[(#REM)
+   Il y a une session et un panier, on peut passer la commande et payer
+]
+[(#SESSION{id_auteur}|oui)
+   [(#GET{quantite}|oui) [(#BOUTON_ACTION{<:vacarme_commande:valider_commande:>,#URL_ACTION_AUTEUR{passer_commande,#SESSION{id_auteur},#URL_PAGE{commander}},commander})]
+   ]
+]
+
+[(#REM)
+   Un panier, mais pas de session, il faut s'inscrire avant de passer la commande
+]
+[(#GET{quantite}|oui)
+   [(#SESSION{id_auteur}|non)
+      <p class="message warning medium">[(#SET{url,[(#URL_PAGE{compte}|parametre_url{retour,panier})]})]
+         <span class="information"><:vacarme_commande:identification_avant_commande{url=#GET{url}}:></span>
+      </p>
+   ]
+]
+
+</BOUCLE_test_panier>

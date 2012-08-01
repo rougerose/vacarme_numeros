@@ -1,0 +1,328 @@
+<?php
+
+if (!defined('_ECRIRE_INC_VERSION')) return;
+
+function formulaires_vacarme_inscription_client_saisies_dist($retour='',$url='') {
+	return array(
+		// particulier ou organisation ?
+		array(
+			'saisie' => 'radio',
+			'options' => array(
+				'nom' => 'type_client',
+				'label' => _T('vacarme_commande:label_type_client'),
+				'defaut' => 'particulier',
+				'datas' => array(
+               'particulier' => _T('vacarme_commande:particulier'),
+					'organisation' => _T('vacarme_commande:organisation')
+				)
+			)
+		),
+		// fieldset organisation
+		array(
+			'saisie' => 'fieldset',
+			'options' => array(
+				'nom' => 'fs_organisation',
+				'label' => _T('vacarme_commande:label_fieldset_organisation'),
+				'afficher_si' => '@type_client@ == "organisation"'
+			),
+			'saisies' => array(
+				// Organisation
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'organisation',
+						'label' => _T('vacarme_commande:label_organisation')
+					)
+				),
+				// service
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'service',
+						'label' => _T('vacarme_commande:label_service')
+					)
+				)
+			)
+		),
+		// fieldset identité
+		array(
+			'saisie' => 'fieldset',
+			'options' => array(
+				'nom' => 'fs_identite',
+				'label' => _T('vacarme_commande:label_fieldset_identite')
+			),
+			'saisies' => array(
+				// civilité
+				array(
+					'saisie' =>	'radio',
+					'options' => array(
+						'nom' => 'civilite',
+                  'obligatoire' => 'oui',
+						'label' =>	_T('vacarme_commande:label_civilite'),
+						'datas' =>	array(
+							'madame' =>	_T('vacarme_commande:madame'),
+							'monsieur' => _T('vacarme_commande:monsieur')
+						)
+					)
+				),
+				// prénom
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'prenom',
+						'label' => _T('vacarme_commande:label_prenom'),
+						'obligatoire' => 'oui'
+					)
+				),
+				// nom
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'nom',
+						'label' => _T('vacarme_commande:label_nom'),
+						'obligatoire' => 'oui'
+					)
+				)
+			)
+		),
+		// fieldset email
+		array(
+			'saisie' => 'fieldset',
+			'options' => array(
+				'nom' => 'fs_email',
+				'label' => _T('vacarme_commande:label_fieldset_email')
+			),
+			'saisies' => array(
+				// email
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'mail_inscription',
+						'label' => _T('contacts:label_email'),
+						'obligatoire' => 'oui'
+					),
+					'verifier' => array(
+						'type' => 'email'
+					)
+				)
+			)
+		),
+		// fieldset coordonnees
+		array(
+			'saisie' => 'fieldset',
+			'options' => array(
+				'nom' => 'fs_coordonnees',
+				'label' => _T('vacarme_commande:label_coordonnees')
+			),
+			'saisies' => array(
+				// adresse
+				array(
+					'saisie' => 'input',
+					'options' => array(
+                  'nom' => 'voie',
+						'label' => _T('coordonnees:label_voie'),
+						'obligatoire' => 'oui'
+					)
+				),
+				// complement
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'complement',
+						'label' => _T('coordonnees:label_complement')
+					)
+				),
+            // boite postale
+            array(
+               'saisie' => 'input',
+               'options' => array(
+                  'nom' => 'boite_postale',
+                  'label' => _T('coordonnees:label_boite_postale')
+               )
+            ),
+				// code postal
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'code_postal',
+						'label' => _T('coordonnees:label_code_postal'),
+						'obligatoire' => 'oui'
+					)
+				),
+				// ville
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'ville',
+						'label' => _T('coordonnees:label_ville'),
+						'obligatoire' => 'oui'
+					)
+				),
+				// Pays
+				array(
+					'saisie' => 'pays',
+					'options' => array(
+						'nom' => 'pays',
+						'code_pays' => 'oui',
+						'label' => _T('coordonnees:label_pays'),
+						'obligatoire' => 'oui',
+						'defaut' => 'FR'
+					)
+				),
+			)
+		),
+		// fieldset téléphone
+		array(
+			'saisie' => 'fieldset',
+			'options' => array(
+				'nom' => 'fs_telephone',
+				'label' => _T('vacarme_commande:label_fieldset_telephone')
+			),
+			'saisies' => array(
+				// telephone
+				array(
+					'saisie' => 'input',
+					'options' => array(
+						'nom' => 'numero',
+						'label' => _T('vacarme_commande:label_numero')
+					)
+				)
+			)
+		)
+	);
+}
+
+
+function formulaires_vacarme_inscription_client_charger_dist($retour='',$url=''){
+	$erreurs = array();
+	// On récupère le formulaire classique d'inscription
+	$mode = tester_config(0);
+	$inscription_dist = charger_fonction('charger', 'formulaires/inscription');
+	$contexte = $inscription_dist($mode,'');
+
+	if(isset($contexte['editable']) && $contexte['editable']!=true){
+		$contexte['message_erreur'] = _T('clients:erreur_inscription_visiteur');
+	}
+
+	return $contexte;
+}
+
+function formulaires_vacarme_inscription_client_verifier_dist($retour='',$url=''){
+	// On crée un faux positif pour le nom car on le construira nous-même plus tard
+	set_request('nom_inscription', 'glop');
+
+	// On récupère les erreurs du formulaire d'inscription classique
+	$mode = tester_config(0);
+	$inscription_dist = charger_fonction('verifier', 'formulaires/inscription');
+	$erreurs = $inscription_dist($mode,'');
+
+	return $erreurs;
+}
+
+function formulaires_vacarme_inscription_client_traiter_dist($retour='',$url=''){
+	// Si redirection demandée, on refuse le traitement en ajax
+	if ($retour) refuser_traiter_formulaire_ajax();
+
+	// Le pseudo SPIP est construit
+	set_request('nom_inscription', trim(_request('prenom').' '._request('nom')));
+
+	// On active le traitement du formulaire d'inscription classique, donc on crée un nouvel utilisateur
+    if (!($id_auteur = verifier_session())) {
+	    $mode = tester_config(0);
+	    $inscription_dist = charger_fonction('traiter', 'formulaires/inscription');
+	    $retours = $inscription_dist($mode,'');
+
+        $id_auteur = sql_getfetsel('id_auteur', 'spip_auteurs', 'email = '.sql_quote(_request('mail_inscription')));
+    }
+
+	// On récupère l'auteur qu'on vient de créer avec l'email du form
+	if ($id_auteur){
+		// On ajoute des infos au contexte
+		set_request('objet', 'auteur');
+		set_request('id_objet', $id_auteur);
+		set_request('type', 'principale');
+
+		// On crée un contact pour cet utilisateur
+		$editer_contact = charger_fonction('editer_contact', 'action/');
+		list($id_contact, $err) = $editer_contact('nouveau');
+
+      // on ajoute les infos propres au plugin vacarme_commande : organisation, service, type_client
+      $type_client = _request('type_client');
+
+      if ($type_client == 'organisation') {
+          $organisation = _request('organisation');
+          $service = _request('service');
+          sql_updateq('spip_contacts', array(
+                  'type_client'	=> $type_client,
+                  'organisation'	=> $organisation,
+                  'service'		=> $service
+              ),"id_contact=".intval($id_contact)
+          );
+      } else {
+          sql_updateq('spip_contacts', array('type_client' => $type_client),"id_contact=".intval($id_contact));
+      }
+
+
+
+		//On lie le contact à l'auteur
+		sql_insertq('spip_contacts_liens',array('id_objet' => $id_auteur,'objet' => 'auteur',"id_contact"=>$id_contact));
+		//assurer la compatibilite
+		sql_updateq('spip_contacts',array('id_auteur' => $id_auteur),"id_contact=".intval($id_contact));
+
+
+		// On crée l'adresse
+		$editer_adresse = charger_fonction('editer_adresse', 'action/');
+		$editer_adresse('oui');
+
+		// On crée le numero de tel
+		set_request('type', 'principal');
+		$editer_numero = charger_fonction('editer_numero', 'action/');
+		$editer_numero('oui');
+
+		// On crée le portable
+		if(_request('portable')){
+			// on stocke cette donnee
+			$numero = _request('numero');
+			set_request('numero', _request('portable'));
+			set_request('type', 'portable');
+			set_request('titre', 'Portable');
+
+			$editer_portable = charger_fonction('editer_numero', 'action/');
+			$editer_portable('oui');
+		}
+
+		// On crée le fax
+		if(_request('fax')){
+			// on stocke cette donnee si elle ne l'est pas deja
+			$numero ? '' : $numero = _request('numero');
+			set_request('numero', _request('fax'));
+			set_request('type', 'fax');
+			set_request('titre', 'Fax');
+
+			$editer_fax = charger_fonction('editer_numero', 'action/');
+			$editer_fax('oui');
+		}
+	}
+
+	// si necessaire on replace la bonne donnee dans l'environnement
+	$numero ? set_request('numero', $numero) : '';
+
+   // Comme conseillé dans la documentation on informe de l'id auteur inscrit
+   $retours['id_auteur'] = $id_auteur;
+
+   if ($retours['message_ok']) {
+      $lien = generer_url_public("compte","c=identification");
+      if ($url) {
+         $lien = parametre_url($lien,'retour',$url);
+         $retours['message_ok'] = _T('vacarme_commande:formulaire_inscription_message_ok',array(url => $lien));
+      } else {
+         $retours['message_ok'] = _T('vacarme_commande:formulaire_inscription_message_ok',array(url => $lien));
+      }
+   }
+
+	if ($retour) $retours['redirect'] = $retour;
+
+	return $retours;
+}
+
+?>

@@ -1,0 +1,23 @@
+[(#REM) coordonnées de vacarme ]
+<BOUCLE_vacarme(AUTEURS){tout}{nom==Vacarme}>
+   <div class="adresse vacarme">
+      <BOUCLE_adresse(ADRESSES adresses_liens auteurs){id_auteur}>
+      [<p class="voie">(#VOIE)</p>]
+      [<p class="complement_voie">(#COMPLEMENT)</p>]
+      <p class="boite_postale">#BOITE_POSTALE</p>
+      <p class="ville">[(#CODE_POSTAL)][ (#VILLE)]</p>
+      <p class="pays"><BOUCLE_pays(PAYS){code=#PAYS}>#NOM</BOUCLE_pays></p>
+      </BOUCLE_adresse>
+   </div>
+</BOUCLE_vacarme>
+
+<BOUCLE_facture(COMMANDES){id_commande}>
+<h2 class="facture"><:vacarme_commande:facture:> <:vacarme_commande:facture_numero:> #REFERENCE</h2>
+<p class="date paiement"><:vacarme_commande:facture_date_paiement:> [(#DATE_PAIEMENT|affdate)]</p>
+[(#REM) l'adresse du client ]
+<INCLURE{fond=inclure/adresses,id_auteur,id_commande}>
+
+[(#REM) la commande ]
+<INCLURE{fond=inclure/commande,id_commande,statut,contexte=facture}>
+
+</BOUCLE_facture>

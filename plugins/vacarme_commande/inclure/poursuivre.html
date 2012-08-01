@@ -1,0 +1,73 @@
+#CACHE{0}
+
+[(#REM) variables ]
+   #SET{page_abo,''} #SET{page_panier,''} #SET{page_cadeaux,''} #SET{qte_abo,0} #SET{qte_cadeaux,0}
+   #SET{quantite,''} #SET{cadeaux,#ARRAY}
+
+   [(#REM) Sur quelle page sommes-nous ? ]
+   [(#ENV{composition}|=={abonnements}|oui)#SET{page_abo,' '}]
+   [(#ENV{composition}|=={panier}|oui)#SET{page_panier,' '}]
+   [(#ENV{composition}|=={cadeaux}|oui)#SET{page_cadeaux,' '}]
+   [(#ENV{composition}|=={paiement}|oui)#SET{page_paiement,' '}]
+   [(#ENV{composition}|match{^(numeros|sommaire)$}|oui)#SET{page_autre,' '}]
+
+
+   <BOUCLE_contenu_panier(PANIERS_LIENS){id_panier=#SESSION{id_panier}}>
+   [(#REM) contenu d'un panier ]
+   [(#SET{quantite,#GET{quantite}|plus{#QUANTITE}})]
+
+   [(#REM) abonnements ? => quantité ? ]
+   [(#OBJET|=={abonnement}|oui)
+      [(#SET{qte_abo,#GET{qte_abo}|plus{#QUANTITE}})]
+   ]
+   [(#REM) cadeaux ? ]
+   <BOUCLE_page_cadeaux(CONDITION){si #GET{page_cadeaux}}>
+      <BOUCLE_cadeau(PRODUITS){id_produit=#ID_OBJET}{reference==kdo}{unique}>
+         #SET{qte_cadeaux,#COMPTEUR_BOUCLE}
+      </BOUCLE_cadeau>
+   </BOUCLE_page_cadeaux>
+   </BOUCLE_contenu_panier>
+
+   [(#REM) on fabrique le bouton suite en fonction du contexte :
+      - si page panier : on verifie si session et si le panier contient quelque chose => valider la commande, sinon rien
+      - si page abonnement et panier vide : voir les cadeaux disponibles
+      - si page abonnement et panier avec abonnement : choisir votre/vos cadeaux
+      - si page cadeaux et si panier contient au moins un cadeau : poursuivre vers le panier
+      - si page paiement : rien
+      - si autre page -- sommaire ou vente au numeros -- et si le panier contient au moins un article : poursuivre vers le panier. Sinon rien.
+   ]
+   [(#SET{suite,<a href='[(#URL_PAGE{cadeaux})]' class='btn large'><:vacarme_commande:voir_commande:></a>})]
+
+
+
+   [(#GET{page_paiement,#SET{suite,''}})]
+   [(#GET{page_autre}|oui)
+      [(#GET{quantite}|>{0}|?{
+         [(#SET{suite,<a href='[(#URL_PAGE{panier})]' class='btn large'><:vacarme_commande:voir_commande:></a>})]
+         ,
+         [(#SET{suite,''})]
+      })]
+   ]
+   [(#GET{page_panier}|oui)
+      [(#SESSION{id_auteur}|oui|et{#GET{quantite}|oui})
+         [(#SET{suite,<a href="[(#URL_ACTION_AUTEUR{passer_commande,#SESSION{id_auteur},#URL_PAGE{commander}})]" class="btn large"><:vacarme_commande:valider_commande:></a>})]
+      ]
+   ]
+
+   [(#GET{page_cadeaux}|oui)
+      [(#GET{qte_abo}|>{0}|?{
+         [(#SET{suite,<a href='[(#URL_PAGE{panier})]' class='btn large'><:vacarme_commande:voir_commande:></a>})]
+         ,
+         [(#SET{suite,<a href='[(#URL_RUBRIQUE{1})]' class='btn large'><:vacarme_commande:choisir_abonnement:></a>})]
+      })]
+   ]
+
+   [(#GET{page_abo}|oui)
+      [(#GET{qte_abo}|>{0}|?{
+         [(#SET{suite,<a href='[(#URL_PAGE{cadeaux})]' class='btn large'>[(#GET{qte_abo}|singulier_ou_pluriel{'vacarme_commande:choisir_cadeau_un','vacarme_commande:choisir_cadeaux_plusieurs'})]</a>})]
+         ,
+         [(#SET{suite,<a href='[(#URL_PAGE{cadeaux})]' class='btn large'><:vacarme_commande:voir_cadeaux:></a>})]
+      })]
+   ]
+
+#GET{suite}

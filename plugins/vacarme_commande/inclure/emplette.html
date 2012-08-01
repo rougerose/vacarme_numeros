@@ -1,0 +1,26 @@
+#CACHE{0}
+[(#REM) vos emplettes sont nos emplois ! ]
+
+#SET{id_panier,#ENV{id_panier}} #SET{cadeau,non}
+
+[(#REM) si le panier contient un abonnement, contient-il également un cadeau ? ]
+<BOUCLE_condition(CONDITION){si #OBJET|=={abonnement}|et{#GET{id_panier}}}>
+   <BOUCLE_panier(PANIERS_LIENS){id_panier=#GET{id_panier}}{objet=produit}>
+      <BOUCLE_cadeau(PRODUITS){id_produit=#ID_OBJET}>[(#REFERENCE|match{kdo}|oui)#SET{cadeau,oui}]</BOUCLE_cadeau>
+   </BOUCLE_panier>
+</BOUCLE_condition>
+
+<h2>#INFO_TITRE{#OBJET,#ID_OBJET}</h2>
+[<ul>
+   (#OBJET|=={abonnement}|oui)
+   [(#SET{duree,#INFO_DUREE{#OBJET,#ID_OBJET}|div{12}})][(#SET{nombre_numeros,#INFO_DUREE{#OBJET,#ID_OBJET}|div{3}})]
+   <li>
+      [(#GET{duree}|singulier_ou_pluriel{vacarme_commande:nb_an,vacarme_commande:nb_ans})]
+      [ &#x0028;(#GET{nombre_numeros}|singulier_ou_pluriel{vacarme_commande:nb_numero,vacarme_commande:nb_numeros})&#x0029;,]
+      [ <:vacarme_commande:numero_a_partir:> (#NUMERO)]
+   </li>
+</ul>
+   [(#GET{cadeau}|=={non}|oui)
+<p class="message warning medium"><span class="information"><a href="#URL_PAGE{cadeaux}"><:vacarme_commande:cadeau_manquant_info:></a></span></p>
+   ]
+]

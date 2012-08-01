@@ -1,0 +1,21 @@
+<div class="grids commande adresses">
+   <BOUCLE_adresses_commande(ADRESSES adresses_liens commandes){id_commande}{type==livraison}>
+   <div class="grid-6 adresse #TYPE">
+      [(#ENV{commande}|oui)
+         <h2><:vacarme_commande:adresse_de:> #TYPE</h2>
+      ]
+      <INCLURE{fond=inclure/adresse,id_adresse,id_auteur}>
+      [(#ENV{edit}|oui)
+         <div class="action">
+             [(#BOUTON_ACTION{<:vacarme_commande:info_modifier:>,
+                #URL_PAGE{compte}|parametre_url{section,adresse}|
+                parametre_url{type_adresse,#TYPE}|
+                parametre_url{objet,commande}
+                parametre_url{id_objet,#ID_COMMANDE}|
+                parametre_url{id_adresse,#ID_ADRESSE}|
+                parametre_url{retour,#SELF},modifier small})]
+         </div>
+      ]
+   </div>
+</BOUCLE_adresses_commande>
+</div>

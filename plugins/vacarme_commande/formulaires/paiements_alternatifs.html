@@ -1,0 +1,14 @@
+[(#ENV{type_paiement}|=={virement}|oui) [(#SET{submit,<:vacarme_commande:submit_virement:>})] ]
+[(#ENV{type_paiement}|=={cheque}|oui) [(#SET{submit,<:vacarme_commande:submit_cheque:>})] ]
+<div class="formulaire_spip formulaire_#ENV{form}">
+   [<p class="reponse_formulaire reponse_formulaire_ok message succes medium"><span class="information">(#ENV*{message_ok})</span></p>]
+   [<p class="reponse_formulaire reponse_formulaire_erreur message erreur medium"><span class="information">(#ENV*{message_erreur})</span></p>]
+   <form action="#ENV{action}" method="post"><div>
+      #ACTION_FORMULAIRE{#ENV{action}}
+      <input type="hidden" name="type_paiement" value="[(#ENV{type_paiement})]" />
+      <input type="hidden" name="commande_numero" value="[(#ENV{commande_numero})]" />
+      <input type="hidden" name="id_auteur" value="[(#ENV{id_auteur})]" />
+      <input type="hidden" name="id_commande" value="[(#ENV{id_commande})]" />
+      <p class="boutons enregistrer"><input type="submit" class="submit btn large" value="[(#GET{submit})]" /></p>
+   </div></form>
+</div>

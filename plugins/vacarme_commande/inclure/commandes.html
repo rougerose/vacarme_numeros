@@ -1,0 +1,15 @@
+<p class="grid-12 compte retour"><a href="#URL_PAGE{compte}" class="btn large"><:vacarme_commande:retour_compte:></a></p>
+<div class="section commandes">
+   <h2><:vacarme_commande:compte_commandes:></h2>
+   <B_liste_commandes>
+   <div id="liste_commandes">
+      <BOUCLE_liste_commandes(COMMANDES){id_auteur=#SESSION{id_auteur}}{!par id_commande}>
+      <h3><a href="#commande#ID_COMMANDE"><:vacarme_commande:votre_commande:> numéro #REFERENCE du [(#DATE|affdate{d/m/Y})]</a></h3>
+      [<div class="commande">
+         <p>[(#STATUT|lister_statuts)][(#STATUT|=={paye}|oui)[ / <a href="(#URL_PAGE{facture}|parametre_url{id_commande,#ID_COMMANDE})"><:vacarme_commande:facture_voir:></a>]]</p>
+         (#INCLURE{fond=inclure/commande,id_commande,contexte=compte})
+      </div><!-- .commande -->]
+      </BOUCLE_liste_commandes>
+   </div><!-- .liste-commandes -->
+   </B_liste_commandes>
+</div><!-- .section commandes -->

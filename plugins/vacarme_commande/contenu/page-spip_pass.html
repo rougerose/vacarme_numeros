@@ -1,0 +1,13 @@
+<h1><:vacarme_commande:titre_page_compte:></h1>
+
+<div class="grids compte">
+   <div class="grid-8 spip_pass etape2">
+      <h2><:vacarme_commande:oubli_mot_de_passe:></h2>
+      [(#ENV{p}|non)
+         #FORMULAIRE_OUBLI
+      ]
+      [(#ENV{p}|oui)
+         #FORMULAIRE_MOT_DE_PASSE
+      ]
+   </div><!-- .grid-12 inscription -->
+</div><!-- .grids compte -->

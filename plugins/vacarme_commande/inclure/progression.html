@@ -1,0 +1,14 @@
+[(#ENV{composition}|=={panier}|oui)#SET{etape,1}]
+[(#ENV{composition}|=={commander}|oui)#SET{etape,2}]
+[(#ENV{composition}|=={confirmation}|oui)
+   [(#ENV{reglement}|=={1}|oui) #SET{etape,4} #SET{ok,' '}]
+   [(#ENV{reglement}|=={0}|oui) #SET{etape,4} #SET{ok,''}]
+   [(#ENV{reglement}|=={2}|oui) #SET{etape,4} #SET{ok,' '}]
+]
+
+<ol class="nav progression">
+   <li class="[(#GET{etape}|=={1}|oui)on][(#GET{etape}|>{1}|oui)done]"><:vacarme_commande:votre_panier:></li>
+   <li class="[(#GET{etape}|=={2}|oui)on][ (#GET{etape}|>{2}|oui)done]"><:vacarme_commande:votre_commande:></li>
+   <li[(#GET{etape}|>{3}|oui)[(#GET{ok}|oui) class="done"]]><:vacarme_commande:paiement:></li>
+   <li[(#GET{etape}|=={4}|oui)[(#GET{ok}|oui) class="on"][(#GET{ok}|non) class="on pb"]]><:vacarme_commande:confirmation:></li>
+</ol>

@@ -1,0 +1,33 @@
+<B_facture>
+<!DOCTYPE html>
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<INCLURE{fond=head/#ENV{type},env}>
+<INCLURE{fond=inclure/head}>
+</head>
+<body class="page_#ENV{type,page}[ #ENV{type,page}_(#ENV{composition,''})] wrapper">
+   <BOUCLE_facture(COMMANDES){id_commande}>
+   <div id="page">
+      <div id="entete" class="grids">
+         <INCLURE{fond=inclure/facture/entete}>
+   	</div>
+   	<div id="conteneur">
+   		<div id="contenu">
+   			<INCLURE{fond=contenu/#ENV{type},env}>
+   		</div>
+   		<div id="navigation">
+   			<INCLURE{fond=navigation/#ENV{type},env}>
+   			<INCLURE{fond=extra/#ENV{type},env}>
+   		</div>
+   	</div>
+   	<div id="pied">
+   		<INCLURE{fond=inclure/pied,env}>
+   	</div>
+   </div>
+   </BOUCLE_facture>
+#SPIP_CRON
+</body>
+</html>
+</B_facture>
+<INCLURE{fond=404} />
+<//B_facture>

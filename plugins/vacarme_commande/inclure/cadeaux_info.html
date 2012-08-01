@@ -1,0 +1,48 @@
+#CACHE{0}
+[(#REM) en fonction de l'abonnement choisi, combien de cadeaux ? ]
+   #SET{duree,''} #SET{cadeaux_commande,0} #SET{solde,0}
+   <BOUCLE_contenu_panier(PANIERS_LIENS){id_panier=#SESSION{id_panier}}>
+      [(#REM) abonnements ? => quantité ? ]
+      <BOUCLE_abonnement(CONDITION){si #OBJET|=={abonnement}}>
+         <BOUCLE_type_abonnement(ABONNEMENTS){id_abonnement=#ID_OBJET}>
+         [(#SET{duree,#GET{duree}|plus{#DUREE}})]
+         </BOUCLE_type_abonnement>
+      </BOUCLE_abonnement>
+
+      [(#REM) cadeaux dans la commande ? ]
+      <BOUCLE_cadeau(CONDITION){si #OBJET|=={produit}}>
+         <BOUCLE_cadeaux_commande(PRODUITS){id_produit=#ID_OBJET}{reference==kdo}{unique}>
+            [(#SET{cadeaux_commande,#GET{cadeaux_commande}|plus{#COMPTEUR_BOUCLE}})]
+         </BOUCLE_cadeaux_commande>
+      </BOUCLE_cadeau>
+   </BOUCLE_contenu_panier>
+
+   [(#REM) on calcule le nombre de cadeaux auquel on a droit, et combien on peut encore en prendre ]
+   [(#GET{duree}|oui)
+      #SET{cadeaux_dispo,#GET{duree}|div{12}}
+      #SET{solde,#GET{cadeaux_dispo}|moins{#GET{cadeaux_commande}}}
+   ]
+
+[(#REM) en fonction du contexte -- message d'info ou bouton -- on affiche le contenu là où il faut dans la page cadeaux ]
+[(#ENV{contenu}|=={message}|oui)
+   [(#GET{solde}|=={0}|oui)
+      [(#GET{cadeaux_dispo}|non)
+      <p class="message medium warning"><span class="information"><:vacarme_commande:cadeaux_message_abonnement_manquant{url=#URL_RUBRIQUE{1}}:></span></p>]
+   ][(#GET{solde}|=={0}|oui)
+      [(#GET{cadeaux_dispo}|=={#GET{cadeaux_commande}}|oui)
+         [<p class="message medium succes"><span class="information">(#GET{cadeaux_dispo}singulier_ou_pluriel{
+         'vacarme_commande:cadeaux_message_un_ok','vacarme_commande:cadeaux_message_plusieurs_ok'
+         })</span></p>]
+      ]
+   ][(#GET{solde}|=={0}|non)
+   <p class="message medium info"><span class="information">[(#GET{solde}|singulier_ou_pluriel{
+      'vacarme_commande:cadeaux_message_solde_un','vacarme_commande:cadeaux_message_solde_plusieurs'})]
+   </span></p>]
+][(#ENV{contenu}|=={bouton}|oui)
+   [(#GET{solde}|=={0}|non)
+      [(#BOUTON_ACTION{
+         <:zcommerce:ajouter_au_panier:>,
+         #URL_ACTION_AUTEUR{remplir_panier,produit-#ENV{id_produit}-1,#ENV{self}},ajouter
+      })]
+   ]
+]

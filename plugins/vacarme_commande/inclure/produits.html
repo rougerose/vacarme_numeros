@@ -1,0 +1,15 @@
+<B_numeros>
+[(#ENV{type_produit}|=={numeros}|?{
+   [<p class="pagination">(#PAGINATION{numeros})</p>]
+   ,[<p class="pagination">(#PAGINATION{page})</p>]
+})]
+<ul id="produits" class="grids presentation[ (#ENV{type_produit})]">
+   <BOUCLE_numeros(PRODUITS){id_rubrique}{!par titre}{pagination 10}>
+   #INCLURE{fond=inclure/produit-presentation,id_produit,composition=#ENV{composition},compteur=#COMPTEUR_BOUCLE}
+   </BOUCLE_numeros>
+</ul>
+[(#ENV{type_produit}|=={numeros}|?{
+   [<p class="pagination">(#PAGINATION{numeros})</p>]
+   ,[<p class="pagination">(#PAGINATION{page})</p>]
+})]
+</B_numeros>

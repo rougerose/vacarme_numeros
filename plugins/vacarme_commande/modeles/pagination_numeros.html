@@ -1,0 +1,20 @@
+<BOUCLE_d(PRODUITS){id_rubrique=2}{0,1}{!par titre}>[(#SET{dernier_numero,#TITRE|replace{vacarme\s*,'',i}})]</BOUCLE_d>
+#ENV*{bloc_ancre}
+#SET{bornes,#ENV{page_courante}|bornes_pagination{#ENV{nombre_pages},10}}
+#SET{premiere, #GET{bornes}|reset}
+#SET{derniere, #GET{bornes}|end}
+#SET{pages,#GET{premiere}|range{#GET{derniere}}}
+#SET{separateur,#ENV{separateur,'|'}}
+
+<B_pages>
+<span class='pagination_label'>Vacarme</span>
+[<a href='[(#ENV{url}|parametre_url{#ENV{debut},''})]##ENV{ancre}' class='lien_pagination' rel='nofollow'>=(#GET{premiere}|>{1}|?{'...',''})</a> [<span class='sep separateur'>(#GET*{separateur})</span>]]
+<BOUCLE_pages(POUR){tableau #GET{pages}}>
+[(#SET{item, #VALEUR|moins{1}|mult{#ENV{pas}} })]
+[(#SET{du,#GET{dernier_numero}|moins{#VALEUR|moins{1}|mult{#ENV{pas}}}})]
+[(#SET{au,#VAL{<:vacarme_commande:a:>}|concat{#GET{dernier_numero}|moins{#VALEUR|mult{#ENV{pas}}|moins{1}}}})]
+[(#ENV{url}|parametre_url{#ENV{debut},#GET{item}}|ancre_url{#ENV{ancre}}|aoustrong{#GET{du}#GET{au},#VALEUR|=={#ENV{page_courante}},lien_pagination,'',nofollow})]
+[<span class='sep separateur'>(#VALEUR|<{#GET{derniere}}|?{#GET{separateur}})</span>]
+</BOUCLE_pages>
+[[<span class='sep separateur'>(#GET*{separateur})</span>] <a href='[(#ENV{url}|parametre_url{#ENV{debut},#ENV{nombre_pages}|moins{1}|mult{#ENV{pas}}})]##ENV{ancre}' class='lien_pagination' rel='nofollow'>(#GET{derniere}|<{#ENV{nombre_pages}}|?{'...',''})</a>]
+</B_pages>

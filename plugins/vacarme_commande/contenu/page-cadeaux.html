@@ -1,0 +1,18 @@
+[(#REM) titre et url de la rubrique abonnements ]
+#SET{titre,#INFO_TITRE{rubrique,1}} #SET{url,#URL_RUBRIQUE{1}}
+
+[(#REM) visiteur résumé : login + panier ]
+<INCLURE{fond=inclure/visiteur,env}>
+
+<h1><:vacarme_commande:titre_page_cadeaux{titre=#GET{titre}}:></h1>
+[(#REM) message d'info relatif aux cadeaux déjà pris -- ou pas -- ]
+<INCLURE{fond=inclure/cadeaux_info,contenu=message,env}>
+
+<BOUCLE_cadeaux(RUBRIQUES){id_rubrique=1}>
+[(#INCLURE{fond=inclure/produits,id_rubrique,env,ajax,type_produit=cadeaux})]
+</BOUCLE_cadeaux>
+
+<p class="poursuivre-achats suite">
+   <INCLURE{fond=inclure/poursuivre,env}>
+</p><!-- .poursuivre-achats -->
+

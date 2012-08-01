@@ -1,0 +1,14 @@
+<BOUCLE_auteur(CONTACTS){id_auteur}>
+[<p class="identite">[(#CIVILITE|capitale)] #PRENOM (#NOM)</p>]
+[(#TYPE_CLIENT|=={organisation}|oui)
+[<p>(#ORGANISATION)</p>]
+[<p>(#SERVICE)</p>]
+]
+</BOUCLE_auteur>
+<BOUCLE_adresses_auteur(ADRESSES){id_adresse}>
+[<p class="voie">(#VOIE)</p>]
+[<p class="complement_voie">(#COMPLEMENT)</p>]
+<p class="boite_postale">#BOITE_POSTALE</p>
+<p class="ville">[(#CODE_POSTAL)][ (#VILLE)]</p>
+<p class="pays"><BOUCLE_pays(PAYS){code=#PAYS}>#NOM</BOUCLE_pays></p>
+</BOUCLE_adresses_auteur>

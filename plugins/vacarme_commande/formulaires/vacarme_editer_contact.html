@@ -1,0 +1,30 @@
+<div class='formulaire_spip formulaire_#FORM formulaire_#FORM-#ENV{id_contact,nouveau}'>
+   [<p class="reponse_formulaire reponse_formulaire_ok message succes medium"><span class="information">(#ENV*{message_ok})</span></p>]
+   [<p class="reponse_formulaire reponse_formulaire_erreur message erreur medium"><span class="information">(#ENV*{message_erreur})</span></p>]
+   [(#ENV{editable}|oui)
+   <form method='post' action='[(#ENV{action})]'><div>
+      #ACTION_FORMULAIRE{#ENV{action}}
+      <input type='hidden' name='id_contact' value='#ENV{id_contact}' />
+      [(#REM) sur la creation, on passe l'id_parent (id_organisation) si donnee ]
+      [(#ENV{id_contact}|=={oui}|oui)
+      [<input type='hidden' name='id_parent' value='(#ENV{id_parent})' />]
+      ]
+      <ul>
+         [(#SAISIE{radio, civilite,
+            obligatoire=oui,
+            label=<:vacarme_commande:label_civilite:>,
+            datas=#ARRAY{'madame',<:vacarme_commande:madame:>,'monsieur',<:vacarme_commande:monsieur:>}
+         })]
+         [(#SAISIE{input, prenom,
+            obligatoire=oui,
+            label=<:vacarme_commande:label_prenom:>})]
+         [(#SAISIE{input, nom,
+            obligatoire=oui,
+            label=<:vacarme_commande:label_nom:>})]
+      </ul>
+      [(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+      <!--extra-->
+      <p class='boutons enregistrer'><input class="submit btn large" type='submit' name='enregistrer' value='<:bouton_enregistrer:>' /></p>
+   </div></form>
+   ]
+</div>

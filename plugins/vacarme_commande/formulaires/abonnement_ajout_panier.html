@@ -1,0 +1,59 @@
+[(#REM)
+   variables
+   ==========
+   - titre : titre du numéro (Vacarme XX).
+   - titre complet : titre de la forme Vacarme XX (saison annee, numero précédent/en cours/prochain).
+   - cle : le numero (extrait du titre) qui servira du tableau "numeros"
+   - numeros_valeur : le tableau des titres complets des numeros.
+   - numeros_cle : le tableau des numéros des numéros.
+   - numeros : le tableau fusionné des deux précédents : numeros_cle => numeros_valeur.
+   - chrono : le tableau numéro précédent/actuel/prochain.
+   - départ : puisque le prochain numéro n'est pas encore enregistré en base (puisqu'il n'existe pas), on calcule la saison à partir d'un numéro connu, le 58 paru en hiver.
+   - saisons : le tableau des saisons.
+   - saison : la saison du prochain numéro.
+   - annee : l'annee d'un prochain numero, soit annee courante, soit annee courante + 1 (si le prochain numéro est hiver ou printemps et que le mois courant est décembre).
+]
+#SET{numeros_valeur,#ARRAY} #SET{numeros_cle,#ARRAY} #SET{numeros,#ARRAY} #SET{chrono,#ARRAY{1,'prochain numéro',2,'numéro actuel',3,'précédent numéro'}} #SET{depart, 58} #SET{saisons,#ARRAY{0,'hiver',1,'printemps',2,'été',3,'automne'}}
+<BOUCLE_numeros(PRODUITS){id_rubrique=2}{!par titre}{0,2}>
+#SET{titre,#TITRE} [(#SET{cle,#TITRE|replace{vacarme\s*,'',i}})] [(#SET{chrono_valeur,#GET{chrono}|table_valeur{#COMPTEUR_BOUCLE}})]
+[(#REM) prochain numero]
+[(#COMPTEUR_BOUCLE|=={1}|oui)
+   [(#SET{saison,#GET{cle}|moins{#GET{depart}}|plus{1}|modulo{4}})]
+   [(#SET{annee,#DATE|annee})][(#GET{saison}|=={0}|ou{#GET{saison}|=={1}}|et{#DATE|mois|=={12}}|oui)#SET{annee,#DATE|annee|plus{1}}]
+   [(#SET{saison,#GET{saisons}|table_valeur{#GET{saison}}})]
+   [(#SET_PUSH{numeros_cle,#GET{cle}|plus{1}})] [(#SET_PUSH{numeros_valeur,[(#VAL{'Vacarme '}|concat{#GET{cle}|plus{1},' (',#GET{saison},' ',#GET{annee},', ',#GET{chrono_valeur},')'})]})]
+]
+[(#SET{chrono_valeur,#GET{chrono}|table_valeur{#COMPTEUR_BOUCLE|plus{1}}})]
+<BOUCLE_details(VACARME_NUMEROS_DETAILS){id_produit}>[(#SET{titre_complet,#GET{titre}|concat{' (',#SAISON,' ',#ANNEE,', ',#GET{chrono_valeur},')'}})]</BOUCLE_details>
+#SET_PUSH{numeros_valeur,#GET{titre_complet}} #SET_PUSH{numeros_cle,#GET{cle}}
+</BOUCLE_numeros>
+[(#SET{numeros,#GET{numeros_cle}|array_combine{#GET{numeros_valeur}}})]
+
+<div class='formulaire_spip formulaire_#FORM'>
+
+   [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+   [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+   [(#ENV{editable}|oui)
+   <form method='post' action='[(#ENV{action})]'><div>
+      #ACTION_FORMULAIRE{#ENV{action}}
+      <input type='hidden' name='id_abonnement' value='#ENV{id_abonnement}' />
+      <ul>
+         [(#SAISIE{
+            selection,
+            numero,
+            label=<:vacarme_commande:label_numero_depart:>,
+            obligatoire=oui, info_obligatoire='',
+            cacher_option_intro=oui,
+            valeur_forcee=#GET{numeros_cle}|table_valeur{1},
+            datas=#GET{numeros}
+         })]
+      </ul>
+      [(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+      <!--extra-->
+      <p class='boutons ajouter'>
+         <input type='submit' class='submit btn large' name='enregistrer' value='<:vacarme_commande:bouton_ajouter:>' />
+      </p>
+   </div></form>
+   ]
+</div>
