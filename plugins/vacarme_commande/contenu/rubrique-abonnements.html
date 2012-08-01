@@ -10,9 +10,9 @@
 
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 <h1>#TITRE</h1>
-
-<p>Choisissez votre abonnement selon votre lieu de résidence</p>
-
+[<div class="intro rubrique">
+   (#TEXTE)
+</div>]
 <BOUCLE_abonnements(ABONNEMENTS){reference==^AB}>
    #SET{condition-abo,oui}
    [(#SET{abonnements,#GET{abonnements}|push{#ID_ABONNEMENT}})]

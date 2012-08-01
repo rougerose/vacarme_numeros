@@ -1,22 +1,23 @@
 - plugin paypal modifié, au niveau du pipeline traitement_paypal : à ajouter dans git
 
-- envoyer un mail de confirmation quand la commande est confirmée comme payée par paypal ?
-
-- faire des numéros de commandes de la forme annee-mois-jour-numero d'ordre, plutôt que le numéro attribué par défaut qui ne ressemble à rien de compréhensible.
-
-- mail paiement virement : indiquer les coordonnées bancaires complètes.
-
 - url : ?page=contact dans les chaines de langues. Donc à corriger si jamais l'url n'est pas celle-là
 - url : page consultation commande ?page=compte@section=commandes&id_commande=XX (url dans le mail de confirmation du paiement alternatif)
 
-
-- à vérifier : paiement paypal, à quel moment se fait la suppression du panier en cours ? après ipn ? Voir à quel moment on supprime le panier quand le paiement est chèque ou virement ?
-
+Ajouts ?
+========
 - ajouter avec formulaire paiement acception CGV ?
+- envoyer un mail de confirmation quand la commande est confirmée comme payée par paypal ?
 
-
-- problème de durée de session ? Il semble que l'on soit éjecté automatiquement après 4 minutes.
-
+A corriger
+==========
 - page panier : le total est bon ; page commander : le total diffère de 1 centime, problème d'arrondi visiblement. A harmoniser.
+- problème de durée de session ? Il semble que l'on soit éjecté automatiquement après 4 minutes.
+- à vérifier : paiement paypal, à quel moment se fait la suppression du panier en cours ? après ipn ? Voir à quel moment on supprime le panier quand le paiement est chèque ou virement ?
+- mail paiement virement : indiquer les coordonnées bancaires complètes.
+- faire des numéros de commandes de la forme annee-mois-jour-numero d'ordre, plutôt que le numéro attribué par défaut qui ne ressemble à rien de compréhensible.
+
+A faire
+========
 
 - page 404 à faire
+- Q/R : notamment pour y mettre le blabla dans le texte de la rubrique "Acheter" ?
