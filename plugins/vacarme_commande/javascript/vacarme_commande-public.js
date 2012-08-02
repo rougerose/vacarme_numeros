@@ -36,6 +36,22 @@ $(document).ready(function() {
    });
 
 
+// ===============================================
+// = page sommaire : couverture affichée/masqueé =
+// ===============================================
+   $("#numero-last").each(function(){
+      var li = $(this), img = li.find(".img img"), hauteur = "430px";
+      li.animate({height: hauteur},1500);
+      img.hover(
+         function(){
+            li.stop().animate({height: "750px"},1500);
+         },
+         function(){
+            li.stop().animate({height: hauteur},1500);
+         }
+      );
+   });
+
 // =======================================================
 // = Présentation produits : accordéon sur les sommaires =
 // =======================================================

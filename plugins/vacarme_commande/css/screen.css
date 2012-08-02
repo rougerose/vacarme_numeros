@@ -65,7 +65,7 @@ html { background: #f9f9f9 url(../img/css/pattern.png) repeat top left;}
       font-family: "Helevetica Neue", Helvetica, sans-serif;
       color: #555;
    }
-      #page {position: relative;}
+      #page {position: relative; z-index: 0;}
 
 /* ========= */
 /* = Liens = */
@@ -251,7 +251,7 @@ h1 {
       margin-top: .75em; margin-bottom: .75em;
       font-family: 'Helvetica Neue', Helvetica, sans-serif;
    }
-   .panier p {float: right; position: relative;}
+   .panier p {float: right; position: relative; z-index: 0;}
    .panier p:before {
       content:' ';
       display: inline-block;
@@ -335,7 +335,7 @@ h1 {
 /* =============== */
 /* = Abonnements = */
 /* =============== */
-.abonnement {
+#offres_abo .abonnement {
    border: 2px solid #000; border-width: 2px 0 1px; border-bottom-color: #ccc;
    padding-top: 1em;
    margin-top: 1em !important;
@@ -344,7 +344,7 @@ h1 {
 
 }
    .abonnement h2 {
-      font: 1.15em/1.3em "HelveticaNeueLTStdLtCnRegular", "Helevetica Neue", Helvetica, sans-serif;
+      font-size: 1.15em; line-height: 1.3em;
       text-transform: uppercase; text-align: center;
       color: #999;
       margin-bottom: 0;
@@ -367,7 +367,6 @@ h1 {
       clear: both;
    }
    .abonnement label {
-      font-family: 'HelveticaNeueLTStdLtCnRegular';
       text-transform: uppercase;
    }
 
@@ -384,25 +383,120 @@ h1 {
    float: left;
 }
 
+/* ================= */
+/* = Page sommaire = */
+/* ================= */
+.presentation.sommaire {margin-left: 20px; margin-top: 1em;}
+.presentation.sommaire .media {border-bottom-width: 2px;}
+.presentation.sommaire h1.intertitre {
+   color: #000;
+   line-height: 1em;
+}
+.presentation.sommaire .infos { text-transform: uppercase; float: left; }
+.presentation.sommaire .saison {
+   font-size: 1.5em; line-height: 1em;
+   color: #999;
+   clear: left;
+}
+.presentation.sommaire .prix {
+   font-size: 5em; line-height: 1em;
+   color: #000;
+   float: right;
+    margin-top:-0.625em;
+}
+.presentation.sommaire .img a {display: block;}
+.presentation.sommaire .img img {
+   -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+   -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+   -o-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+   box-shadow: 1px 2px 8px rgba(0,0,0,0.5);
+}
+.presentation.sommaire .item1 {margin-left: 0;}
+/* dernier numéro */
+.presentation.sommaire .numero.une {
+   overflow: hidden;
+   height: 430px;
+   position: relative;
+   margin-bottom: 1.5em;
+}
+.presentation.sommaire .numero .intertitre {margin-bottom: 0;}
+.presentation.sommaire .numero .img a {
+   margin: 20px 20px 20px 5px;
+}
+.presentation.sommaire .numero .img img {
+   -webkit-transform: rotate(-3deg);
+      -moz-transform: rotate(-3deg);
+       -ms-transform: rotate(-3deg);
+        -o-transform: rotate(-3deg);
+           transform: rotate(-3deg);
+}
+.presentation.sommaire .numero .texte {
+   margin-left: 0;
+   position: absolute; bottom: 0; right: 0;
+}
+.presentation.sommaire .titre-numero {font-size: 2em; margin-bottom: 0.15em; float: left;}
+
+/* abonnements */
+.presentation.sommaire .abonnements {border-bottom-width: 0;}
+.presentation.sommaire .abonnements h1 {margin-bottom: 1em;}
+.presentation.sommaire .abonnement {border-bottom: 2px solid #000;}
+
+.presentation.sommaire .abonnement .duree {
+   font-size: 2.5em; line-height: 1em;
+   color: #000;
+   margin-bottom: 0;
+}
+.presentation.sommaire .abonnement .nombre_numeros {
+   font-size: 1.5em; line-height: 1em;
+   clear: left;
+}
+.presentation.sommaire .abonnement .nombre_numeros a {color: #999;}
+.presentation.sommaire .abonnement .nombre_numeros span {color: #000;}
+.presentation.sommaire .abonnement .prix {position: relative;}
+.presentation.sommaire .abonnement .apartirde {
+   color: #999;
+   font-size: 12px; line-height: 0;
+   display: block;
+   position: absolute; top: 0; right: 0;
+}
+
+/* Précédents numéros */
+.presentation.sommaire .numeros .img .a_img {min-height: 225px; margin-bottom: .5em;}
+.presentation.sommaire .numeros .infos {float: none; text-align: center;}
+.presentation.sommaire .numeros .titre-numero {
+   font-size: 1.25em; line-height: 1;
+   float: none;
+   text-align: center;
+
+}
+.presentation.sommaire .numeros .saison { font-size: 1.125em; line-height: 1; }
+.presentation.sommaire .numeros .prix {
+   font-size: 1.75em; line-height: 1em;
+   float: none;
+}
+
+
 /* =========================== */
 /* = Produits : présentation = */
 /* =========================== */
 .presentation .item1 { clear:left; }
    .presentation .media {
-      margin-bottom: 2em;
-      min-height: 410px;
       border-bottom: 1px solid #000;
    }
+   .presentation.numeros .media {
+      margin-bottom: 2em;
+      min-height: 410px;
+   }
    .presentation .body { margin-bottom: .5em; }
-      .presentation .body .img { display: block; margin-right: 0; }
+      .presentation.numeros .body .img { display: block; margin-right: 0; }
       .body .img img {
          -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
          -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
          -o-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
          box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
       }
-      .body .titre-numero { text-transform: uppercase; overflow: hidden; margin-bottom: .5em; }
-      .body .texte { overflow: hidden; }
+      .presentation .titre-numero { text-transform: uppercase; overflow: hidden; margin-bottom: .5em; }
+      .presentation.numeros .body .texte { overflow: hidden; }
       .body .sommaire .titre { margin-bottom: .2em; }
       .body .sommaire .descriptif { font-size: .813em; margin-bottom: .5em; }
    .presentation .pied { margin-bottom: .5em; }
@@ -697,14 +791,21 @@ h1 {
    .progression li,
    .coordonnees-numero,
    .pagination,
-   .formulaire .legend { font-family: "HelveticaNeueLTStdCnRegular","Helevetica Neue",Helvetica,sans-serif; font-weight: normal; }
+   .formulaire .legend {font-family: "HelveticaNeueLTStdCnRegular","Helevetica Neue",Helvetica,sans-serif; font-weight: normal;}
 
    h1,h2,
    .titre-numero,
    .body .titre,
    .prix,
    .savoir,
-   .pagination .on { font-family: "HelveticaNeueLTStdCnBold","Helvetica Neue", Helvetica, sans-serif; font-weight: normal; }
+   .pagination .on,
+   .abonnement .duree {font-family: "HelveticaNeueLTStdCnBold","Helvetica Neue", Helvetica, sans-serif; font-weight: normal;}
+
+   .abonnement h2,
+   .abonnement label,
+   .presentation.sommaire .saison,
+   .abonnement .nombre_numeros {font-family: "HelveticaNeueLTStdLtCnRegular", "Helevetica Neue", Helvetica, sans-serif; font-weight: normal;}
+
 
    /* boutons */
    .ajouter,

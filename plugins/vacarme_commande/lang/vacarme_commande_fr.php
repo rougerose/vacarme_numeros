@@ -4,9 +4,10 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
    // A
+   'a' => ' &#x2192; ',
    'abo_fr' => 'France (Métropole et outre-mer)',
    'abo_inter' => 'International',
-   'a' => ' &#x2192; ',
+   'abonnements' => "Les abonnements",
    'adresse_de' => 'Votre adresse de',
 
    // B
@@ -38,6 +39,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
    'choisir_cadeaux_plusieurs' => 'Choisir vos cadeaux &#x2192;',
    'continuer_achats' => '&#x2190; Continuez vos achats',
    'voir_cadeaux' => 'Voir les cadeaux &#x2192;',
+
+   // D
+   'dernier_numero_paru' => "Le dernier numéro paru",
 
    // F
    'facture' => 'Facture',
@@ -130,7 +134,7 @@ Nos coordonnées bancaires :
    'panier_article_singulier' => 'article',
 	'particulier'                 =>	'Particulier',
    'pass_nouveau_pass' => 'Réinitialiser votre mot de passe',
-   'valider_commande' => 'Valider votre commande &#x2192;',
+   'precedents_numeros' => "Les précédents numéros",
 
 	// R
    'recapitulatif_commande' => 'Récapitulatif de votre commande',
@@ -166,6 +170,7 @@ Nos coordonnées bancaires :
    'tva' => 'TVA',
 
    // V
+   'valider_commande' => 'Valider votre commande &#x2192;',
    'voir_commande' => 'Votre commande &#x2192;',
    'votre_commande' => 'Votre commande',
    'votre_facture' => "Votre facture",

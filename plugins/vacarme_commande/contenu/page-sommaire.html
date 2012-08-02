@@ -1,0 +1,62 @@
+[(#REM) visiteur résumé : login + panier ]
+<INCLURE{fond=inclure/visiteur,env}>
+
+<div class="grids">
+   <ul class="presentation sommaire">
+      <BOUCLE_dernier_numero(PRODUITS){id_rubrique=2}{!par titre}{0,1}{doublons}>[(#SET{reference,#REFERENCE})]
+      <li id="numero-last" class="media numero une body">
+         <h1 class="intertitre"><a href="[(#URL_RUBRIQUE{2}|ancre_url{#GET{reference}})]"><:vacarme_commande:dernier_numero_paru:></a></h1>
+         <BOUCLE_couverture(DOCUMENTS){id_produit}{0,1}>
+         <div class="grid-7 img colonne">
+            [<a href="[(#URL_RUBRIQUE{2}|ancre_url{#GET{reference}})]">(#FICHIER|image_reduire{460,0})</a>]
+         </div><!-- .img -->
+         </BOUCLE_couverture>
+         <div class="grid-5 texte colonne">
+            <h2 class="titre-numero"><a href="[(#URL_RUBRIQUE{2}|ancre_url{#GET{reference}})]">#TITRE</a></h2>
+            <BOUCLE_saison_dn(VACARME_NUMEROS_DETAILS){id_produit=#ID_PRODUIT}>
+            <p class="saison infos">#SAISON #ANNEE</p>
+            </BOUCLE_saison_dn>
+            <p class="prix infos">[(#PRIX*|prix_format)&euro;]</p>
+         </div><!-- .texte -->
+      </li>
+      </BOUCLE_dernier_numero>
+
+      <B_abonnements>
+      <li class="abonnements media">
+         <h1 class="intertitre"><a href="#URL_RUBRIQUE{1}"><:vacarme_commande:abonnements:></a></h1>
+         <BOUCLE_abonnements(ABONNEMENTS){reference==^ABFRSD}{par num titre, titre}>
+         <div class="grid-6 abonnement colonne [item(#COMPTEUR_BOUCLE|modulo{2})]">
+            [(#REM) calcul durée et nombre numéros ]
+            [(#PERIODE|=={'mois'}|oui) [(#SET{duree,[(#DUREE|div{12})]})] [(#SET{numero,[(#DUREE|div{3})]})] ]
+            <p class="duree infos">[<a href="#URL_RUBRIQUE{1}">(#GET{duree}|singulier_ou_pluriel{'vacarme_commande:nb_an', 'vacarme_commande:nb_ans'})</a>]</p>
+            <p class="nombre_numeros infos">
+               [<a href="#URL_RUBRIQUE{1}">(#GET{numero}|singulier_ou_pluriel{'vacarme_commande:nb_numero','vacarme_commande:nb_numeros'})]
+               [<span>+</span> (#CADEAU|singulier_ou_pluriel{'vacarme_commande:nb_cadeau','vacarme_commande:nb_cadeaux'})</a>]
+            </p>
+            <p class="prix infos">[(#PRIX*|prix_format)&euro; <span class="apartirde">à partir de</span>]</p>
+         </div>
+         </BOUCLE_abonnements>
+      </li>
+      </B_abonnements>
+
+      <B_autres_numeros>
+      <li class="media numeros selection">
+         <h1 class="intertitre"><:vacarme_commande:precedents_numeros:></h1>
+         <BOUCLE_autres_numeros(PRODUITS){id_rubrique=2}{!par titre}{0,6}{doublons}>[(#SET{reference,#REFERENCE})]
+         <div class="grid-2 img colonne[ item(#COMPTEUR_BOUCLE|modulo{6})]">
+            <BOUCLE_couv(DOCUMENTS){id_produit}{0,1}>
+            [<a href="[(#URL_RUBRIQUE{2}|ancre_url{#GET{reference}})]" class="a_img">(#FICHIER|image_reduire{140,0})</a>]
+            </BOUCLE_couv>
+            <h2 class="titre-numero"><a href="[(#URL_RUBRIQUE{2}|ancre_url{#GET{reference}})]">#TITRE</a></h2>
+            <BOUCLE_saison(VACARME_NUMEROS_DETAILS){id_produit}>
+            <p class="saison infos">#SAISON #ANNEE</p>
+            </BOUCLE_saison>
+            <p class="prix infos">[(#PRIX*|prix_format)&euro;]</p>
+         </div>
+         </BOUCLE_autres_numeros>
+      </li>
+      </B_autres_numeros>
+
+   </ul>
+
+</div>

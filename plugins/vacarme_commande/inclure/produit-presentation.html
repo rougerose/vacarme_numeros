@@ -1,5 +1,5 @@
 <BOUCLE_produit(PRODUITS){id_produit}>
-<li class="grid-6 media[ item(#ENV{compteur}|modulo{2})]">
+<li[ id="(#REFERENCE)"] class="grid-6 media[ item(#ENV{compteur}|modulo{2})]">
    <div class="body cf">
       [(#REM) le visuel de la couverture numero/cadeau ]
       <BOUCLE_visuel(DOCUMENTS){id_produit}{0,1}>
