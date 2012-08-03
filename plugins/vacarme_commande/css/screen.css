@@ -100,6 +100,12 @@ h2.spip {
 }
 h2.spip:first-child {margin-top: 0;}
 
+/* ======= */
+/* = Nav = */
+/* ======= */
+.nav { list-style:none; }
+.nav li { display:inline; }
+.nav a { display:inline-block; }
 
 /* ========== */
 /* = Entete = */
@@ -107,10 +113,10 @@ h2.spip:first-child {margin-top: 0;}
 #entete { padding-top: 1em; }
    .accueil { border-bottom: 3px solid #000; }
 /* logo */
-   #logo{
+   #entete #logo{
       display: inline;
-      font: 2.75em/1.091em "HelveticaNeueLTStdCnBold", "Helevetica Neue", Helvetica, sans-serif; /* 44px/48px */
-      text-transform: uppercase;
+      font-size: 2.75em; line-height: 1.091em;
+      xtext-transform: uppercase;
     }
       #logo a {
          text-transform: uppercase;
@@ -126,17 +132,7 @@ h2.spip:first-child {margin-top: 0;}
       .slogan:before { content: "/"; color: #999; font-weight: bold; margin-right: 5px; }
 
 /* nav principale */
-.nav.principale {
-   position: absolute; right: 0; top: 0; z-index: 5;
-   text-align: right;
-}
-   .principale li {
-      margin-right: .5em;
-      font: 1em "HelveticaNeueLTStdLtCnRegular", "Helevetica Neue", Helvetica, sans-serif;
-      text-transform: uppercase;
-   }
-   .principale li:last-child { margin-right: 0; }
-   .principale li:before { content: "/"; color: #000; font-weight: bold; }
+.nav.principale { position: absolute; right: 0; top: 0; z-index: 5; }
 
 /* ======================= */
 /* = Navigation dropdown = */
@@ -179,6 +175,7 @@ h2.spip:first-child {margin-top: 0;}
       }
       .dropdown .subnav a { white-space: nowrap; }
       .dropdown .has-subnav:hover .subnav { visibility: visible; opacity: 1; top: 1.5em;  }
+
 
 /* ======================== */
 /* = Barre de progression = */
@@ -234,9 +231,15 @@ h2.spip:first-child {margin-top: 0;}
 /* ================ */
 /* = Pied de page = */
 /* ================ */
-   #pied {
-      margin-top: 2em;
+   .pied {
+      margin: 3em 0 0;
+      border-top: 1px solid #000;
    }
+   .pied #logo {font-size: 2em; display: block; float: right;}
+   .pied .nav {
+      line-height: 2em;
+      margin: 1em 0 0;
+      float: left;}
 
 /* ========== */
 /* = Grille = */
@@ -250,7 +253,7 @@ h2.spip:first-child {margin-top: 0;}
 /* ============ */
 
 /* Résumé : définitions générales */
-.resume { border-bottom: 1px solid #ccc; margin-bottom: 1em; }
+.resume { border-bottom: 1px solid #ddd; margin-bottom: 1em; }
 .resume .panier {
    text-align: right; margin-right: 0;
 }
@@ -796,7 +799,7 @@ h2.spip:first-child {margin-top: 0;}
 .rubrique_numeros .pagination {
    text-align: center;
    margin-bottom: 2em;
-   border: 1px solid #000; border-width: 1px 0;
+   border: 1px solid #ddd; border-width: 1px 0;
 }
 
 
@@ -814,6 +817,7 @@ h2.spip:first-child {margin-top: 0;}
    h2.spip {font-family: "HelveticaNeueLTStdCnRegular","Helevetica Neue",Helvetica,sans-serif; font-weight: normal;}
 
    h1,h2,
+   #logo,
    .titre-numero,
    .body .titre,
    .prix,
@@ -821,6 +825,8 @@ h2.spip:first-child {margin-top: 0;}
    .pagination .on,
    .abonnement .duree {font-family: "HelveticaNeueLTStdCnBold","Helvetica Neue", Helvetica, sans-serif; font-weight: normal;}
 
+   .principale li,
+   .pied li,
    .abonnement h2,
    .abonnement label,
    .presentation.sommaire .saison,
@@ -878,6 +884,19 @@ h2.spip:first-child {margin-top: 0;}
       color: #fff;
       background-color: #b40d29;
    }
+
+   /* navigation principal et pied de page */
+   .nav.principale, .pied .nav {
+      text-align: right;
+   }
+      .principale li, .pied li {
+         margin-right: 5px;
+         font-size: 1em;
+         text-transform: uppercase;
+      }
+      .principale li:last-child, .pied li:last-child { margin-right: 0; }
+      .principale li:before, .pied li:before { content: "/"; color: #000; font-weight: bold; }
+
 
 /* ========== */
 /* = Divers = */
