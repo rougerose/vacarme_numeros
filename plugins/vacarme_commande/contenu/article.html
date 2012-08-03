@@ -1,0 +1,31 @@
+[(#REM) visiteur résumé : login + panier ]
+<INCLURE{fond=inclure/visiteur,env}>
+
+<BOUCLE_article(ARTICLES){id_article}>
+<div class="article cf">
+   <ul class="grid-3 meta-publi">
+      <li class="published updated"><:vacarme_commande:publie_le:> <span class="value-title" title="[(#DATE|date_iso)]">[(#DATE|affdate)]</span></li>
+      [<li class="auteur"><:par_auteur:> (#LESAUTEURS)</span></li>]
+   </ul>
+   <div class="grid-7 contenu-principal">
+      [<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+      <h1>#TITRE</h1>
+      [<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+   	<div class="surlignable">
+   		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+   		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{500,0})</div>]
+   	</div>
+
+   	[<div class="ps">
+   		<h2 class="spip"><:info_ps:></h2>
+   		<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
+   	</div>]
+      [<div class="notes surlignable"><h2 class="spip pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+   </div>
+</div>
+
+
+
+
+
+</BOUCLE_article>

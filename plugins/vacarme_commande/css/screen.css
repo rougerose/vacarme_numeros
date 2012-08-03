@@ -93,6 +93,14 @@ h1 {
    font-size: 1.8em;
    color: #000;
 }
+h2.spip {
+   margin-top: 2.5em;
+   margin-bottom: 1em;
+   border-bottom: 1px solid #ccc;
+}
+h2.spip:first-child {margin-top: 0;}
+
+
 /* ========== */
 /* = Entete = */
 /* ========== */
@@ -476,6 +484,17 @@ h1 {
 }
 
 
+/* =========== */
+/* = Article = */
+/* =========== */
+.article .meta-publi {
+   color: #999;
+   font-size: .875em;
+   margin-top: 1.2em;
+}
+.texte, .ps, .notes { margin-bottom: 2.5em; }
+
+
 /* =========================== */
 /* = Produits : présentation = */
 /* =========================== */
@@ -791,7 +810,8 @@ h1 {
    .progression li,
    .coordonnees-numero,
    .pagination,
-   .formulaire .legend {font-family: "HelveticaNeueLTStdCnRegular","Helevetica Neue",Helvetica,sans-serif; font-weight: normal;}
+   .formulaire .legend,
+   h2.spip {font-family: "HelveticaNeueLTStdCnRegular","Helevetica Neue",Helvetica,sans-serif; font-weight: normal;}
 
    h1,h2,
    .titre-numero,
@@ -822,9 +842,11 @@ h1 {
    /* Des listes qui n'en sont pas (vraiment) */
    .formulaire_spip ul,
    .dropdown ul,
-   .compte .sommaire ul {margin-left: 0;}
+   .compte .sommaire ul,
+   .meta-publi {margin-left: 0;}
    .formulaire_spip li,
-   .compte .section.sommaire li {list-style-type: none;}
+   .compte .section.sommaire li,
+   .meta-publi li {list-style-type: none;}
 
 
    /* formulaires */

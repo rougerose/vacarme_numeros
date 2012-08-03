@@ -14,4 +14,7 @@ function prix_format($prix){
    return $prix;
 }
 
+$debut_intertitre = "\n<h2 class=\"spip\">\n";
+$fin_intertitre = "</h2>\n";
+
 ?>

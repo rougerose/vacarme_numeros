@@ -135,6 +135,7 @@ Nos coordonnées bancaires :
 	'particulier'                 =>	'Particulier',
    'pass_nouveau_pass' => 'Réinitialiser votre mot de passe',
    'precedents_numeros' => "Les précédents numéros",
+   'publie_le' => 'Publié le',
 
 	// R
    'recapitulatif_commande' => 'Récapitulatif de votre commande',
