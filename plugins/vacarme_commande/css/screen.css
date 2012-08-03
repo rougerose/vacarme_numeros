@@ -231,12 +231,12 @@ h2.spip:first-child {margin-top: 0;}
 /* ================ */
 /* = Pied de page = */
 /* ================ */
-   .pied {
+   #pied {
       margin: 3em 0 0;
       border-top: 1px solid #000;
    }
-   .pied #logo {font-size: 2em; display: block; float: right;}
-   .pied .nav {
+   #pied #logo {font-size: 2em; display: block; float: right;}
+   #pied .nav {
       line-height: 2em;
       margin: 1em 0 0;
       float: left;}
