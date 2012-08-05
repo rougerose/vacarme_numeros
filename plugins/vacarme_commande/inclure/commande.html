@@ -44,7 +44,7 @@
    #SET{prix_unitaire,#PRIX_HT*{#OBJET,#ID_OBJET}}
    [(#SET{tva_objet,#GET{prix_unitaire}|mult{#CONFIG{produits/taxe}}|mult{#QUANTITE}})]
    [(#SET{cumul_tva, #GET{cumul_tva}|plus{#GET{tva_objet}}})]
-   [(#SET{soustotal,#GET{soustotal}|plus{#GET{prix_unitaire}|mult{#QUANTITE}}})]
+   [(#SET{soustotal,#GET{soustotal}|plus{#GET{prix_unitaire}|prix_formater|mult{#QUANTITE}}})]
    </BOUCLE_commande_details>
    #SET{commande, #ARRAY{details, #GET{details}}}
 </BOUCLE_commande>
@@ -91,10 +91,16 @@
          <td colspan="3"><:vacarme_commande:tva:>[ ((#CONFIG{produits/taxe}|mult{100})%)]</td>
          <td class="montant">[(#GET{cumul_tva}|prix_formater)]</td>
       </tr>]
+      [(#GET{tva_applicable}|oui)
       <tr class="panier-pied total_ttc ar">
-         <td colspan="3"><:paniers:panier_total_ttc:></td>
-         <td class="montant">[(#GET{soustotal}|plus{#GET{cumul_tva}}|prix_formater)]</td>
-      </tr>
+         <td colspan="3"><:vacarme_commande:total_ttc:></td>
+         <td class="montant">[(#PRIX{commande,#ID_COMMANDE})]</td>
+      </tr>]
+      [(#GET{tva_applicable}|non)
+      <tr class="panier-pied total_ttc ar">
+         <td colspan="3"><:vacarme_commande:total_ht:></td>
+         <td class="montant">[(#GET{soustotal}|prix_formater)]</td>
+      </tr>]
    </tbody>
 </table>
 </BOUCLE_test_contexte_commande>
@@ -109,12 +115,12 @@
          <li><a href="#virement">Virement bancaire</a></li>
       </ul>
       <div id="paypal" class="option cf">
-         <p>reference : #GET{reference} / commande: #GET{id_commande} / détail: [(#GET{details}|print)]</p>
          <p class="infos"><:vacarme_commande:paiement_paypal_message_explication:></p>
          [(#FORMULAIRE_PAYPAL{#ARRAY{
             custom,payer_commande,
             libelle,Commande #GET{id_commande},
             identifiant,#GET{reference},
+            tva_applicable,#GET{tva_applicable},
             redirect_ok, #URL_ACTION_AUTEUR{
                            supprimer_panier_encours,
                            "",

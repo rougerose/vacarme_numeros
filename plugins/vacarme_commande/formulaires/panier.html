@@ -1,4 +1,12 @@
 #CACHE{0}
+#SET{tva_applicable,' '} #SET{pays_ue,#ARRAY{0,AT,1,BE,2,BG,3,CY,5,CZ,6,DK,7,EE,8,FI,9,FR,10,DE,11,GR,12,HU,13,IE,14,IT,15,LV,16,LT,17,LU,18,MT,19,NL,20,PL,21,PT,22,RO,23,SK,24,ES,25,SE,26,UK}}
+<BOUCLE_auteur(CONDITION){si #SESSION{id_auteur}}>
+<BOUCLE_tva_applicable(CONTACTS){id_auteur=#SESSION{id_auteur}}>
+[(#TYPE_CLIENT|=={organisation}|oui)#SET{tva_applicable,''}]
+<BOUCLE_pays(ADRESSES adresses_liens){id_auteur}>[(#PAYS|in_array{#GET{pays_ue}}|non) #SET{tva_applicable,''}]</BOUCLE_pays>
+</BOUCLE_tva_applicable>
+</BOUCLE_auteur>
+
 <div id="panier" class="formulaire_spip formulaire_#ENV{form}[ formulaire_#ENV{form}-(#ENV{id,nouveau})]">
    [<p class="reponse_formulaire reponse_formulaire_ok message succes medium"><span class="information">(#ENV*{message_ok})</span></p>]
    [<p class="reponse_formulaire reponse_formulaire_erreur message erreur medium"><span class="information">(#ENV*{message_erreur})</span></p>]
@@ -41,16 +49,21 @@
                   <td colspan="3"><:vacarme_commande:soustotal:></td>
                   <td>[(#GET{soustotal}|prix_formater)]</td>
                </tr>
-               [(#GET{cumul_tva}|>{0}|oui)
+               [(#GET{cumul_tva}|>{0}|et{#GET{tva_applicable}}|oui)
                <tr class="panier-pied taxes ar">
                   <td colspan="3"><:vacarme_commande:tva:>[ ((#CONFIG{produits/taxe}|mult{100})%)]</td>
                   <td class="montant">[(#GET{cumul_tva}|prix_formater)]</td>
                </tr>]
+               [(#GET{tva_applicable}|oui)
                <tr class="panier-pied total_ttc ar">
-                  <td colspan="3"><:paniers:panier_total_ttc:></td>
+                  <td colspan="3"><:vacarme_commande:total_ttc:></td>
                   <td class="montant">#PRIX{panier,#ENV{_id_panier}}</td>
-               </tr>
-
+               </tr>]
+               [(#GET{tva_applicable}|non)
+               <tr class="panier-pied total_ttc ar">
+                  <td colspan="3"><:vacarme_commande:total_ht:></td>
+                  <td class="montant">[(#GET{soustotal}|prix_formater)]</td>
+               </tr>]
             </tbody>
          </table>
          <p class="boutons recalculer">

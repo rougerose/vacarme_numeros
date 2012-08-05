@@ -4,7 +4,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 // calcul du prix TTC d'un abonnement
-function prix_abonnement_dist($id_objet, $prix_ht){
+function prix_abonnement($id_objet, $prix_ht){
 	// la taxe ne peut être définie en config dans ecrire pour le moment
    if(_TVA_ABONNEMENT){
       $taxe = _TVA_ABONNEMENT;

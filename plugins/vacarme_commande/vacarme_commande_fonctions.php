@@ -22,4 +22,10 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
       else return $statuts;
    }
 
+   // on garde deux chiffres après la virgule. filtre appliqué pour le formulaire paypal. Ce qui permet de retrouver le prix envoyé par la fonction |prix_formater (qui n'est pas un arrondi).
+   function filtre_decimale($texte) {
+      $texte = sprintf("%.2f",$texte);
+      return $texte;
+   }
+
 ?>

@@ -168,6 +168,8 @@ Nos coordonnées bancaires :
    'titre_inscription_2' => 'Créer votre compte',
    'titre_page_cadeaux' => '@titre@ : votre cadeau',
    'titre_page_compte' => 'Votre compte',
+   'total_ht' => 'Total HT',
+   'total_ttc' => 'Total TTC',
    'tva' => 'TVA',
 
    // V

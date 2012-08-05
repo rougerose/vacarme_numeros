@@ -4,7 +4,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 
 function action_passer_commande_dist($arg=null) {
    if (is_null($arg)){
-      spip_log('test secu',"vacarme_securite");
+      //spip_log('test secu',"vacarme_securite");
 		$securiser_action = charger_fonction('securiser_action', 'inc');
 		$arg = $securiser_action();
 	}
