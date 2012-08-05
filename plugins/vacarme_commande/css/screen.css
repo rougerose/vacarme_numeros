@@ -94,11 +94,13 @@ h1 {
    color: #000;
 }
 h2.spip {
+   color: #000;
    margin-top: 2.5em;
    margin-bottom: 1em;
    border-bottom: 1px solid #ccc;
 }
 h2.spip:first-child {margin-top: 0;}
+ul.spip {list-style-type: square;}
 
 /* ======= */
 /* = Nav = */
@@ -410,10 +412,10 @@ h2.spip:first-child {margin-top: 0;}
    clear: left;
 }
 .presentation.sommaire .prix {
-   font-size: 5em; line-height: 1em;
-   color: #000;
+   font-size: 3.5em; line-height: 1.1em;
+   color: #222;
    float: right;
-    margin-top:-0.625em;
+   margin-top:-0.55em;
 }
 .presentation.sommaire .img a {display: block;}
 .presentation.sommaire .img img {
@@ -895,7 +897,7 @@ h2.spip:first-child {margin-top: 0;}
          text-transform: uppercase;
       }
       .principale li:last-child, .pied li:last-child { margin-right: 0; }
-      .principale li:before, .pied li:before { content: "/"; color: #000; font-weight: bold; }
+      .principale li:before, .pied li:before { content: "/"; color: #999; font-weight: bold; }
 
 
 /* ========== */
