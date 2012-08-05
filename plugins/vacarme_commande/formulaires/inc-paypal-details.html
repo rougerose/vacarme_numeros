@@ -1,4 +1,4 @@
-[(#ENV{tva_applicable}|oui)#SET{taux_tva,#CONFIG{produits/taxe}}]
+[(#ENV{tva_applicable}|oui)[(#SET{taux_tva,#CONFIG{produits/taxe}})]]
 <BOUCLE_details(POUR){tableau #ENV{details}}>
    #SET{numero,#COMPTEUR_BOUCLE}
    <input type="hidden" name="item_number_#GET{numero}" value="#GET{numero}" />
@@ -12,8 +12,8 @@
       <input type="hidden" name="quantity_#GET{numero}" value="#VALEUR" />
       ]
       [(#CLE|=={prix}|oui)
-      [(#SET{p,[(#ENV{tva_applicable}|?{[(#VALEUR|mult{#GET{taux_tva}|plus{1}})],[(#VALEUR|decimale)]})]})]
-      <input type="hidden" name="amount_#GET{numero}" value="[(#GET{p}|round{2})]" />
+      <input type="hidden" name="amount_#GET{numero}" value="[(#VALEUR|decimale)]" />
+      <input type="hidden" name="tax_#GET{numero}" value="[(#VALEUR|round{2}|mult{#GET{taux_tva}}|round{2})]">
       ]
       [(#REM)
       <input type="hidden" name="on0_#GET{numero}" value="Options" />
