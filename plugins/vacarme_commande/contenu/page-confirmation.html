@@ -8,11 +8,11 @@
 [(#ENV{p}|match{^(c|v|p)$}|oui)
    [(#ENV{r}|=={0}|oui)
       <p class="message erreur medium">
-         <span class="information"> XXXXXXXXXXX </span>
+         <span class="information"><:vacarme_commande:message_erreur_paiement:></span>
       </p>
    ][(#ENV{r}|=={1}|oui)
       <p class="message succes medium">
-         <span class="information"> XXXXXXXXXXX </span>
+         <span class="information"><:vacarme_commande:message_ok_paypal:></span>
       </p>
    ][(#ENV{r}|=={2}|oui)
       <p class="message succes medium">

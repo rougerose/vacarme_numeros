@@ -104,7 +104,6 @@
    </tbody>
 </table>
 </BOUCLE_test_contexte_commande>
-
 [(#REM) Les formulaires de paiement ]
 [(#ENV{contexte}|=={paiements}|oui)
    <div id="paiements" class="tabs">
@@ -118,7 +117,7 @@
          <p class="infos"><:vacarme_commande:paiement_paypal_message_explication:></p>
          [(#FORMULAIRE_PAYPAL{#ARRAY{
             custom,payer_commande,
-            libelle,Commande #GET{id_commande},
+            libelle,Commande #GET{reference},
             identifiant,#GET{reference},
             tva_applicable,#GET{tva_applicable},
             cancel,#URL_PAGE{annulation}|parametre_url{commande,#GET{id_commande}},
@@ -127,7 +126,10 @@
                "",
                #URL_PAGE{
                   confirmation,
-                  commande=#GET{id_commande}}},
+                  #URL_PAGE{confirmation}
+                     |parametre_url{commande,#GET{id_commande}}
+                     |parametre_url{p,p}
+                     |parametre_url{r,1}}},
             details,#GET{details},
          }})]
       </div><!-- #paypal -->
