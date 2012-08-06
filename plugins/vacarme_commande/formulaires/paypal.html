@@ -1,12 +1,12 @@
 <div class="formulaire_spip formulaire_paypal">
    <form action="[(#ENV{soumission})]" method="post"><div class="boutons">
       [(#REM) Qui vend ?]
-      <input name="business" type="hidden" value="[(#ENV{identifiant_vendeur})]" />
+      <input type="hidden" name="business" value="[(#ENV{identifiant_vendeur})]" />
       [(#REM) Quelle devise ?]
-      <input name="currency_code" type="hidden" value="[(#ENV{currency_code})]" />
+      <input type="hidden" name="currency_code" value="[(#ENV{currency_code})]" />
       [(#REM) Frais d'envoi ? ]
-      <input name="shipping" type="hidden" value="#ENV{shipping,0.00}" />
-      [<input name="handling_cart" type="hidden" value="(#ENV{handling_cart})" />]
+      <input type="hidden" name="shipping" value="#ENV{shipping,0.00}" />
+      [<input type="hidden" name="handling_cart" value="(#ENV{handling_cart})" />]
 
       [(#REM) Informations de facturaction ]
       [<input type="hidden" name="email" value="(#ENV{email})" />]
@@ -28,24 +28,24 @@
 
       [(#REM) URLS de traitement ]
 
-      <input name="return" type="hidden" value="[(#ENV{redirect_ok})]" />
-      <input name="cancel_return" type="hidden" value="[(#ENV{cancel})]" />
-      <input name="shopping_url" type="hidden" value="#ENV{shopping_url, #URL_SITE_SPIP}" />
+      <input type="hidden" name="return" value="[(#ENV{redirect_ok})]" />
+      <input type="hidden" name="cancel_return" value="[(#ENV{cancel})]" />
+      <input type="hidden" name="shopping_url" value="#ENV{shopping_url, #URL_SITE_SPIP}" />
       [(#REM) Un ping est fait sur cette url en cas de traitement ok, avec des parametres envoyes
       Les parametres id_auteur et invoice ne servent a priori a rien car ils ne sont traites nulle part au retour ]
-      <input name="notify_url" type="hidden" value="[(#URL_ACTION_AUTEUR{paypal_ipn,[(#SESSION{id_auteur})-#ENV{invoice, #ENV{identifiant}}]})]" />
+      <input type="hidden" name="notify_url" value="[(#URL_ACTION_AUTEUR{paypal_ipn,[(#SESSION{id_auteur})-#ENV{invoice, #ENV{identifiant}}]})]" />
 
       [(#REM) On ecrit dans quelle langue ? ]
-      <input name="lc" type="hidden" value="#LANG" />
-      <input name="charset" type="hidden" value="utf-8" />
+      <input type="hidden" name="lc" value="#LANG" />
+      <input type="hidden" name="charset" value="utf-8" />
 
       [(#REM) Le bouton et son type ]
 
 
-      [(#REM) C'est quoi qu'on achete ? ]
-      [<input name="item_name" type="hidden" value="(#ENV{libelle})" />]
-      [<input name="custom" type="hidden" value="(#ENV{custom})" />]
-      [<input name="invoice" type="hidden" value="(#ENV{invoice, #ENV{identifiant}})" />]
+      [(#REM) Qu'est-ce qu'on achete ? ]
+      [<input type="hidden" name="item_name" value="(#ENV{libelle})" />]
+      [<input type="hidden" name="custom" value="(#ENV{custom})" />]
+      [<input type="hidden" name="invoice" value="(#ENV{invoice, #ENV{identifiant}})" />]
 
       [(#REM) Avoir les details ]
       [(#ENV{details}|oui)
@@ -59,11 +59,11 @@
       [(#REM) Acheter ]
       [(#ENV{type}|=={abonnement}|non|et{#ENV{details}|non})
       [(#REM) Prix/Produit ]
-      <input name="amount" type="hidden" value="#ENV{prix}" />
+      <input type="hidden" name="amount" value="#ENV{prix}" />
       [(#REM) commentaires possibles ? 1 : non, 0 : oui ]
-      <input name="no_note" type="hidden" value="1" />
+      <input type="hidden" name="no_note" value="1" />
       [(#REM) Bouton...]
-      <input name="cmd" type="hidden" value="_xclick" />
+      <input type="hidden" name="cmd" value="_xclick" />
       <input type="hidden" name="bn" value="Vacarme_BuyNow_WPS_FR" />
       <input alt="<:paypal:info_bouton_paypal:>" name="submit" src="[(#ENV{bouton_paypal_acheter}|sinon{https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif})]" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
       ]
@@ -71,14 +71,14 @@
       [(#REM) Ou s'abonner ]
       [(#ENV{type}|=={abonnement}|oui|et{#ENV{details}|non})
       [(#REM) Prix/Abonnement ]
-      <input name="a3" type="hidden" value="#ENV{prix}" />
-      <input name="p3" type="hidden" value="#ENV{duree}" />
-      <input name="t3" type="hidden" value="#ENV{periode}" />
+      <input type="hidden" name="a3" value="#ENV{prix}" />
+      <input type="hidden" name="p3" value="#ENV{duree}" />
+      <input type="hidden" name="t3" value="#ENV{periode}" />
       [(#REM) commentaires toujours a non pour les souscriptions ]
-      <input name="no_note" type="hidden" value="1" />
+      <input type="hidden" name="no_note" value="1" />
       [(#REM) Bouton...]
-      <input name="cmd" type="hidden" value="_xclick-subscriptions" />
-      <input name="bn" type="hidden" value="PP-Subscribe" />
+      <input type="hidden" name="cmd" value="_xclick-subscriptions" />
+      <input type="hidden" name="bn" value="PP-Subscribe" />
       <input alt="<:paypal:info_bouton_paypal:>" name="submit" src="[(#ENV{bouton_paypal_souscrire}|sinon{https://www.paypal.com/fr_FR/FR/i/btn/btn_subscribe_LG.gif})]" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
       ]
    </div></form>
