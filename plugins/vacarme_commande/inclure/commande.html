@@ -124,12 +124,10 @@
             redirect_ok, #URL_ACTION_AUTEUR{
                supprimer_panier_encours,
                "",
-               #URL_PAGE{
-                  confirmation,
-                  #URL_PAGE{confirmation}
-                     |parametre_url{commande,#GET{id_commande}}
-                     |parametre_url{p,p}
-                     |parametre_url{r,1}}},
+               #URL_PAGE{confirmation}
+                  |parametre_url{commande,#GET{id_commande}}
+                  |parametre_url{p,p}
+                  |parametre_url{r,1}},
             details,#GET{details},
          }})]
       </div><!-- #paypal -->

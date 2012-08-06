@@ -98,7 +98,7 @@ le comité de rédaction',
 'message_erreur_paiement' => "Nous sommes désolés, un problème technique est survenu et votre paiement n'a pas été enregistré",
    'message_ok_formulaire_paiements_alter' => "Votre commande est bien enregistrée.<br />Vous allez maintenant recevoir un email vous indiquant la marche à suivre pour régler votre commande.",
    'message_ok_formulaire_paiement_paypal' => 'Votre paiement a été enregistré, merci&nbsp;!',
-   'message_ok_paypal' => "Nous avons reçu le paiement de votre commande par l'intermédiaire de Paypal et nous vous en remercions. Vous allez recevoir dans quelques instants un email de confirmation.",
+   'message_ok_paypal' => "Nous avons reçu le paiement de votre commande par l'intermédiaire de Paypal et nous vous en remercions.<br />Vous allez recevoir dans quelques instants un email de confirmation de notre part.",
    'message_modification_enregistree' => 'La modification est bien enregistrée',
 	'monsieur' => 'Monsieur',
 
