@@ -72,7 +72,7 @@
             $retours['message_erreur'] = _T('vacarme_commande:message_erreur_formulaire_paiement',array('numero_commande' => $reference));
             spip_log("auteur" .$id_auteur." n a pas pus obtenir le mail d envoi pour un paiement alternatif. Numéro de commande ".$reference." erreur test vérification cohérence numéro commande","vacarme_commande_paiement_alter");
             if ($retour) {
-               $retour = parametre_url($retour,'r','0','&'); //var_dump($retour);
+               $retour = parametre_url($retour,'r','0','&');
                $retours['redirect'] = $retour;
             }
             return $retours;
@@ -82,13 +82,13 @@
          $retours['message_erreur'] = _T('vacarme_commande:message_erreur_formulaire_paiement',array('numero_commande' => $row['reference']));
          spip_log("l'auteur ".$id_auteur." n'a pas pu obtenir le mail d'envoi pour un paiement alternatif. Numéro de commande ".$row['reference']." erreur pas d'id_auteur","vacarme_commande_paiement_alter");
          if ($retour) {
-            $retour = parametre_url($retour,'r','0','&'); //var_dump($retour);
+            $retour = parametre_url($retour,'r','0','&');
             $retours['redirect'] = $retour;
          }
          return $retours;
       }
       if ($retour) {
-         $retour = parametre_url($retour,'r','2','&'); //var_dump($retour);
+         $retour = parametre_url($retour,'r','2','&');
          $retours['redirect'] = $retour;
       }
       $retours['message_ok'] = _T('vacarme_commande:message_ok_formulaire_paiement');

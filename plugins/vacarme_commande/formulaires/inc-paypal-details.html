@@ -15,7 +15,8 @@
       <input type="hidden" name="amount_#GET{numero}" value="[(#VALEUR|decimale)]" />
          [(#ENV{tva_applicable}|oui)
          <input type="hidden" name="tax_#GET{numero}" value="[(#VALEUR|round{2}|mult{#GET{taux_tva}}|round{2})]">]
-         [(#)]
+         [(#ENV{tva_applicable}|non)
+         <input type="hidden" name="tax_#GET{numero}" value="0">]
       ]
       [(#REM)
       <input type="hidden" name="on0_#GET{numero}" value="Options" />
