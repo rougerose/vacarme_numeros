@@ -22,6 +22,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
    'cadeaux_message_plusieurs_ok' => 'Vos cadeaux ont bien été ajoutés à votre commande.',
    'cadeaux_message_solde_un' => 'Veuillez choisir 1 cadeau dans la liste ci-dessous.',
    'cadeaux_message_solde_plusieurs' => 'Veuillez choisir @nb@ cadeaux dans la liste ci-dessous.',
+   'commande_annulation' => 'Annulation de votre commande',
+   'commande_annulation_confirmation' => "Votre commande a bien été annulée.",
+   'commande_annulation_explication' => "Pour la <strong>modifier</strong>, veuillez cliquer sur le bouton  &laquo;&nbsp;Retour à votre panier&nbsp;&raquo;.<br />Pour la <strong>supprimer</strong>, veuillez cliquer sur &laquo;&nbsp;Supprimer votre commande&nbsp;&raquo;",
+   'commande_annulation_info' => 'Vous avez souhaité annuler votre commande lors du paiement.',
    'compte_abonnement' => 'Votre abonnement',
    'compte_adresse_titre' => 'Modifier vos coordonnées postales',
    'compte_commandes' => 'Vos commandes',
@@ -158,6 +162,7 @@ Nos coordonnées bancaires :
 	'statut_retour_partiel' => 'Retour partiel',
    'submit_cheque' => 'Payer par chèque',
    'submit_virement' => 'Payer par virement',
+   'supprimer_votre_commande' => 'Supprimer votre commande',
 
 
 

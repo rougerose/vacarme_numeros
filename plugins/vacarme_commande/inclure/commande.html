@@ -121,13 +121,13 @@
             libelle,Commande #GET{id_commande},
             identifiant,#GET{reference},
             tva_applicable,#GET{tva_applicable},
+            cancel,#URL_PAGE{annulation}|parametre_url{commande,#GET{id_commande}},
             redirect_ok, #URL_ACTION_AUTEUR{
-                           supprimer_panier_encours,
-                           "",
-                           #URL_PAGE{
-                           	z-commerce,
-                              appel=paiement,
-                              reference=#GET{reference}}},
+               supprimer_panier_encours,
+               "",
+               #URL_PAGE{
+                  confirmation,
+                  commande=#GET{id_commande}}},
             details,#GET{details},
          }})]
       </div><!-- #paypal -->

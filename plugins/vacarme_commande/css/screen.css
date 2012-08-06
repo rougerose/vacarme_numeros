@@ -677,7 +677,7 @@ ul.spip {list-style-type: square;}
       margin-left: 64px;
    }
    .message .action { text-align: center; }
-   .message .action .btn:last-child { margin-left: 20px; }
+   .message .action .btn.item0 {margin-left: 20px;}
 
 
 /* Message d'erreur formulaires */
@@ -768,6 +768,7 @@ ul.spip {list-style-type: square;}
    .commander .btn, .commander button.submit,
    .valider .btn { background-color: #739a20; }
    .commander.wbtn button { background-color: #1c862b; }
+   .supprimer .btn, .supprimer button.submit {background-color: #9a2020;}
 
 
    /* hover */
@@ -778,6 +779,7 @@ ul.spip {list-style-type: square;}
    .enregistrer .btn:hover,
    .commander .btn:hover, .commander button.submit:hover,
    .valider .btn:hover { background-color: #4d6716; }
+   .supprimer .btn:hover, .supprimer button.submit:hover {background-color: #cc0000;}
 
    .btn:active,
    .wbtn button:active { top: 1px; }
@@ -842,6 +844,7 @@ ul.spip {list-style-type: square;}
    .poursuivre-achats { text-align: right; }
 
    .poursuivre-achats.retour {text-align: left;}
+   .message .poursuivre-achats.retour {text-align: center;}
 
    .boutons.enregistrer { text-align: center; }
 
@@ -878,6 +881,12 @@ ul.spip {list-style-type: square;}
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px;
+   }
+   .message.multi .information a {font-weight: normal; text-decoration: underline;}
+   .reponse_formulaire .information a,
+   .message .information a,
+   .message .explication a {
+      font-weight: bold; text-decoration: underline;
    }
 
    /* info-bulles quand erreur dans un formulaire */

@@ -29,7 +29,7 @@
       [(#REM) URLS de traitement ]
 
       <input name="return" type="hidden" value="[(#ENV{redirect_ok})]" />
-      <input name="cancel_return" type="hidden" value="[(#SELF|url_absolue)]" />
+      <input name="cancel_return" type="hidden" value="[(#ENV{cancel})]" />
       <input name="shopping_url" type="hidden" value="#ENV{shopping_url, #URL_SITE_SPIP}" />
       [(#REM) Un ping est fait sur cette url en cas de traitement ok, avec des parametres envoyes
       Les parametres id_auteur et invoice ne servent a priori a rien car ils ne sont traites nulle part au retour ]

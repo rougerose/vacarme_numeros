@@ -5,10 +5,12 @@
    [(#ENV{reglement}|=={0}|oui) #SET{etape,4} #SET{ok,''}]
    [(#ENV{reglement}|=={2}|oui) #SET{etape,4} #SET{ok,' '}]
 ]
+[(#ENV{composition}|=={annulation}|oui)#SET{etape,3}]
+[(#ENV{composition}|=={annulation}|et{#ENV{confirmation}|=={oui}}|oui)#SET{etape,4} #SET{annulation,' '}]
 
 <ol class="nav progression">
    <li class="[(#GET{etape}|=={1}|oui)on][(#GET{etape}|>{1}|oui)done]"><:vacarme_commande:votre_panier:></li>
    <li class="[(#GET{etape}|=={2}|oui)on][ (#GET{etape}|>{2}|oui)done]"><:vacarme_commande:votre_commande:></li>
    <li[(#GET{etape}|>{3}|oui)[(#GET{ok}|oui) class="done"]]><:vacarme_commande:paiement:></li>
-   <li[(#GET{etape}|=={4}|oui)[(#GET{ok}|oui) class="on"][(#GET{ok}|non) class="on pb"]]><:vacarme_commande:confirmation:></li>
+   <li[(#GET{etape}|=={4}|oui)[(#GET{ok}|ou{#GET{annulation}}|oui) class="on"][(#GET{ok}|non) class="on pb"]][(#GET{annulation}|oui) class="on"]><:vacarme_commande:confirmation:></li>
 </ol>
