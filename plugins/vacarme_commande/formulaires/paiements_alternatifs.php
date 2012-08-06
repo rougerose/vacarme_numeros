@@ -92,6 +92,15 @@
          $retours['redirect'] = $retour;
       }
       $retours['message_ok'] = _T('vacarme_commande:message_ok_formulaire_paiement');
+
+      // suppression du panier
+      include_spip('inc/paniers');
+      // Si on trouve un panier pour le visiteur actuel
+      if ($id_panier = paniers_id_panier_encours()){
+         // On le supprime
+         $action = charger_fonction('supprimer_panier', 'action/');
+         $action($id_panier);
+      }
       return $retours;
    }
 
