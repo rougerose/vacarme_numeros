@@ -11,5 +11,11 @@
       else return false;
    }
 
+   function autoriser_commande_supprimer($faire,$quoi,$id,$qui,$options) {
+      $id_auteur = sql_getfetsel('id_auteur','spip_commandes','id_commande='.$id);
+      if ($qui['statut'] == '0minirezo' OR $qui['id_auteur'] == $id_auteur) return true;
+      else return false;
+   }
+
 
 ?>
