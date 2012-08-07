@@ -30,31 +30,41 @@
    // =========================
    // = pipeline post_edition =
    // =========================
-   // ajout des infos relatives au numero_debut et numero_fin d'abonnement
-
    function vacarme_commande_post_edition($flux){
-      if($flux['args']['table'] == 'spip_commandes' and ($statut = $flux['data']['statut']) == 'paye'){
-         $id_commande = $flux['args']['id_objet'];
+      // après instituer_commande, on peut récupérer le flux.
+      // on a une commande, on verifie si on un abonnement dedans et si c'est le cas, on insère les numéros de début et de fin d'abonnement dans la table contacts_abonnement
 
-         // on récupère le détail des commandes, si abonnement on récupère le numéro et id_ojbet (id abonnement)
-         if($row = sql_allfetsel('id_objet,numero,id_commandes_detail', 'spip_commandes_details', 'id_commande = '.$id_commande.' and objet = "abonnement"')){
-            foreach ($row as $r) {
-               // on récupère la durée de l'abonnement à partir de son id
-               $duree = sql_fetsel('duree,periode','spip_abonnements','id_abonnement = '.$r['id_objet']);
-               //spip_log($duree,'vacarme_pipeline');
-               $numero_debut = $r['numero'];
-               $id_commandes_detail = $r['id_commandes_detail'];
-               //spip_log('numero debut '.$numero_debut.' | id_commandes_detail '.$id_commandes_detail,"vacarme_pipeline");
-               if($duree['periode'] == 'mois'){
-                  //spip_log('condition duree','vacarme_pipeline');
-                  $numero_fin = (intval($duree['duree'])/3) + (intval($numero_debut)-1);
-                  //spip_log('numero_fin '.$numero_fin,"vacarme_pipeline");
-                  // dans contacts_abonnement, à partir de l'id commandes détails, on insère numéro début et fin
-                  sql_updateq(
-                     'spip_contacts_abonnements',
-                     array('numero_debut'=>$numero_debut,'numero_fin'=>$numero_fin),
-                     'id_commandes_detail = '.$id_commandes_detail
-                  );
+      if ($flux['args']['table'] == 'spip_commandes') {
+         $statut = $flux['data']['statut'];
+         $statut_ancien = $flux['args']['statut_ancien'];
+         $id_commande = $flux['args']['id_objet'];
+         //spip_log('statut ancien '.$statut_ancien.' statut '.$statut.' id_commande '.$id_commande,'vacarme_commande');
+
+         if ($statut != $statut_ancien) {
+            // la commande en cours est payée ou en attente ?
+            if ($statut_ancien == 'encours') {
+               include_spip('inc/config');
+               $config = lire_config('commandes');
+               if (in_array($statut,$config['quand']) and $statut != 'encours') {
+                  // on récupère le détail des commandes, si abonnement on récupère le numéro et id_ojbet (id abonnement)
+                  if ($row = sql_allfetsel('id_objet,numero,id_commandes_detail', 'spip_commandes_details', 'id_commande = '.$id_commande.' and objet = "abonnement"')) {
+                     foreach ($row as $r) {
+                        // on récupère la durée de l'abonnement à partir de son id
+                        $duree = sql_fetsel('duree,periode','spip_abonnements','id_abonnement = '.$r['id_objet']);
+                        //spip_log($duree,'vacarme_pipeline');
+                        $numero_debut = $r['numero'];
+                        $id_commandes_detail = $r['id_commandes_detail'];
+                        if ($duree['periode'] == 'mois') {
+                           $numero_fin = (intval($duree['duree'])/3) + (intval($numero_debut)-1);
+                           // dans contacts_abonnement, à partir de l'id commandes détails, on insère numéro début et fin
+                           sql_updateq(
+                              'spip_contacts_abonnements',
+                              array('numero_debut'=>$numero_debut,'numero_fin'=>$numero_fin),
+                              'id_commandes_detail = '.$id_commandes_detail
+                           );
+                        }
+                     }
+                  }
                }
             }
          }
