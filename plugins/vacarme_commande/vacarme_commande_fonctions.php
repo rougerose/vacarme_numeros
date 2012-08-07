@@ -27,5 +27,4 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
       $texte = sprintf("%.2f",$texte);
       return $texte;
    }
-
 ?>

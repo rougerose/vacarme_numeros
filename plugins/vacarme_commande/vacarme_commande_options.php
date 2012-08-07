@@ -64,5 +64,30 @@ function inc_prix_ht($type_objet, $id_objet, $arrondi=''){
 }
 
 
+// surcharge pour modification du mail d'envoi lors de l'inscription
+// http://doc.spip.org/@envoyer_inscription_dist
+function envoyer_inscription($desc, $nom, $mode, $id) {
+   $nom_site_spip = nettoyer_titre_email($GLOBALS['meta']["nom_site"]);
+   $adresse_site = $GLOBALS['meta']["adresse_site"];
+   if ($mode == '6forum') {
+      // $adresse_login = generer_url_public('login');
+      // http://localhost:8888/vacarme_commande/spip.php?page=compte&section=identification
+      $adresse_login = generer_url_public('compte','section=identification');
+      $msg = 'vacarme_commande:inscription_message_voici1';
+   } else {
+      $adresse_login = $adresse_site .'/'. _DIR_RESTREINT_ABS;
+      $msg = 'form_forum_voici2';
+   }
+
+   $msg  = _T('vacarme_commande:inscription_message_auto')."\n\n"
+         . _T('form_forum_bonjour', array('nom'=>$nom))."\n\n"
+         . _T($msg, array('nom_site_spip' => $nom_site_spip, 'adresse_site' => $adresse_site . '/')) . "\n\n- "
+         . _T('form_forum_login')." " . $desc['login'] . "\n- "
+         . _T('form_forum_pass'). " " . $desc['pass'] . "\n-"
+         . _T('vacarme_commande:inscription_message_adresse_login')." ".$adresse_login."\n\n"
+         . _T('vacarme_commande:inscription_message_fin')."\n";
+
+   return array("[$nom_site_spip] "._T('form_forum_identifiants'), $msg);
+}
 
 ?>

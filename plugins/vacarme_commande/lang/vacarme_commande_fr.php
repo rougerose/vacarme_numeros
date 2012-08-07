@@ -61,7 +61,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
    'info_confirmer_passe' => 'Confirmez ce nouveau mot de passe',
    'info_modifier' => 'Modifier',
    'info_poursuivre' => 'Poursuivre &#x2192;',
+   'inscription_message_adresse_login' => 'Accès direct à votre compte :',
+   'inscription_message_auto' => '[Ceci est un message automatique, merci de ne pas y répondre]',
+   'inscription_message_fin' => 'Nous vous remercions de votre confiance,
+Le comité de rédaction de la revue Vacarme',
+   'inscription_message_voici1' => "Nous avons bien reçu votre demande d'inscription sur le site @nom_site_spip@ (@adresse_site@).
 
+Voici vos identifiants pour accéder à votre compte :",
 
 	// L
    'label_cadeau_court'        => 'Cadeau(x)',

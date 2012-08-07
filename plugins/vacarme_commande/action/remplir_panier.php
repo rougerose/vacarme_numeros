@@ -47,7 +47,7 @@ function action_remplir_panier($arg=null) {
 				'id_objet = '.$id_objet,
             'numero ='.$numero
 			)
-		));spip_log('quantite deja ='.$quantite_deja,'ajoutpanier');
+		)); //spip_log('quantite deja ='.$quantite_deja,'ajoutpanier');
 		// Si on a déjà une quantité, on fait une mise à jour
 		if ($quantite_deja > 0){
 			sql_updateq(
