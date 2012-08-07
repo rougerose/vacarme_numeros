@@ -27,6 +27,11 @@
       return $flux;
    }
 
+   function vacarme_commande_traitement_paypal($flux) {
+      $f = implode(',',$flux);
+      spip_log($f,'vacarme_commande');
+   }
+
    // =========================
    // = pipeline post_edition =
    // =========================

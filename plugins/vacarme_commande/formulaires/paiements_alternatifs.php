@@ -27,7 +27,7 @@
       $id_commande = $options['id_commande'];
       $statut_nouveau = 'attente'; // la commande est mise en attente de réception du règlement
 
-      spip_log("paiements_alternatifs_traiter envoi vers instituer $id_commande-$statut_nouveau",'vacarme_commande');
+      //spip_log("paiements_alternatifs_traiter envoi vers instituer $id_commande-$statut_nouveau",'vacarme_commande');
 
       $action = charger_fonction('instituer_commande', 'action');
       if ($action) {

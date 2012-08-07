@@ -17,6 +17,8 @@
 
       $tables_principales['spip_commandes_details']['field']['numero'] = "BIGINT(21) NOT NULL";
 
+      $tables_principales['spip_commandes']['field']['paiement'] = "tinytext not null default ''";
+
       return $tables_principales;
    }
 
