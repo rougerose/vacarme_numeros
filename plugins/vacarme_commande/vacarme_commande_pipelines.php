@@ -27,9 +27,17 @@
       return $flux;
    }
 
+   // ==============================
+   // = pipeline traitement_paypal =
+   // ==============================
    function vacarme_commande_traitement_paypal($flux) {
-      $f = implode(',',$flux);
-      spip_log($f,'vacarme_commande');
+      if ( $flux['args']['paypal']['custom'] == 'payer_commande'
+         and $reference = $flux['args']['paypal']['invoice']
+      and $commande = sql_fetsel('id_commande', 'spip_commandes', 'reference = '.sql_quote($reference)) ) {
+         // c'est un paiement par paypal (cqfd)
+         sql_updateq('spip_commandes',array('paiement' => 'paypal'),'id_commande='.$commande['id_commande']);
+      }
+      return $flux;
    }
 
    // =========================

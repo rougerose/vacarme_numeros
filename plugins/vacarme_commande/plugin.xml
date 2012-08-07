@@ -31,6 +31,10 @@
       <nom>post_edition</nom>
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
+   <pipeline>
+      <nom>_traitement_paypal</nom>
+      <inclure>vacarme_commande_pipelines.php</inclure>
+   </pipeline>
    <fonctions>vacarme_commande_fonctions.php</fonctions>
    <utilise id="zcommerce" version="[0.3.2;]" /><!-- à supprimer en prod ? -->
    <utilise id="contacts" version="[1.13.5;]" />
