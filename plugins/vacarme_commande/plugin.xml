@@ -32,7 +32,7 @@
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
    <pipeline>
-      <nom>_traitement_paypal</nom>
+      <nom>traitement_paypal</nom>
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
    <fonctions>vacarme_commande_fonctions.php</fonctions>
