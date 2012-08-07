@@ -21,85 +21,22 @@
    }
 
    function formulaires_paiements_alternatifs_traiter_dist($options=array(),$retour) {
-      //if ($retour) refuser_traiter_formulaire_ajax();
       $retours = array();
       $id_auteur = $options['id_auteur'];
       $reference = $options['commande_numero'];
-      if($id_auteur){
-         include_spip('base/abstract_sql');
-         // statut et référence de la commande : pour vérification ultérieure
-         $row = sql_fetsel("statut","spip_commandes","id_commande=".$options['id_commande']);
-         // email
-         $email = sql_fetsel("email","spip_auteurs","id_auteur=$id_auteur");
-         $row['identite'] = sql_fetsel("civilite,nom,prenom,organisation,service","spip_contacts_liens LEFT JOIN spip_contacts USING(id_contact)",array('objet ='.sql_quote('auteur'),'id_objet = '.intval($id_auteur)));
+      $id_commande = $options['id_commande'];
+      $statut_nouveau = 'attente'; // la commande est mise en attente de réception du règlement
 
-         /* pour le moment inutile
-         --------------------------
-         // adresses (facturation et/ou livraison)
-         //$row['adresses'] = sql_allfetsel('*','spip_adresses_liens LEFT JOIN spip_adresses USING(id_adresse)',array('objet = '.sql_quote('commande'),'id_objet = '.intval($options['id_commande'])));
-         --------------------------
-         */
+      spip_log("paiements_alternatifs_traiter envoi vers instituer $id_commande-$statut_nouveau",'vacarme_commande');
 
-         include_spip('inc/config');
-         foreach($options['details'] as $v) {
-            $total += $v['prix'];
-         }
-
-         if($options['tva_applicable']) {
-            $total += $total*lire_config('produits/taxe');
-            $total = round($total,2);
-         }
-
-         // vérification statut en cours et mail est présent
-         if ($row['statut']=='encours' AND $email) {
-            $envoyer_mail = charger_fonction('envoyer_mail','inc');
-            $msg = mail_paiements_alternatifs($row,$options,$total);
-            $sujet = _T('vacarme_commande:mail_sujet_paiement', array('numero_commande'=>$reference));
-
-            $adresse_site = $GLOBALS['meta']["adresse_site"];
-            $nom_site = $GLOBALS['meta']["nom_site"];
-
-            if (!$envoyer_mail($email, $sujet, $msg, $from, $head)) {
-               $retours['message_erreur'] = _T('form_forum_probleme_mail');
-               return $retours;
-            } else {
-               // le mail est parti, la commande passe du statut "encours" à "attente"
-               $statut_commande = sql_updateq("spip_commandes",array("statut"=>"attente"),"id_commande=".intval($options['id_commande']));
-               if ($statut_commande) $retours['message_ok'] = _T('vacarme_commande:message_ok_formulaire_paiement');
-            }
-
-         } else {
-            $retours['message_erreur'] = _T('vacarme_commande:message_erreur_formulaire_paiement',array('numero_commande' => $reference));
-            spip_log("auteur" .$id_auteur." n a pas pus obtenir le mail d envoi pour un paiement alternatif. Numéro de commande ".$reference." erreur test vérification cohérence numéro commande","vacarme_commande_paiement_alter");
-            if ($retour) {
-               $retour = parametre_url($retour,'r','0','&');
-               $retours['redirect'] = $retour;
-            }
-            return $retours;
-
-         }
+      $action = charger_fonction('instituer_commande', 'action');
+      if ($action) {
+         $action($id_commande."-".$statut_nouveau);
+         $retours['message_ok'] = _T('vacarme_commande:message_ok_formulaire_paiement');
+         if ($retour) $retour = parametre_url($retour,'r','2','&'); $retours['redirect'] = $retour;
       } else {
-         $retours['message_erreur'] = _T('vacarme_commande:message_erreur_formulaire_paiement',array('numero_commande' => $row['reference']));
-         spip_log("l'auteur ".$id_auteur." n'a pas pu obtenir le mail d'envoi pour un paiement alternatif. Numéro de commande ".$row['reference']." erreur pas d'id_auteur","vacarme_commande_paiement_alter");
-         if ($retour) {
-            $retour = parametre_url($retour,'r','0','&');
-            $retours['redirect'] = $retour;
-         }
-         return $retours;
-      }
-      if ($retour) {
-         $retour = parametre_url($retour,'r','2','&');
-         $retours['redirect'] = $retour;
-      }
-      $retours['message_ok'] = _T('vacarme_commande:message_ok_formulaire_paiement');
-
-      // suppression du panier
-      include_spip('inc/paniers');
-      // Si on trouve un panier pour le visiteur actuel
-      if ($id_panier = paniers_id_panier_encours()){
-         // On le supprime
-         $action = charger_fonction('supprimer_panier', 'action/');
-         $action($id_panier);
+         $retours['message_erreur'] = _T('vacarme_commande:message_erreur_formulaire_paiement',array('numero_commande' => $reference));
+         if ($retour) $retour = parametre_url($retour,'r','0','&'); $retours['redirect'] = $retour;
       }
       return $retours;
    }
