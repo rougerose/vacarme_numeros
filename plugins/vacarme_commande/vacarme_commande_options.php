@@ -90,4 +90,5 @@ function envoyer_inscription($desc, $nom, $mode, $id) {
    return array("[$nom_site_spip] "._T('form_forum_identifiants'), $msg);
 }
 
+
 ?>

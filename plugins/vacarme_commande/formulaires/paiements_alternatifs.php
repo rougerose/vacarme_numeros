@@ -25,11 +25,11 @@
       $id_auteur = $options['id_auteur'];
       $reference = $options['commande_numero'];
       $id_commande = intval($options['id_commande']);
-      $paiement = $options['type_paiement'];
+      $paiement = $options['type_paiement']; spip_log("type_paiement ".$paiement,"vacarme_commande");
       $statut_nouveau = 'attente'; // la commande est mise en attente de réception du règlement
 
       // paiement cheque ou virement ?
-      if ($paiement) sql_updateq('spip_commande',array('paiement' => $paiement),'id_commande=$id_commande');
+      if ($paiement) sql_updateq('spip_commandes',array('paiement' => $paiement),'id_commande='.$id_commande);
 
       $action = charger_fonction('instituer_commande', 'action');
       if ($action) {

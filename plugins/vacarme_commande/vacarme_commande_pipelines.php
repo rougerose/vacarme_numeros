@@ -45,13 +45,13 @@
    // =========================
    function vacarme_commande_post_edition($flux){
       // après instituer_commande, on peut récupérer le flux.
-      // on a une commande, on verifie si on un abonnement dedans et si c'est le cas, on insère les numéros de début et de fin d'abonnement dans la table contacts_abonnement
-
-      if ($flux['args']['table'] == 'spip_commandes') {
+      if ($flux['args']['table'] == 'spip_commandes' AND $flux['args']['action'] == 'instituer') {
          $statut = $flux['data']['statut'];
          $statut_ancien = $flux['args']['statut_ancien'];
          $id_commande = $flux['args']['id_objet'];
-         //spip_log('statut ancien '.$statut_ancien.' statut '.$statut.' id_commande '.$id_commande,'vacarme_commande');
+
+         // on a une commande, on verifie si on un abonnement dedans
+         // et si c'est le cas, on insère les numéros de début et de fin d'abonnement dans la table contacts_abonnement
 
          if ($statut != $statut_ancien) {
             // la commande en cours est payée ou en attente ?
@@ -81,6 +81,16 @@
                }
             }
          }
+
+         // on envoie les notifications
+         $notifications = charger_fonction('notifications', 'inc', true);
+         // on reprend sur le modèle de la notification dans instituer_commande, c'est-à-dire uniquement l'id du webmestre dans $options,
+         // mais on pourrait, du coup, en ajouter d'autres puisqu'on fabrique notre propre notification. A voir plus tard.
+         $options = array();
+         $options['expediteur'] = 1; // webmestre
+         // on envoie
+         $notifications('vacarme_commande_vendeur', $id_commande, $options);
+         $notifications('vacarme_commande_client', $id_commande, $options);
       }
       return $flux;
    }

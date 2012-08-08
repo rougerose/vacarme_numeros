@@ -22,6 +22,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
    'cadeaux_message_plusieurs_ok' => 'Vos cadeaux ont bien été ajoutés à votre commande.',
    'cadeaux_message_solde_un' => 'Veuillez choisir 1 cadeau dans la liste ci-dessous.',
    'cadeaux_message_solde_plusieurs' => 'Veuillez choisir @nb@ cadeaux dans la liste ci-dessous.',
+   'cher' => 'Cher',
+   'chere' => 'Chère',
    'commande_annulation' => 'Annulation de votre commande',
    'commande_annulation_confirmation' => "Votre commande a bien été annulée.",
    'commande_annulation_explication' => "Pour la <strong>modifier</strong>, veuillez cliquer sur le bouton  &laquo;&nbsp;Retour à votre panier&nbsp;&raquo;.<br />Pour la <strong>supprimer</strong>, veuillez cliquer sur &laquo;&nbsp;Supprimer votre commande&nbsp;&raquo;",
@@ -92,14 +94,35 @@ Voici vos identifiants pour accéder à votre compte :",
 
 	// M
 	'madame' => 'Madame',
-   'mail_intro_paiement' => 'Bonjour,
+   'mail_paiement_vacarme' => "La commande numero @numero_commande@ de @prenom@ @nom@ vient d'être enregistrée.
 
-Vous avez souhaité régler votre commande par @type_paiement@.',
+- Son montant total @total@ ;
+- Son statut est @statut@ ;
+- Le mode de règlement est @paiement@ ;
+Le détail de la commande @url_commande@",
+   'mail_intro_paiement_alter' => 'Vous avez souhaité régler votre commande par @type_paiement@.',
+   'mail_intro_paiement_alter_confirmation' => "Vous avez réglé votre commande @numero_commande@ par @type_paiement@.",
+   'mail_intro_paiement_paypal' => "Vous avez réglé votre commande @numero_commande@ par l'intermédiaire de Paypal.",
+   'mail_corps_paiement_cheque' => "Pour cela, veuillez :
+- libeller votre chèque à l'ordre de Vacarme pour un montant total de @total@ euros,
+- préciser au dos de votre chèque le numéro de commande : @numero_commande@,
+- envoyer votre chèque à Vacarme, 50 rue Bichat 75010 Paris France.
+
+À réception de votre règlement, votre commande vous parviendra dans les meilleurs délais.",
+   'mail_corps_paiement_confirmation' => "Votre paiement est maintenant enregistré. Nous vous remercions.",
+   'mail_corps_paiement_virement' => "Pour cela, veuillez :
+- faire un virement d'un montant total de @total@ euros,
+- préciser dans l'ordre de virement le numéro de commande : @numero_commande@.
+
+Nos coordonnées bancaires :
+- Bénéficiaire : Vacarme
+- Banque : XXXXX",
    'mail_fin_paiement' => 'Nous vous remercions de votre intérêt pour Vacarme,
 le comité de rédaction',
    'mail_lien_commande' => 'Le détail de votre commande est disponible sur votre compte :
 @url_compte_commande@.',
    'mail_sujet_paiement' => 'Vacarme : votre commande @numero_commande@',
+   'mail_sujet_paiement_vacarme' => 'Vacarme : la commande @numero_commande@',
    'message_erreur_formulaire_paiement' => "Nous sommes désolés, un problème technique est survenu. Veuillez <a href='?page=contact'>nous contacter</a> en nous précisant le numéro de commande suivant : @numero_commande@. Merci.",
 'message_erreur_paiement' => "Nous sommes désolés, un problème technique est survenu et votre paiement n'a pas été enregistré",
    'message_ok_formulaire_paiements_alter' => "Votre commande est bien enregistrée.<br />Vous allez maintenant recevoir un email vous indiquant la marche à suivre pour régler votre commande.",
@@ -125,22 +148,11 @@ le comité de rédaction',
    'paiement' => 'Paiement',
    'paiement_cheque' => 'chèque',
    'paiement_cheque_message_explication' => "Si vous choisissez le paiement de votre commande par chèque, vous recevrez un email sur l'adresse enregistrée dans votre compte qui vous indiquera la procédure à suivre.",
-   'paiement_cheque_procedure' => "Pour cela, veuillez :
-- libeller votre chèque à l'ordre de Vacarme pour un montant total de @total@ euros,
-- préciser au dos de votre chèque le numéro de commande : @numero_commande@,
-- envoyer votre chèque à Vacarme, 50 rue Bichat 75010 Paris France.
 
-À réception de votre règlement, votre commande vous parviendra dans les meilleurs délais.",
+   'paiement_paypal' => 'Paypal',
    'paiement_paypal_message_explication' => "Le paiement par Paypal vous permettra de régler votre commande avec votre carte bancaire, en toute sécurité. Il n'est pas indispensable de posséder un compte Paypal pour cela.",
    'paiement_virement' => 'virement',
    'paiement_virement_message_explication' => "Si vous choisissez le paiement de votre commande par virement bancaire, vous recevrez un email sur l'adresse enregistrée dans votre compte qui vous indiquera la procédure à suivre.",
-   'paiement_virement_procedure' => "Pour cela, veuillez :
-- faire un virement d'un montant total de @total@ euros,
-- préciser dans l'ordre de virement le numéro de commande : @numero_commande@.
-
-Nos coordonnées bancaires :
-- Bénéficiaire : Vacarme
-- Banque : XXXXX",
    'panier_article_un'         => '1 article',
    'panier_articles_plusieurs' => '@nb@ articles',
    'panier_article_singulier' => 'article',
