@@ -70,7 +70,7 @@ function notifications_vacarme_commande_client_contenu_dist($id, $options, $dest
    }
    if ($row['statut'] == 'paye') {
       if ($row['paiement'] == 'paypal') {
-         $intro_mail = _T('vacarme_commande:mail_intro_paiement_paypal',array('numero_commande' => $row['reference']));
+         $intro_mail = _T('vacarme_commande:mail_intro_paiement_paypal',array('numero_commande' => $row['reference'],'total' => $total));
          $corps_mail = _T('vacarme_commande:mail_corps_paiement_confirmation');
       }
       if (preg_match('/cheque|virement/i',$row['paiement'])) {

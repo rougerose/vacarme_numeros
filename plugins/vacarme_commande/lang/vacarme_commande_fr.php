@@ -96,13 +96,13 @@ Voici vos identifiants pour accéder à votre compte :",
 	'madame' => 'Madame',
    'mail_paiement_vacarme' => "La commande numero @numero_commande@ de @prenom@ @nom@ vient d'être enregistrée.
 
-- Son montant total @total@ ;
+- Son montant total est de @total@ ;
 - Son statut est @statut@ ;
 - Le mode de règlement est @paiement@ ;
 Le détail de la commande @url_commande@",
    'mail_intro_paiement_alter' => 'Vous avez souhaité régler votre commande par @type_paiement@.',
    'mail_intro_paiement_alter_confirmation' => "Vous avez réglé votre commande @numero_commande@ par @type_paiement@.",
-   'mail_intro_paiement_paypal' => "Vous avez réglé votre commande @numero_commande@ par l'intermédiaire de Paypal.",
+   'mail_intro_paiement_paypal' => "Vous avez réglé votre commande @numero_commande@ par l'intermédiaire de Paypal, pour un montant total de @total@ euros.",
    'mail_corps_paiement_cheque' => "Pour cela, veuillez :
 - libeller votre chèque à l'ordre de Vacarme pour un montant total de @total@ euros,
 - préciser au dos de votre chèque le numéro de commande : @numero_commande@,

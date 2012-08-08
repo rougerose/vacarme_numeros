@@ -23,7 +23,7 @@ function notifications_vacarme_commande_vendeur_contenu_dist($id, $options, $des
       $tva = tva_applicable($row['identite']['type_client'],$row['pays']['pays']);
    }
    // le détail de la commande
-   $details = sql_allfetsel("prix_unitaire_ht,taxe,quantite","spip_commandes_details","id_commande=57");
+   $details = sql_allfetsel("prix_unitaire_ht,taxe,quantite","spip_commandes_details","id_commande=$id_commande");
    foreach($details as $d) {
       $total = $d['prix_unitaire_ht']*$d['quantite'];
       if ($tva) {
