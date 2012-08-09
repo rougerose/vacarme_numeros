@@ -516,6 +516,8 @@ ul.spip {list-style-type: square;}
       margin-bottom: 3em;
    }
    .presentation .body { margin-bottom: .5em; }
+   .presentation.cadeaux .body {margin-bottom: 2em;}
+   .presentation.cadeaux .body .bouton_action_post.ajouter {text-align: center;}
       .presentation.numeros .body .img { display: block; margin-right: 0; }
       .body .img img {
          -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);

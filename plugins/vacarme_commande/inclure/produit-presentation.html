@@ -23,15 +23,14 @@
       <h2 class="grid-3 titre-numero">#TITRE</h2>
       <div class="grid-3 texte">
          <p class="descriptif">[(#TEXTE|PtoBR)]</p>
-      </div><!-- .texte -->]
+      </div><!-- .texte -->
+      <INCLURE{fond=inclure/cadeaux_info,contenu=bouton,id_produit=#ID_PRODUIT,self=#SELF,env}>
+      ]
    </div>
-   <div class="pied cf">
-      [(#ENV{composition}|=={numeros}|oui)
+   [<div class="pied cf">
+      (#ENV{composition}|=={numeros}|oui)
       <p class="prix">#GET{prix_ttc}</p>
       [(#BOUTON_ACTION{<:ajouter_au_panier:>,#URL_ACTION_AUTEUR{remplir_panier,produit-#ID_PRODUIT-1,#SELF},ajouter})]
-      ][(#ENV{composition}|=={cadeaux}|oui)
-         <INCLURE{fond=inclure/cadeaux_info,contenu=bouton,id_produit=#ID_PRODUIT,self=#SELF,env}>
-      ]
-   </div><!-- .pied -->
+   </div><!-- .pied -->]
 </li>
 </BOUCLE_produit>
