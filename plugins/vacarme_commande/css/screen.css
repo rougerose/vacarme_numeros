@@ -506,10 +506,14 @@ ul.spip {list-style-type: square;}
 .presentation .item1 { clear:left; }
    .presentation .media {
       border-bottom: 1px solid #000;
+      margin-bottom: 2em;
    }
    .presentation.numeros .media {
       margin-bottom: 2em;
       min-height: 410px;
+   }
+   .presentation.cadeaux .media {
+      margin-bottom: 3em;
    }
    .presentation .body { margin-bottom: .5em; }
       .presentation.numeros .body .img { display: block; margin-right: 0; }
@@ -519,8 +523,14 @@ ul.spip {list-style-type: square;}
          -o-box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
          box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
       }
-      .presentation .titre-numero { text-transform: uppercase; overflow: hidden; margin-bottom: .5em; }
-      .presentation.numeros .body .texte { overflow: hidden; }
+      .presentation .titre-numero {
+         text-transform: uppercase;
+         color: #000;
+         overflow: hidden;
+         margin-bottom: .5em; }
+      .presentation.cadeaux .titre-numero {margin-left: 10px;}
+      .presentation .texte { overflow: hidden; font-size: 0.813em; }
+      .presentation.cadeaux .texte {margin-left: 10px;}
       .body .sommaire .titre { margin-bottom: .2em; }
       .body .sommaire .descriptif { font-size: .813em; margin-bottom: .5em; }
    .presentation .pied { margin-bottom: .5em; }
@@ -538,12 +548,6 @@ ul.spip {list-style-type: square;}
          width: 220px;
          margin-left: 20px;
       }
-
-
-/* =========== */
-/* = Cadeaux = */
-/* =========== */
-.page_cadeaux .media { margin-bottom: 2em; }
 
 
 /* =============== */
@@ -649,6 +653,7 @@ ul.spip {list-style-type: square;}
 /* = Messages  = */
 /* ============ */
 .message { text-align: center; margin-top: 2em; }
+.message.cadeaux {margin-bottom: 3em;}
    .message .information { margin-bottom: 0; }
    .message.medium .information {
       display: block;

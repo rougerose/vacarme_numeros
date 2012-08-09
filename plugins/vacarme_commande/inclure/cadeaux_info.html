@@ -27,7 +27,7 @@
 [(#ENV{contenu}|=={message}|oui)
    [(#GET{solde}|=={0}|oui)
       [(#GET{cadeaux_dispo}|non)
-      <p class="message medium warning"><span class="information"><:vacarme_commande:cadeaux_message_abonnement_manquant{url=#URL_RUBRIQUE{1}}:></span></p>]
+      <p class="message cadeaux medium warning"><span class="information"><:vacarme_commande:cadeaux_message_abonnement_manquant{url=#URL_RUBRIQUE{1}}:></span></p>]
    ][(#GET{solde}|=={0}|oui)
       [(#GET{cadeaux_dispo}|=={#GET{cadeaux_commande}}|oui)
          [<p class="message medium succes"><span class="information">(#GET{cadeaux_dispo}singulier_ou_pluriel{
@@ -35,7 +35,7 @@
          })</span></p>]
       ]
    ][(#GET{solde}|=={0}|non)
-   <p class="message medium info"><span class="information">[(#GET{solde}|singulier_ou_pluriel{
+   <p class="message cadeaux medium info"><span class="information">[(#GET{solde}|singulier_ou_pluriel{
       'vacarme_commande:cadeaux_message_solde_un','vacarme_commande:cadeaux_message_solde_plusieurs'})]
    </span></p>]
 ][(#ENV{contenu}|=={bouton}|oui)
