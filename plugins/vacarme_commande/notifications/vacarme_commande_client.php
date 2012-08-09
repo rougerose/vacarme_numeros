@@ -71,8 +71,9 @@ function notifications_vacarme_commande_client_contenu_dist($id, $options, $dest
          $corps_mail = _T('vacarme_commande:mail_corps_paiement_confirmation');
       }
       if (preg_match('/cheque|virement/i',$row['paiement'])) {
-          $intro_mail = _T('vacarme_commande:mail_intro_paiement_alter_confirmation',array('numero_commande' => $row['reference'],'type_paiement' => $type_paiement));
-          $corps_mail = _T('vacarme_commande:mail_corps_paiement_confirmation');
+         $type_paiement = ($row['paiement'] == 'cheque') ? _T('vacarme_commande:paiement_cheque') : _T('vacarme_commande:paiement_virement');
+         $intro_mail = _T('vacarme_commande:mail_intro_paiement_alter_confirmation',array('numero_commande' => $row['reference'],'type_paiement' => $type_paiement));
+         $corps_mail = _T('vacarme_commande:mail_corps_paiement_confirmation');
       }
    }
 
