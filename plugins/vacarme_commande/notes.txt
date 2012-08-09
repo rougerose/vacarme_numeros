@@ -1,4 +1,4 @@
-- plugin paypal modifié, au niveau du pipeline traitement_paypal : à ajouter dans git
+- plugin paypal modifié, au niveau du pipeline traitement_paypal : à ajouter dans git => ?
 
 - url : ?page=contact dans les chaines de langues. Donc à corriger si jamais l'url n'est pas celle-là
 - url : page consultation commande ?page=compte@section=commandes&id_commande=XX (url dans le mail de confirmation du paiement alternatif)
@@ -6,7 +6,7 @@
 Ajouts ?
 ========
 - ajouter avec formulaire paiement acception CGV ?
-- envoyer un mail de confirmation quand la commande est confirmée comme payée par paypal ?
+- envoyer un mail de confirmation quand la commande est confirmée comme payée par paypal ? => ok
 
 A corriger
 ==========
