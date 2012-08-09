@@ -531,8 +531,8 @@ ul.spip {list-style-type: square;}
          overflow: hidden;
          margin-bottom: .5em; }
       .presentation.cadeaux .titre-numero {margin-left: 10px;}
-      .presentation .texte { overflow: hidden; }
-      .presentation.cadeaux .texte {font-size: 0.813em; margin-left: 10px;}
+      .presentation .texte { overflow: hidden; font-size: 0.813em; }
+      .presentation.cadeaux .texte {margin-left: 10px;}
       .body .sommaire .titre { margin-bottom: .2em; }
       .body .sommaire .descriptif { font-size: .813em; margin-bottom: .5em; }
    .presentation .pied { margin-bottom: .5em; }
