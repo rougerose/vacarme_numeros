@@ -32,6 +32,10 @@
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
    <pipeline>
+      <nom>post_insertion</nom>
+      <inclure>vacarme_commande_pipelines.php</inclure>
+   </pipeline>
+   <pipeline>
       <nom>traitement_paypal</nom>
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>

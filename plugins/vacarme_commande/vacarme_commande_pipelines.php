@@ -16,6 +16,7 @@
       return $flux;
    }
 
+
    // ================
    // = Insertion js =
    // ================
@@ -26,6 +27,7 @@
       }
       return $flux;
    }
+
 
    // ==============================
    // = pipeline traitement_paypal =
@@ -39,6 +41,24 @@
       }
       return $flux;
    }
+
+
+   // ===========================
+   // = pipeline post_insertion =
+   // ===========================
+   // flux depuis creer_commande_encours : on ajoute l'id de commande dans sa référence
+   function vacarme_commande_post_insertion ($flux) {
+      if ($flux['args']['table'] == 'spip_commandes' and $flux['args']['id_objet'] and $flux['data']['reference']) {
+         $id_commande = intval($flux['args']['id_objet']);
+         $reference = $flux['data']['reference']; // de la forme aaaammjj-id_auteur
+         $reference = $reference."-".$id_commande; // devient aaaammjj-id_auteur-id_commande
+         sql_updateq("spip_commandes", array('reference' => $reference), "id_commande=$id_commande");
+         // on renvoie dans le flux la nouvelle référence
+         $flux['data']['reference'] = $reference;
+         return $flux;
+      }
+   }
+
 
    // =========================
    // = pipeline post_edition =
