@@ -24,7 +24,7 @@ function notifications_vacarme_commande_client_contenu_dist($id, $options, $dest
 
 
    $id_commande = intval($id);
-   $row = sql_fetsel("statut,reference,paiement,id_auteur","spip_commandes","id_commande=$id_commande");
+   $row = sql_fetsel("statut,reference,paiement,id_a uteur","spip_commandes","id_commande=$id_commande");
    $row['identite'] = sql_fetsel("civilite,nom,prenom,type_client","spip_contacts_liens LEFT JOIN spip_contacts USING(id_contact)",array("objet =".sql_quote('auteur'),"id_objet =".$row['id_auteur']));
    $row['pays'] = sql_fetsel("pays","spip_adresses_liens LEFT JOIN spip_adresses USING(id_adresse)",array("objet =".sql_quote('auteur'),"id_objet =".$row['id_auteur']));
 
@@ -37,13 +37,9 @@ function notifications_vacarme_commande_client_contenu_dist($id, $options, $dest
    // le détail de la commande
    $details = sql_allfetsel("prix_unitaire_ht,taxe,quantite","spip_commandes_details","id_commande=57");
    foreach($details as $d) {
-      $total = $d['prix_unitaire_ht']*$d['quantite'];
-      if ($tva) {
-         $total = $total * ($d['taxe'] + 1);
-      }
-      $total +=$total;
-      $total = round($total,2);
+      $total += ($tva) ? ($d['prix_unitaire_ht']*$d['quantite'])*($d['taxe']+1) : ($d['prix_unitaire_ht']*$d['quantite']);
    }
+   $total = round($total,2);
 
    // Elements nécessaires au message
 
