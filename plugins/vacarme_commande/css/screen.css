@@ -399,8 +399,9 @@ ul.spip {list-style-type: square;}
 /* ================= */
 /* = Page sommaire = */
 /* ================= */
-.presentation.sommaire {margin-left: 20px; margin-top: 1em;}
+.presentation.sommaire {margin: 1em 0 0 20px;}
 .presentation.sommaire .media {border-bottom-width: 2px;}
+.presentation.sommaire .media.numeros.selection {border-bottom-width: 0; margin-bottom: 0;}
 .presentation.sommaire h1.intertitre {
    color: #000;
    line-height: 1em;
@@ -486,6 +487,7 @@ ul.spip {list-style-type: square;}
 .presentation.sommaire .numeros .prix {
    font-size: 1.75em; line-height: 1em;
    float: none;
+   margin-bottom: 0;
 }
 
 
