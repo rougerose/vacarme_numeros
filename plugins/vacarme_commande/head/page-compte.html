@@ -1,0 +1,16 @@
+[(#ENV{section}|non)#SET{complement,''}]
+[(#ENV{section}|oui)
+   [(#ENV{section}|=={inscription}|oui)[(#SET{complement,<:vacarme_commande:titre_inscription_2:>})]]
+   [(#ENV{section}|=={identification}|oui)[(#SET{complement,<:vacarme_commande:titre_identification_2:>})]]
+   [(#ENV{section}|=={infos}|oui)[(#SET{complement,<:vacarme_commande:compte_infos_personnelles:>})]]
+   [(#ENV{section}|=={commandes}|oui)[(#SET{complement,<:vacarme_commande:compte_commandes:>})]]
+   [(#ENV{section}|=={factures}|oui)[(#SET{complement,<:vacarme_commande:compte_factures:>})]]
+   [(#ENV{section}|=={identite}|oui)[(#SET{complement,<:vacarme_commande:compte_identite:>})]]
+   [(#ENV{section}|=={email}|oui)[(#SET{complement,<:vacarme_commande:compte_mail:>})]]
+   [(#ENV{section}|=={password}|oui)[(#SET{complement,<:vacarme_commande:compte_password:>})]]
+   [(#ENV{section}|=={adresse}|oui)[(#SET{complement,<:vacarme_commande:label_coordonnees:>})]]
+]
+<title><:vacarme_commande:titre_page_compte:>[ : (#GET{complement})] - [(#NOM_SITE_SPIP|textebrut)]</title>
+[(#GET{complement}|non)[<link rel="canonical" href="(#URL_PAGE{compte}|url_absolue)" />]]
+[(#GET{complement}|oui)[<link rel="canonical" href="(#URL_PAGE{compte}|parametre_url{section,#ENV{section}}|url_absolue)" />]]
+

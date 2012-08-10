@@ -278,21 +278,18 @@ ul.spip {list-style-type: square;}
 /* ========== */
 /* = Compte = */
 /* ========== */
-.page_compte h1 {margin-bottom: 0;}
-.compte {}
-   .compte .section {
-      text-align: center;
-   }
+/*.compte {}*/
+   .compte .section {text-align: center;}
    .compte .section.etape2, .compte .section {
       float: none;
       clear: both;
-      margin: 2em auto; padding-left: 20px;
+      margin: 0 auto; padding-left: 20px;
    }
    /* identification/création de compte */
    .compte .section.etape1 {
       float: left; clear: none;
       padding-left: 0;
-      margin: 0 0 0 20px;
+      margin-left: 20px;
    }
    .compte .etape1 h2 {
       border: 1px solid #ccc;

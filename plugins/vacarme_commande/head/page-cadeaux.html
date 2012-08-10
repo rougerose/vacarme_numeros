@@ -1,0 +1,4 @@
+[(#REM) titre et url de la rubrique abonnements ]
+#SET{titre,#INFO_TITRE{rubrique,1}} #SET{url,#URL_RUBRIQUE{1}}
+<title><:vacarme_commande:titre_page_cadeaux{titre=#GET{titre}}:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<link rel="canonical" href="(#URL_PAGE{cadeaux}|url_absolue)" />]
