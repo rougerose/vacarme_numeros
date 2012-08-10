@@ -6,11 +6,11 @@
 Ajouts ?
 ========
 - ajouter avec formulaire paiement acception CGV ?
-- envoyer un mail de confirmation quand la commande est confirmée comme payée par paypal ? => ok
+X envoyer un mail de confirmation quand la commande est confirmée comme payée par paypal ? => ok
 
 A corriger
 ==========
-- page panier : le total est bon ; page commander : le total diffère de 1 centime, problème d'arrondi visiblement. A harmoniser.
+X page panier : le total est bon ; page commander : le total diffère de 1 centime, problème d'arrondi visiblement. A harmoniser.
 - problème de durée de session ? Il semble que l'on soit éjecté automatiquement après 4 minutes.
 - à vérifier : paiement paypal, à quel moment se fait la suppression du panier en cours ? après ipn ? Voir à quel moment on supprime le panier quand le paiement est chèque ou virement ?
 - mail paiement virement : indiquer les coordonnées bancaires complètes.
