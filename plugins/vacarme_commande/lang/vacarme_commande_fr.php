@@ -121,8 +121,11 @@ Le détail de la commande @url_commande@",
 - préciser dans l'ordre de virement le numéro de commande : @numero_commande@.
 
 Nos coordonnées bancaires :
-- Bénéficiaire : Vacarme
-- Banque : XXXXX",
+- Bénéficiaire : Association Vacarme ;
+- Banque : Crédit Coopératif - Paris Gare de l'Est - 60 Bd de Strasbourg 75010 Paris ;
+- IBAN : FR76 4255 9000 0321 0274 9940 637 ;
+- RIB : 42559 0003 21027499406 37 ;
+- BIC : CCOPFRPPXXX",
 
    'mail_fin_paiement' => 'Nous vous remercions de votre intérêt pour Vacarme,
 le comité de rédaction',
