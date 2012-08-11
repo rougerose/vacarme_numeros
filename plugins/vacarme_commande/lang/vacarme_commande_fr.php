@@ -64,6 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
    'info_confirmer_passe' => 'Confirmez ce nouveau mot de passe',
    'info_modifier' => 'Modifier',
    'info_poursuivre' => 'Poursuivre &#x2192;',
+   'info_texte_message' => 'Texte de votre message',
    'inscription_message_adresse_login' => 'Accès direct à votre compte :',
    'inscription_message_auto' => '[Ceci est un message automatique, merci de ne pas y répondre]',
    'inscription_message_fin' => 'Nous vous remercions de votre confiance,
