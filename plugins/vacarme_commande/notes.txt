@@ -18,8 +18,8 @@ X faire des numéros de commandes de la forme annee-mois-jour-numero d'ordre, pl
 
 A faire
 ========
-- page facture : retirer pied de page + liste factures : mise en forme
-- page contact
-- page 404 à faire
+x page facture : retirer pied de page + liste factures : mise en forme
+x page contact
+x page 404 à faire
 - rubrique Q/R
 - Q/R : notamment pour y mettre le blabla dans le texte de la rubrique "Acheter" ?
