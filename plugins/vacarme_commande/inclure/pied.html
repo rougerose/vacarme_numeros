@@ -1,3 +1,4 @@
-#INCLURE{fond=inclure/menu, env, identifiant=pied}
-<strong id="logo"><a rel="start home" href="http://www.vacarme.org/" title="<:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{300,100}|sinon{#NOM_SITE_SPIP})]</a></strong>
-
+[(#ENV{page}|=={facture}|non)
+   #INCLURE{fond=inclure/menu, env, identifiant=pied}
+   <strong id="logo"><a rel="start home" href="http://www.vacarme.org/" title="<:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{300,100}|sinon{#NOM_SITE_SPIP})]</a></strong>
+]

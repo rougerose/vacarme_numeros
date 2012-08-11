@@ -321,7 +321,8 @@ ul.spip {list-style-type: square;}
    .retour.compte {text-align: right; margin-bottom: 2em;}
 
    /* compte/commandes */
-   .commandes h3 {
+   .commandes h3,
+   .factures h3 {
       text-transform: uppercase;
       padding-bottom: .5em;
       margin-bottom: 1em;
@@ -329,7 +330,10 @@ ul.spip {list-style-type: square;}
    .commandes .ui-accordion .ui-accordion-header.ui-state-active {
       border-bottom: none;
    }
-
+   /* compte/factures */
+   .factures h3 {border-bottom: 1px solid #ccc; font-size: 1em;}
+   .factures h3 a {color: #999; font-weight: normal;}
+   .factures h3 a:hover {color: #000;}
 
 /* ======== */
 /* = Tabs = */
