@@ -207,6 +207,7 @@ le comité de rédaction',
 
 
 	// T
+   'texte_page_404' => "Nous sommes désolés, mais la page n'existe pas.",
    'titre_identification' => 'Vous possédez déjà un compte&nbsp;? <a href="@url@">Identifiez-vous</a>',
    'titre_identification_2' => 'Identifiez-vous',
    'titre_inscription' => 'Première visite&nbsp;? <a href="@url@">Créer votre compte</a>',
