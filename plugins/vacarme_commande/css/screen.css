@@ -575,7 +575,8 @@ ul.spip {list-style-type: square;}
       .compte .formulaire [class^="editer"] label { width: 320px; }
       .compte .formulaire span.obligatoire { font-size: .8125em; }
       .compte .formulaire input.text,
-      .compte .formulaire input.password { width: 300px; }
+      .compte .formulaire input.password,
+      .compte .formulaire textarea { width: 300px; }
       .compte .formulaire.password input.password {width: 250px;}
       .compte .formulaire .details { display: block; }
       .compte .formulaire #pass_securise { position: absolute; right: .1em; top: .25em; }
@@ -583,6 +584,9 @@ ul.spip {list-style-type: square;}
          padding: 1em 0;
          border-top: 1px solid #ccc; border-bottom: 1px solid #000;
       }
+
+/* Contact */
+.formulaire .editer.saisie_texte_message_auteur label {vertical-align: top;}
 
 /* =============================== */
 /* = Tableaux panier et commande = */
@@ -772,7 +776,8 @@ ul.spip {list-style-type: square;}
    .poursuivre-achats.suite .btn,
    .enregistrer .btn, .enregistrer button.submit,
    .commander .btn, .commander button.submit,
-   .valider .btn { background-color: #739a20; }
+   .valider .btn,
+   .envoyer .btn, .confirmer .btn { background-color: #739a20; }
    .commander.wbtn button { background-color: #1c862b; }
    .supprimer .btn, .supprimer button.submit {background-color: #9a2020;}
 
@@ -852,7 +857,7 @@ ul.spip {list-style-type: square;}
    .poursuivre-achats.retour {text-align: left;}
    .message .poursuivre-achats.retour {text-align: center;}
 
-   .boutons.enregistrer { text-align: center; }
+   .boutons.enregistrer, .bouton.envoyer, .bouton.confirmer { text-align: center; }
 
    .ta_c { text-align: center; }
 

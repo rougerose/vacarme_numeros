@@ -18,6 +18,7 @@ X faire des numéros de commandes de la forme annee-mois-jour-numero d'ordre, pl
 
 A faire
 ========
+- page facture : retirer pied de page + liste factures : mise en forme
 - page contact
 - page 404 à faire
 - rubrique Q/R

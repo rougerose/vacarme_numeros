@@ -1,0 +1,19 @@
+<BOUCLE_article_contact(ARTICLES){page}>
+<INCLURE{fond=inclure/visiteur,env} />
+
+<h1>#TITRE</h1>
+
+<div class="grids compte">
+   <div class="grid-8 section formulaire">
+      <BOUCLE_auteur(AUTEURS){id_article}{tout}>
+      #FORMULAIRE_ECRIRE_AUTEUR
+      </BOUCLE_auteur>
+
+   </div><!-- .grid-8 section -->
+
+</div><!-- .grids -->
+
+
+
+
+</BOUCLE_article_contact>
