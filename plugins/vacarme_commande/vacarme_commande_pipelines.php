@@ -5,14 +5,14 @@
    // = Insertion css =
    // =================
    function vacarme_commande_insert_head_css($flux){
-      $inuit       = find_in_path('css/inuit.css');
-      $grille12col = find_in_path('css/grid.inuit.css');
-      $dd = find_in_path('css/dropdown.inuit.css');
-      $css         = find_in_path('css/screen.css');
-      $flux       .= "\n<link rel='stylesheet' type='text/css' media='screen' href='$inuit' />\n";
-//      $flux .= "<link rel='stylesheet' type='text/css' media='screen' href='$dd' />\n";
-      $flux       .= "<link rel='stylesheet' type='text/css' media='screen' href='$grille12col' />\n";
-      $flux       .= "<link rel='stylesheet' type='text/css' media='screen' href='$css' />\n";
+      $inuit        = find_in_path('css/inuit.css');
+      $grille12col  = find_in_path('css/grid.inuit.css');
+      $css          = find_in_path('css/styles.css');
+      $ie8          = find_in_path('css/ie8.css');
+      $flux        .= "\n<link rel='stylesheet' type='text/css' href='$inuit' />\n";
+      $flux        .= "<link rel='stylesheet' type='text/css' href='$grille12col' />\n";
+      $flux        .= "<link rel='stylesheet' type='text/css' href='$css' />\n";
+      $flux        .= "<!--[if lte IE 8]><link rel='stylesheet' type='text/css' href='$ie8' /><![endif]-->\n";
       return $flux;
    }
 

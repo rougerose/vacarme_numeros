@@ -21,5 +21,6 @@ A faire
 x page facture : retirer pied de page + liste factures : mise en forme
 x page contact
 x page 404 à faire
+- annuler les pages inutiles.
 - rubrique Q/R
 - Q/R : notamment pour y mettre le blabla dans le texte de la rubrique "Acheter" ?
