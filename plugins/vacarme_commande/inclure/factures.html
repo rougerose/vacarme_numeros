@@ -2,7 +2,7 @@
 <div class="section factures">
    <h2><:vacarme_commande:compte_factures:></h2>
    <B_liste_commandes>
-   <div id="liste_factures">
+   <div id="factures" class="liste">
       <BOUCLE_liste_commandes(COMMANDES){id_auteur=#SESSION{id_auteur}}{!par id_commande}{statut=paye}>
       <h3><a href="[(#URL_PAGE{facture}|parametre_url{id_commande,#ID_COMMANDE})]"><:vacarme_commande:votre_facture:> numéro #REFERENCE du [(#DATE|affdate{d/m/Y})]</a></h3>
       </BOUCLE_liste_commandes>

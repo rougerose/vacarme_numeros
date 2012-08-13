@@ -149,6 +149,7 @@ le comité de rédaction',
    'message_ok_paypal' => "Nous avons reçu le paiement de votre commande par l'intermédiaire de Paypal et nous vous en remercions.<br />Vous allez recevoir dans quelques instants un email de confirmation de notre part.",
 
    'message_modification_enregistree' => 'La modification est bien enregistrée',
+   'mis_a_jour' => 'Mis à jour le',
 	'monsieur' => 'Monsieur',
 
    // N

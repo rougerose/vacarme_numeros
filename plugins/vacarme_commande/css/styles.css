@@ -323,16 +323,13 @@ ul.spip {list-style-type: square;}
    /* compte/commandes */
    .commandes h3,
    .factures h3 {
-      text-transform: uppercase;
-      padding-bottom: .5em;
-      margin-bottom: 1em;
+
    }
    .commandes .ui-accordion .ui-accordion-header.ui-state-active {
       border-bottom: none;
    }
    /* compte/factures */
-   .factures h3 {border-bottom: 1px solid #ccc; font-size: 1em;}
-   .factures h3 a {color: #999; font-weight: normal;}
+   .factures h3 a {color: #999;}
    .factures h3 a:hover {color: #000;}
 
 /* ======== */
@@ -492,16 +489,24 @@ ul.spip {list-style-type: square;}
 }
 
 
-/* =========== */
-/* = Article = */
-/* =========== */
-.article .meta-publi {
+/* ======================================== */
+/* = Contenu éditorial (articles, Q/R...) = */
+/* ======================================== */
+.editorial .contenu-principal {margin-right: 0;}
+.editorial .meta-publi {
    color: #999;
    font-size: .875em;
    margin-top: 1.2em;
 }
 .texte, .ps, .notes { margin-bottom: 2.5em; }
 
+
+/* ====================== */
+/* = Questions/Réponses = */
+/* ====================== */
+.questions_reponses {}
+   .question {color: #000;}
+   .questions_reponses .reponse {margin-left: 3em;}
 
 /* =========================== */
 /* = Produits : présentation = */
@@ -842,6 +847,8 @@ ul.spip {list-style-type: square;}
    .prix,
    .savoir,
    .pagination .on,
+   .factures .liste h3, .commandes .liste h3,
+   .questions_reponses .question,
    .abonnement .duree {font-family: "HelveticaNeueLTStdCnBold","Helvetica Neue", Helvetica, sans-serif; font-weight: normal;}
 
    .principale li,
@@ -850,6 +857,16 @@ ul.spip {list-style-type: square;}
    .abonnement label,
    .presentation.sommaire .saison,
    .abonnement .nombre_numeros {font-family: "HelveticaNeueLTStdLtCnRegular", "Helevetica Neue", Helvetica, sans-serif; font-weight: normal;}
+
+   .factures .liste h3,
+   .commandes .liste h3,
+   .questions_reponses .question {
+      font-size: 1.25em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: .5em;
+      margin-bottom: 1em;
+   }
 
 
    /* boutons */

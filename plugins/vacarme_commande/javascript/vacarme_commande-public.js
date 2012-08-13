@@ -13,15 +13,30 @@ $(document).ready(function() {
 // =================
    $("#offres_abo,#paiements").tabs();
 
-// =========================================
-// = jquery accordion sur compte/commandes =
-// =========================================
-   $("#liste_commandes").accordion({
+
+// ====================
+// = jquery accordion =
+// ====================
+   // Sur compte/commandes et rubrique Questions/Réponses
+   $("#commandes, #faq").accordion({
       active: false,
       autoHeight: false,
       navigation: true,
       icons: false
    });
+
+   // Sur rubrique Questions/Réponses :
+   // Ouvrir l'item en fonction de l'ancre passée dans l'url
+   $("#faq").each(function(){
+      if(location.hash) {
+         var hash = location.hash;
+         if (hash.match(/#(question|reponse)/gi)) {
+            var ancre = hash.split(/#(question|reponse)/gi);
+            $(this).find("dt[id=question" + ancre[2] + "]").trigger("click");
+         }
+      }
+   });
+
 
 // ==========
 // = Panier =

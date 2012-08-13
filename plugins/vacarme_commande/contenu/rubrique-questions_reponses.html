@@ -1,0 +1,23 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<INCLURE{fond=inclure/visiteur,env} />
+
+<div class="editorial rubrique cf">
+   <ul class="grid-3 meta-publi">
+      <li class="published updated"><:vacarme_commande:mis_a_jour:> <span class="value-title" title="[(#DATE|date_iso)]">[(#DATE|affdate)]</span></li>
+   </ul>
+   <div class="grid-9 contenu-principal">
+      <h1>#TITRE</h1>
+      [<div class="intro rubrique">
+         (#TEXTE)
+      </div>]
+      <B_faq>
+      <dl id="faq" class="liste questions_reponses">
+          <BOUCLE_faq(ARTICLES){id_rubrique}{par num titre}{par date}>
+          <dt id="question#ID_ARTICLE" class="question">#TITRE</dt>
+          <dd id="reponse#ID_ARTICLE" class="reponse">#TEXTE</dd>
+          </BOUCLE_faq>
+      </dl>
+      </B_faq>
+   </div><!-- .grid-7 contenu-principal -->
+</div><!-- .editorial cf -->
+</BOUCLE_rubrique>

@@ -2,7 +2,7 @@
 <div class="section commandes">
    <h2><:vacarme_commande:compte_commandes:></h2>
    <B_liste_commandes>
-   <div id="liste_commandes">
+   <div id="commandes" class="liste">
       <BOUCLE_liste_commandes(COMMANDES){id_auteur=#SESSION{id_auteur}}{!par id_commande}>
       <h3><a href="#commande#ID_COMMANDE"><:vacarme_commande:votre_commande:> numéro #REFERENCE du [(#DATE|affdate{d/m/Y})]</a></h3>
       [<div class="commande">
