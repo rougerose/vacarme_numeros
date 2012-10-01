@@ -24,6 +24,10 @@
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
    <pipeline>
+   	<nom>header_prive</nom>
+   	<inclure>vacarme_commande_pipelines.php</inclure>
+   </pipeline>
+   <pipeline>
       <nom>insert_head</nom>
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
@@ -40,6 +44,11 @@
       <inclure>vacarme_commande_pipelines.php</inclure>
    </pipeline>
    <fonctions>vacarme_commande_fonctions.php</fonctions>
+   <bouton id='vacarme21' parent='bando_edition'>
+      <titre>Vacarme</titre>
+      <icone>images/portfolio-16.png</icone>
+      <url>vacarme</url>
+   </bouton>
    <utilise id="zcommerce" version="[0.3.2;]" /><!-- à supprimer en prod ? -->
    <utilise id="contacts" version="[1.13.5;]" />
    <necessite id="SPIP" version="[2.1.10;2.1.99]" />

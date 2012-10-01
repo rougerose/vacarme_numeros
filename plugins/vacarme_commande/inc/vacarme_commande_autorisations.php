@@ -17,5 +17,13 @@
       else return false;
    }
 
+   function autoriser_vacarme_administrer_dist($faire,$quoi,$id,$qui,$options) {
+   	return $qui['statut'] == '0minirezo';
+   }
+
+   function autoriser_vacarme21_bouton_dist($faire,$quoi,$id,$qui,$options) {
+   	return autoriser('administrer','vacarme',$id,$qui,$options);
+   }
+
 
 ?>

@@ -28,6 +28,15 @@
       return $flux;
    }
 
+   //
+   function vacarme_commande_header_prive($flux){
+   	//$js = find_in_path('javascript/saisies.js');
+   	//$flux .= "\n<script type='text/javascript' src='$js'></script>\n";
+   	$css = generer_url_public('vacarme_commande_prive.css');
+   	$flux .= "\n<link rel='stylesheet' href='$css' type='text/css' media='all' />\n";
+   	return $flux;
+   }
+
 
    // ==============================
    // = pipeline traitement_paypal =
