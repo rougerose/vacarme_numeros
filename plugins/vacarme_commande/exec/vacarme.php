@@ -12,7 +12,7 @@ function exec_vacarme(){
 	}
 
 	$commencer_page = charger_fonction('commencer_page','inc');
-	echo $commencer_page(_T('medias:documents'));
+	echo $commencer_page(_T('Gestion des commandes et des abonnements'));
 
 	echo gros_titre(_T('Gestion des commandes et des abonnements'),'',false);
 	echo debut_grand_cadre(true);

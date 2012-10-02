@@ -22,6 +22,15 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
       else return $statuts;
    }
 
+   function filtre_lister_paiements($p){
+      $paiements = array(
+         'paypal'   => _T('vacarme_commande:paiement_paypal'),
+         'virement' => _T('vacarme_commande:paiement_virement'),
+         'cheque'   => _T('vacarme_commande:paiement_cheque')
+      );
+      return $paiements[$p];
+   }
+
    // on garde deux chiffres après la virgule. filtre appliqué pour le formulaire paypal. Ce qui permet de retrouver le prix envoyé par la fonction |prix_formater (qui n'est pas un arrondi).
    function filtre_decimale($texte) {
       $texte = sprintf("%.2f",$texte);
