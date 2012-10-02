@@ -50,7 +50,7 @@
    ]
    [(#GET{page_panier}|oui)
       [(#SESSION{id_auteur}|oui|et{#GET{quantite}|oui})
-         [(#SET{suite,<a href="[(#URL_ACTION_AUTEUR{passer_commande,#SESSION{id_auteur},#URL_PAGE{commander}})]" class="btn large"><:vacarme_commande:valider_commande:></a>})]
+         [(#SET{suite,<a href="[(#URL_ACTION_AUTEUR{passer_commande,#SESSION{id_auteur},?page=commander})]" class="btn large"><:vacarme_commande:valider_commande:></a>})]
       ]
    ]
 

@@ -18,7 +18,7 @@
    Il y a une session et un panier, on peut passer la commande et payer
 ]
 [(#SESSION{id_auteur}|oui)
-   [(#GET{quantite}|oui) [(#BOUTON_ACTION{<:vacarme_commande:valider_commande:>,#URL_ACTION_AUTEUR{passer_commande,#SESSION{id_auteur},#URL_PAGE{commander}},commander})]
+   [(#GET{quantite}|oui) [(#BOUTON_ACTION{<:vacarme_commande:valider_commande:>,#URL_ACTION_AUTEUR{passer_commande,#SESSION{id_auteur},?page=commander},commander})]
    ]
 ]
 
