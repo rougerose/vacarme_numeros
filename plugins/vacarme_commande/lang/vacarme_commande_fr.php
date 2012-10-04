@@ -154,6 +154,8 @@ le comité de rédaction',
 	'monsieur' => 'Monsieur',
 
    // N
+   'nb_abonnement' => '1 abonnement',
+   'nb_abonnements' => '@nb@ abonnements',
    'nb_an' => '1 an',
    'nb_ans' => '@nb@ ans',
    'nb_cadeau' => '1 cadeau',

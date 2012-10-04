@@ -8,6 +8,12 @@
             |parametre_url{vue,abonnements}
             |lien_ou_expose{Les abonnements,#ENV{vue}|=={abonnements}})
       </li>]
+      [<li>
+         (#SELF
+            |parametre_url{vue|limite|id_objet|statut_abonnement|numero,''}
+            |parametre_url{vue,abonnes}
+            |lien_ou_expose{Les abonné-e-s,#ENV{vue}|=={abonnes}})
+      </li>]
    </ul>
 </div><!-- .onglets_simple -->
 
@@ -18,3 +24,7 @@
 <BOUCLE_abonnements(CONDITION){si #ENV{vue}|=={abonnements}}>
    <INCLURE{fond=prive/squelettes/inclure/gestion-abonnements,env} />
 </BOUCLE_abonnements>
+
+<BOUCLE_abonnes(CONDITION){si #ENV{vue}|=={abonnes}}>
+   <INCLURE{fond=prive/squelettes/inclure/gestion-abonnes,env} />
+</BOUCLE_abonnes>
