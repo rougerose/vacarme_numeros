@@ -62,4 +62,5 @@
    <necessite id="abonnement" version="[1.4.1;]" />
    <necessite id="commandes" version="[0.4.9;]" />
    <necessite id="compositions" version="[2.1.6;]" />
+   <necessite id="jqueryui" version="[1.6.0;]" />
 </plugin>

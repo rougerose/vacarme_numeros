@@ -1,54 +1,80 @@
-#CACHE{3600*100,cache-client}
+#CACHE{0*100,cache-client}
 #HTTP_HEADER{Content-Type: text/css; charset=utf-8}
 #HTTP_HEADER{Vary: Accept-Encoding}
 
+/* boutons de sélection */
+.btn,
+.btn select {font-size: 11px !important;}
+
 /* menu dropdown */
 .dropdown,
-.dropdown ul {
+.dropdown .dropdown-menu {
    list-style: none;
    margin: 0;
    padding: 0;
    float: left;
 }
-.dropdown li {
-   position: relative;
-}
+.dropdown {margin-right: 5px;}
+.dropdown li {position: relative; float: left;}
 .dropdown a,
-.dropdown span {
+.dropdown .dropdown-menu strong {
    display: block;
    padding: 5px;
 }
+.dropdown .dropdown-menu {
+   font-size: 11px;
+   position:absolute;left:-9999px; z-index: 100;
+   background: #eee;
+   border: 1px solid #999;
+   -webkit-box-shadow:0 5px 5px  rgba(0,0,0,0.2);
+      -moz-box-shadow:0 5px 5px  rgba(0,0,0,0.2);
+           box-shadow:0 5px 5px  rgba(0,0,0,0.2);
+   -webkit-border-radius:5px;
+      -moz-border-radius:5px;
+           border-radius:5px;
+}
+.dropdown .dropdown-menu li {min-width: 160px; float: none;}
+.dropdown .dropdown-menu a {white-space:nowrap;}
+.dropdown li:hover .dropdown-menu {left:0;}
+.dropdown .dropdown-menu strong {background-color: rgba(255,255,255,0.7);}
+.dropdown li:hover .dropdown-menu li a:hover {background-color: rgba(255,255,255,0.5);}
 
-/*--- DROPDOWN ---*/
-.dropdown ul{
-	background:#fff; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
-	background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
-	list-style:none;
-	position:absolute;
-	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+/* dropdown + groupe */
+.dropdown.groupe {
+   color: #555;
+   background-color: rgba(204,203,200,0.2);
+   font-size: 11px;
+   -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0,0.3);
+      -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0,0.3);
+           box-shadow: inset 1px 1px 5px rgba(0, 0, 0,0.3);
+   -webkit-border-radius:4px;
+      -moz-border-radius:4px;
+           border-radius:4px;
 }
-.dropdown ul li{
-	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
-	float:none;
-}
-.dropdown ul a{
-	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
-}
-.dropdown li:hover ul{ /* Display the dropdown on hover */
-	left:0; /* Bring back on-screen when needed */
-}
-.dropdown li:hover a{ /* These create persistent hover states, meaning the top-most link stays 'hovered' even when your cursor has moved down the list. */
-	background:#6b0c36;
-	text-decoration:underline;
-}
-.dropdown li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
-	text-decoration:none;
-}
-.dropdown li:hover ul li a:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
-	background:#333;
-}
+.dropdown.groupe li {margin-left: 5px;}
+.dropdown.groupe .secondaire {padding-top: 0.2em;}
 
-
+/* tableau des commandes/abonnements */
+.resultats .tableau {
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+.tableau th,
+.tableau td {
+   font-size: 12px;
+   padding: 8px 4px;}
+.tableau th {
+   border: 2px solid #000;
+   border-width: 2px 0;
+   vertical-align: bottom;}
+.tableau .pair td {xbackground-color: rgba(125, 125, 125,0.75);}
+.tableau td {
+   border-bottom: 1px solid #666;
+   padding: 8px 4px;
+   vertical-align: top;
+}
+.tableau td:first-child {xborder-left: 1px solid #eee;}
+.tableau p {margin: 0;}
 /* clearfix */
 .cf,
 .grids,
@@ -70,3 +96,67 @@
 .media:after{
 	clear:both;
 }
+
+/* ============= */
+/* jquery-ui     */
+/* ============= */
+/* le theme fourni par le plugin vacarme_commande est quasi vierge (pour les pages publiques).
+   Donc on colle ici un thème plus complet
+*/
+
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
+.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png})]) 50% 50% repeat-x; color: #222222; }
+.ui-widget-content a { color: #222222; }
+.ui-widget-header { border: 1px solid #aaaaaa; background: #cccccc url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png})]) 50% 50% repeat-x; color: #222222; font-weight: bold; }
+.ui-widget-header a { color: #222222; }
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3; background: #e6e6e6 url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png})]) 50% 50% repeat-x; font-weight: normal; color: #555555; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #555555; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #999999; background: #dadada url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_glass_75_dadada_1x400.png})]) 50% 50% repeat-x; font-weight: normal; color: #212121; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #212121; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #aaaaaa; background: #ffffff url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_glass_65_ffffff_1x400.png})]) 50% 50% repeat-x; font-weight: normal; color: #212121; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #212121; text-decoration: none; }
+.ui-widget :active { outline: none; }
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #fcefa1; background: #fbf9ee url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_glass_55_fbf9ee_1x400.png})]) 50% 50% repeat-x; color: #363636; }
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #363636; }
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_glass_95_fef1ec_1x400.png})]) 50% 50% repeat-x; color: #cd0a0a; }
+.ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #cd0a0a; }
+.ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text { color: #cd0a0a; }
+.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary { font-weight: bold; }
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary,  .ui-widget-header .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { width: 16px; height: 16px; background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_222222_256x240.png})]); }
+.ui-widget-content .ui-icon {background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_222222_256x240.png})]); }
+.ui-widget-header .ui-icon {background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_222222_256x240.png})]); }
+.ui-state-default .ui-icon { background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_888888_256x240.png})]); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_454545_256x240.png})]); }
+.ui-state-active .ui-icon {background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_454545_256x240.png})]); }
+.ui-state-highlight .ui-icon {background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_2e83ff_256x240.png})]); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-icons_cd0a0a_256x240.png})]); }
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 4px; border-top-left-radius: 4px; }
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; -khtml-border-top-right-radius: 4px; border-top-right-radius: 4px; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; -khtml-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; -khtml-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+/* Overlays */
+.ui-widget-overlay { background: #aaaaaa url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png})]) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
+.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa url([(#CHEMIN{javascript/jquery-ui/themes/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png})]) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -khtml-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }

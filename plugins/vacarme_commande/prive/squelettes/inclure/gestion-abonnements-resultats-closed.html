@@ -1,0 +1,42 @@
+<B_abonnements>
+[<p class="total">(#GRAND_TOTAL|affiche_un_ou_plusieurs{<:vacarme_commande:nb_commande:>,<:vacarme_commande:nb_commandes:>})</p>]
+<div class='pagination tri'>
+   [(#TRI{'<',#CHEMIN{img_pack/tri_asc-16.png}|tag_img{<:medias:par_tri_croissant:>}}) |]
+   [(#TRI{'>',#CHEMIN{img_pack/tri_desc-16.png}|tag_img{<:medias:par_tri_decroissant:>}}) |]
+   [(#TRI{id_contacts_abonnement,par #}) |]
+   [(#TRI{date,par date souscription}) |]
+</div>
+[<div class="pagination">(#PAGINATION{page})</div>]
+<table class="tableau">
+   <thead>
+      <tr>
+         <th>#</th>
+         <th>Client</th>
+         <th>Statut</th>
+         <th>Type abonnement</th>
+         <th>Date de souscription</th>
+         <th>Numéro début</th>
+         <th>Numéro fin</th>
+         <th>Montant</th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      <BOUCLE_abonnements(CONTACTS_ABONNEMENTS){statut_abonnement?}{id_objet?}{numero_fin<#ENV{numero}}{tri id_contacts_abonnement,inverse}{pagination 20}>
+      <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
+         <td>#ID_CONTACTS_ABONNEMENT</td>
+         <td>#INFO_NOM{auteur, #ID_AUTEUR}</td>
+         <td>[(#STATUT_ABONNEMENT|lister_statuts)]</td>
+         <td>#INFO_TITRE{abonnement,#ID_OBJET}</td>
+         <td>[(#DATE|affdate{d/m/y})]</td>
+         <td>#NUMERO_DEBUT</td>
+         <td>#NUMERO_FIN</td>
+         <td>#PRIX</td>
+         <td><a href="#">Voir</a></td>
+      </tr>
+      </BOUCLE_abonnements>
+   </tbody>
+</table>
+</B_abonnements>
+<p class="total">Aucun abonnement</p>
+<//B_abonnements>
