@@ -1,0 +1,102 @@
+[(#REM) les statuts contacts ]
+[(#SET{type_client,#ARRAY{0,Tous,particulier,<:vacarme_commande:particulier:>,organisation,<:vacarme_commande:organisation:>}})]
+[(#REM) la liste des statuts abonnements ]
+   [(#SET{statut_abonnement,#ARRAY{
+      0,Tous,
+      encours,<:vacarme_commande:statut_encours:>,
+      attente,<:vacarme_commande:statut_attente:>,
+      paye,<:vacarme_commande:statut_paye:>,
+      envoye,<:vacarme_commande:statut_envoye:>,
+      offert,<:zabonnement:statut_offert:>}
+   })][
+(#REM) la liste des types d'abonnements ]
+   [(#SET{type_abts,#ARRAY{a0,Tous}})]
+   <BOUCLE_type_abts(ABONNEMENTS){tout}>
+      [(#SET{ref,[(#TITRE)][ (#DUREE)][ (#REFERENCE|str_split{2}|table_valeur{1})]})]
+      [(#SET{type_abts,#GET{type_abts}|array_merge{#ARRAY{a#ID_ABONNEMENT,#GET{ref}}}})]
+   </BOUCLE_type_abts>
+
+<div class="criteres cf">
+   <ul class="dropdown">
+      <li>
+         <span class="btn">
+            Type contact : <strong>[(#GET{type_client}|table_valeur{#ENV{type_client,0}})]</strong>
+         </span>
+         <ul class="dropdown-menu">
+            [<li class="">(#SELF|parametre_url{type_client,''}|lien_ou_expose{Tous,#ENV{type_client,''}|=={''},ajax})</li>]
+            [<li>(#SELF
+               |parametre_url{type_client,particulier}
+               |lien_ou_expose{<:vacarme_commande:particulier:>,#ENV{type_client}|=={particulier},ajax})</li>]
+            [<li>(#SELF
+               |parametre_url{type_client,organisation}
+               |lien_ou_expose{<:vacarme_commande:organisation:>,#ENV{type_client}|=={organisation},ajax})</li>]
+         </ul>
+      </li>
+   </ul>
+</div><!-- .criteres -->
+
+<div class="resultats">
+   <B_contacts>
+   [<p class="total">(#GRAND_TOTAL|affiche_un_ou_plusieurs{<:vacarme_commande:nb_contact:>,<:vacarme_commande:nb_contacts:>})</p>]
+   <div class='pagination tri'>
+      [(#TRI{'<',#CHEMIN{img_pack/tri_asc-16.png}|tag_img{<:medias:par_tri_croissant:>}}) |]
+      [(#TRI{'>',#CHEMIN{img_pack/tri_desc-16.png}|tag_img{<:medias:par_tri_decroissant:>}}) |]
+      [(#TRI{id_contact,par #}) |]
+      [(#TRI{nom,par Nom}) |]
+   </div>
+   [<div class="pagination">(#PAGINATION{page})</div>]
+   <table class="tableau">
+      <thead>
+         <tr>
+            <th>#</th>
+            <th>Type clt</th>
+            <th>Civ.</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Org.</th>
+            <th>Serv.</th>
+            <th>Adresse</th>
+            <th>CP</th>
+            <th>Ville</t>
+            <th>Pays</th>
+            <th>Abonnement(s)</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody>
+         <BOUCLE_contacts(CONTACTS){type_client?}{nom?}{tri id_contact,inverse}{pagination 20}>
+         <BOUCLE_adresse(ADRESSES){id_auteur}{type=principale}>[(#SET{adresse,[(#VOIE)<br />][(#COMPLEMENT)<br />][(#BOITE_POSTALE)<br />]})][(#SET{cp,#CODE_POSTAL})][(#SET{ville,#VILLE})][(#SET{pays,#PAYS})]</BOUCLE_adresse>
+         <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
+            <td>#ID_CONTACT</td>
+            <td>
+               [(#TYPE_CLIENT|=={particulier}|oui)<:vacarme_commande:label_abr_type_client_particulier:>]
+               [(#TYPE_CLIENT|=={organisation}|oui)<:vacarme_commande:label_abr_type_client_organisation:>]
+            </td>
+            <td>
+               [(#CIVILITE|=={madame}|oui)<:vacarme_commande:label_abr_civilite_madame:>]
+               [(#CIVILITE|=={monsieur}|oui)<:vacarme_commande:label_abr_civilite_monsieur:>]
+            </td>
+            <td>#NOM</td>
+            <td>#PRENOM</td>
+            <td>#ORGANISATION</td>
+            <td>#SERVICE</td>
+            <td>[(#GET{adresse})]</td>
+            <td>[(#GET{cp})]</td>
+            <td>[(#GET{ville})]</td>
+            <td>[(#GET{pays})]</td>
+            <td><B_abonnements>
+               <ul>
+                  <BOUCLE_abonnements(CONTACTS_ABONNEMENTS){id_auteur}{!par numero_debut}>
+                  <li><a href"#">Du #NUMERO_DEBUT au #NUMERO_FIN</a> #INFO_REFERENCE{abonnement,#ID_OBJET}[ ((#STATUT_ABONNEMENT|lister_statuts))]</li>
+                  </BOUCLE_abonnements>
+               </ul></B_abonnements>
+            </td>
+            <td><a href="#">Voir</a></td>
+         </tr>
+         </BOUCLE_contacts>
+      </tbody>
+   </table>
+   </B_contacts>
+   <p class="total">Aucun contact</p>
+   <//B_contacts>
+</div>

@@ -16,6 +16,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
       'envoye' => _T('vacarme_commande:statut_envoye'),
       'retour' => _T('vacarme_commande:statut_retour'),
       'retour_partiel' => _T('vacarme_commande:statut_retour_partiel'),
+      'offert' => _T('zabonnement:statut_offert')
       );
 
       if ($statut and $nom = $statuts[$statut]) return $nom;
