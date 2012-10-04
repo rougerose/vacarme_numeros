@@ -1,16 +1,15 @@
 <div class="onglets_simple cf">
    <ul>
       [<li>
-         (#SELF|parametre_url{vue|limite|id_objet|statut_abonnement|numero,''}|lien_ou_expose{Les commandes,#ENV{vue,''}|=={''}})
+         (#URL_ECRIRE{vacarme}|lien_ou_expose{Les commandes,#ENV{vue,''}|=={''}})
       </li>]
       [<li>
-         (#SELF
+         (#URL_ECRIRE
             |parametre_url{vue,abonnements}
             |lien_ou_expose{Les abonnements,#ENV{vue}|=={abonnements}})
       </li>]
       [<li>
-         (#SELF
-            |parametre_url{vue|limite|id_objet|statut_abonnement|numero,''}
+         (#URL_ECRIRE
             |parametre_url{vue,contacts}
             |lien_ou_expose{Les contacts,#ENV{vue}|=={contacts}})
       </li>]
