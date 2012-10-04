@@ -17,8 +17,7 @@ function exec_vacarme(){
 	echo gros_titre(_T('Gestion des commandes et des abonnements'),'',false);
 	echo debut_grand_cadre(true);
 
-//	echo formulaire_recherche('portfolio');
-	echo recuperer_fond('prive/vacarme',$_GET);
+	echo recuperer_fond('prive/squelettes/vacarme',$_GET);
 
 	echo fin_grand_cadre(true),fin_page();
 }
