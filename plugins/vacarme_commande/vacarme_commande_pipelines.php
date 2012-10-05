@@ -124,15 +124,4 @@
       return $flux;
    }
 
-   // espace prive
-   // affiche les abonnements liés à un contact (sur ?exec=contact_voir)
-   function vacarme_commande_affiche_milieu($flux) {
-      if($flux['args']['exec'] == 'contact_voir') {
-         include_spip('inc/presentation');
-         $flux['data'] .= recuperer_fond('prive/squelettes/inclure/contact-abts', array('page_envoi'=>'contact_voir','id_contact'=>$id_contact), array('ajax'=>true));
-      }
-      return $flux;
-   }
-
-
 ?>
