@@ -64,7 +64,7 @@
    <table id="resultats" class="tableau">
       <thead>
          <tr>
-            <th></th>
+            <th><input type="checkbox" name="checkAll"></th>
             <th>#</th>
             <th>Référence</th>
             <th>Statut</th>
@@ -99,6 +99,7 @@
          </BOUCLE_commandes>
       </tbody>
    </table>
+   <INCLURE{fond=prive/squelettes/inclure/exporter,env,ajax}>
    </B_commandes>
    <p class="total">Aucune commande</p>
    <//B_commandes>

@@ -7,9 +7,10 @@
    [(#TRI{date,par date souscription}) |]
 </div>
 [<div class="pagination">(#PAGINATION{page})</div>]
-<table class="tableau">
+<table id="resultats" class="tableau">
    <thead>
       <tr>
+         <th><input type="checkbox" name="checkAll"></th>
          <th>#</th>
          <th>Client</th>
          <th>Statut</th>
@@ -24,6 +25,7 @@
    <tbody>
       <BOUCLE_abonnements(CONTACTS_ABONNEMENTS){statut_abonnement?}{id_objet?}{numero_debut<=#ENV{numero}}{numero_fin>=#ENV{numero}}{tri id_contacts_abonnement,inverse}{pagination 20}>
       <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
+         <td><input type="checkbox" name="abonnements[]" value="#ID_CONTACTS_ABONNEMENT"></td>
          <td>#ID_CONTACTS_ABONNEMENT</td>
          <td>#INFO_NOM{auteur, #ID_AUTEUR}</td>
          <td>[(#STATUT_ABONNEMENT|lister_statuts)]</td>
@@ -32,11 +34,12 @@
          <td>#NUMERO_DEBUT</td>
          <td>#NUMERO_FIN</td>
          <td>#PRIX</td>
-         <td><a href="#">Voir</a></td>
+         <td><a href="[(#URL_ECRIRE{contacts_abonnement_edit}|parametre_url{id_contacts_abonnement,#ID_CONTACTS_ABONNEMENT}|parametre_url{retour,#SELF})]">Voir</a></td>
       </tr>
       </BOUCLE_abonnements>
    </tbody>
 </table>
+<INCLURE{fond=prive/squelettes/inclure/exporter,env,ajax}>
 </B_abonnements>
 <p class="total">Aucun abonnement</p>
 <//B_abonnements>

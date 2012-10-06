@@ -45,9 +45,10 @@
       [(#TRI{nom,par Nom}) |]
    </div>
    [<div class="pagination">(#PAGINATION{page})</div>]
-   <table class="tableau">
+   <table id="resultats" class="tableau">
       <thead>
          <tr>
+            <th><input type="checkbox" name="checkAll"></th>
             <th>#</th>
             <th>Type clt</th>
             <th>Civ.</th>
@@ -67,6 +68,7 @@
          <BOUCLE_contacts(CONTACTS){type_client?}{nom?}{tri id_contact,inverse}{pagination 20}>
          <BOUCLE_adresse(ADRESSES){id_auteur}{type=principale}>[(#SET{adresse,[(#VOIE)<br />][(#COMPLEMENT)<br />][(#BOITE_POSTALE)<br />]})][(#SET{cp,#CODE_POSTAL})][(#SET{ville,#VILLE})][(#SET{pays,#PAYS})]</BOUCLE_adresse>
          <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
+            <td><input type="checkbox" name="contacts[]" value="#ID_CONTACT"></td>
             <td>#ID_CONTACT</td>
             <td>
                [(#TYPE_CLIENT|=={particulier}|oui)<:vacarme_commande:label_abr_type_client_particulier:>]
@@ -96,6 +98,8 @@
          </BOUCLE_contacts>
       </tbody>
    </table>
+
+   <INCLURE{fond=prive/squelettes/inclure/exporter,env,ajax}>
    </B_contacts>
    <p class="total">Aucun contact</p>
    <//B_contacts>
