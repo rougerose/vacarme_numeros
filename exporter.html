@@ -1,0 +1,5 @@
+#CACHE{0}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
+<BOUCLE_commandes(COMMANDES){id_commande IN #ENV{id}}>
+#ID_COMMANDE;#REFERENCE;#ID_AUTEUR;#STATUT;#DATE;#PAIEMENT;
+</BOUCLE_commandes>

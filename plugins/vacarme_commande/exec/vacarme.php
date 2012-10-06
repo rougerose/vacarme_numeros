@@ -10,7 +10,8 @@ function exec_vacarme(){
 		echo minipres();
 		exit;
 	}
-
+   $vue = _request('vue');
+   if (!$vue) $vue = 'commandes';
 	$commencer_page = charger_fonction('commencer_page','inc');
 	echo $commencer_page(_T('Gestion des commandes et des abonnements'));
 

@@ -61,9 +61,10 @@
       [(#TRI{date_paiement,par date paiement}) |]
    </div>
    [<div class="pagination">(#PAGINATION{page})</div>]
-   <table class="tableau">
+   <table id="resultats" class="tableau">
       <thead>
          <tr>
+            <th></th>
             <th>#</th>
             <th>Référence</th>
             <th>Statut</th>
@@ -79,6 +80,7 @@
       <tbody>
          <BOUCLE_commandes(COMMANDES){statut ?= #ENV{statut}}{paiement ?= #ENV{paiement}}{tri id_commande,inverse}{pagination 20}>
          <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
+            <td><input type="checkbox" name="commande[]" value="#ID_COMMANDE"></td>
             <td>#ID_COMMANDE</td>
             <td>#REFERENCE</td>
             <td>[(#STATUT|lister_statuts)]</td>
@@ -92,7 +94,7 @@
                </BOUCLE_detail_commande>
             </td>
             <td>#PRIX</td>
-            <td><a href="#">Voir</a></td>
+            <td><a href="[(#URL_ECRIRE{commande_voir}|parametre_url{id_commande,#ID_COMMANDE})]">Voir</a></td>
          </tr>
          </BOUCLE_commandes>
       </tbody>

@@ -1,0 +1,61 @@
+<?
+
+?>
+
+
+
+<table id="table" border="0">
+   <tr>
+      <th>exporter</th>
+      <th>numero commande / id</th>
+      <th>statut</th>
+   </tr>
+   <BOUCLE_commandes(COMMANDES){tout}>
+   <tr>
+      <td><input type="checkbox" name="" value="#ID_COMMANDE" id="commande#ID_COMMANDE" /></td>
+      <td>#REFERENCE / #ID_COMMANDE</td>
+      <td>#STATUT</td>
+   </tr>
+   </BOUCLE_commandes>
+</table>
+
+<form id="form" action="#SELF" method="get">
+   <input type="hidden" name="exec" value="test">
+   <input type="hidden" name="commandes" value="">
+   <div style="padding: 5px 10px; background:#FFF">
+
+		<div style="float: right;">
+			 <input type="submit" value="Ajouter" class="fondo" />
+		</div>
+      <a href="">xxxx</a>
+      <div class="nettoyeur"></div>
+   </div>
+</form>
+<a href="javascript:window.location.href='?ids='+$.isChecked()">xxxx</a>
+<script>
+	$(function() {
+		jQuery.isChecked = function() {
+			var ids = '';
+			$.each($("#table input:checked"), function() {
+				ids += (ids?':':'') + $(this).attr('value');
+			});
+			return ids;
+		};
+
+
+      /*function isChecked() {
+        var ids = '';
+        $("#table input:checked").each(function(){
+           ids += (ids?':':'') + $(this).attr('value');
+        });
+        console.log(ids);
+        $("#form input[name='commandes']:hidden").attr("value",ids);
+        //return ids;
+
+
+        //$("div").text(n + (n === 1 ? " is" : " are") + " checked!");
+      }
+      //isChecked();
+      $(":checkbox").click(isChecked);*/
+	});
+</script>

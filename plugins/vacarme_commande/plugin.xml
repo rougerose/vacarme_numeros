@@ -50,6 +50,7 @@
       <url>vacarme</url>
    </bouton>
    <utilise id="zcommerce" version="[0.3.2;]" /><!-- à supprimer en prod ? -->
+   <utilise id="snippets" version="[0.2.0;]" />
    <utilise id="contacts" version="[1.13.5;]" />
    <necessite id="SPIP" version="[2.1.10;2.1.99]" />
    <necessite id="Z" version="[1.7.19;]" />

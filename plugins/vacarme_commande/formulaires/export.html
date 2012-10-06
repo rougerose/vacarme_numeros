@@ -6,13 +6,13 @@
       <table border="0">
          <tr>
             <th>exporter</th>
-            <th>numero commande</th>
+            <th>numero commande / id</th>
             <th>statut</th>
          </tr>
          <BOUCLE_commandes(COMMANDES){tout}>
          <tr>
-            <td><input type="checkbox" name="commande[]" value="commande#ID_COMMANDE" id="commande#ID_COMMANDE" /></td>
-            <td>#REFERENCE</td>
+            <td><input type="checkbox" name="commande[]" value="#ID_COMMANDE" id="commande#ID_COMMANDE" /></td>
+            <td>#REFERENCE / #ID_COMMANDE</td>
             <td>#STATUT</td>
          </tr>
          </BOUCLE_commandes>

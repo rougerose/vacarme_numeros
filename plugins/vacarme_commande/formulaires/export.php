@@ -4,12 +4,16 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 function formulaires_export_charger_dist(){
    $valeurs = array();
-	return $valeurs;
+   $valeurs['commande'] = _request('commande');
+	var_dump($valeurs);
+   return $valeurs;
+
 }
 
 function formulaires_export_verifier_dist(){
    $erreurs = array();
-
+   $commandes = _request('commande');
+   if (!is_array($commandes)) {$erreurs['message_erreur'] = _T('pas de sélection');}
 	return $erreurs;
 }
 

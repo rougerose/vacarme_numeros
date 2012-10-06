@@ -72,14 +72,14 @@
       </li>
       <li>
          <span class="btn">Validité abo. : </span>
-         <ul class="dropdown-menu">
+         <ul id="tri_numero" class="dropdown-menu">
             [<li>(#SELF
                |parametre_url{limite,''}
                |parametre_url{numero,''}
                |lien_ou_expose{Tous,#ENV{limite,''}|=={''},ajax})</li>]
             [<li>(#SELF|parametre_url{limite,closed}
                |parametre_url{numero,#ENV{numero,''}}
-               |lien_ou_expose{Terminés,#ENV{limite}|=={closed},validite})</li>]
+               |lien_ou_expose{Terminés,#ENV{limite}|=={closed},ajax validite})</li>]
             [<li>(#SELF|parametre_url{limite,on}
                |parametre_url{numero,#ENV{numero,#GET{numero}}}
                |lien_ou_expose{En cours,#ENV{limite}|=={on},ajax validite})</li>]

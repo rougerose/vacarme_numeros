@@ -1,0 +1,53 @@
+#CACHE{0}
+[(#VAL{inc/presentation}|include_spip|oui)]
+[(#SET{identifiant,[(#VAL{export_bloc})]})]
+[(#SET{icone,[(#CHEMIN{img/export.png}|url_absolue)]})]
+[(#SET{plie,0})]
+
+[(#VAL{e}|debut_cadre{#GET{icone},'',[(#VAL{exporter}|bouton_block_depliable{[(#GET{plie}?{#EVAL{true},#EVAL{false}})],#GET{identifiant}})]})]
+
+[(#GET{plie}|debut_block_depliable{#GET{identifiant}})]
+
+	[(#AUTORISER{administrer,vacarme,#ENV{id_auteur}})
+      <div class="name">
+         <p id="avertissement">Veuillez définir dans un premier temps une sélection d'un ou plusieurs résultats dans le tableau ci-dessus.</p>
+         <form id="export" action="#SELF" method="get">
+            <input type="hidden" name="action" value="exporter">
+            <input type="hidden" name="arg" value="">
+            <input type="hidden" name="redirect" value="#SELF">
+            <div class="bouton export">
+               <input type="submit" value="Exporter la sélection" class="btn" />
+            </div>
+               <div class="nettoyeur"></div>
+            </div>
+         </form>
+      </div>
+   ]
+[(#GET{plie}|fin_block)]
+[(#VAL{e}|fin_cadre)]
+
+<script>
+$(function() {
+   function isChecked() {
+      var ids = '[(#ENV{vue,commandes})]';
+      var $avertissement = $("#avertissement");
+      var $f_export = $("#export");
+      $("#resultats input:checked").each(function(){
+         ids += (ids?':':'') + $(this).attr('value');
+      });
+      $("#export input[name='arg']:hidden").attr("value",ids);
+      if (ids == '[(#ENV{vue,commandes})]') {
+         $avertissement.show('slow');
+         $f_export.hide();
+      } else {
+         $avertissement.hide();
+         $f_export.show('slow');
+      }
+   }
+   $(document).ready(function() {
+      $("#export").hide();
+      $("#resultats input[type='checkbox']").click(isChecked);
+   });
+
+});
+</script>
