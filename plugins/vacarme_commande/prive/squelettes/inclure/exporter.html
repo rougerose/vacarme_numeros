@@ -46,7 +46,16 @@ $(function() {
       $("#export input[name='arg']:hidden").attr("value",ids);
    }
    $(document).ready(function() {
+      var $parametres = $("#export input[name='arg']");
+
       $("#resultats input[type='checkbox']").click(isChecked);
+
+      $("#export").submit(function(){
+         if ($parametres.attr("value") == '' || $parametres.attr("value") == '[(#ENV{vue,commandes})]'){
+            alert('Aucune sélection à exporter.');
+            return false;
+         }
+      });
 
       $("input[name='checkAll']").click(function() {
          var checked = $(this).attr("checked");
