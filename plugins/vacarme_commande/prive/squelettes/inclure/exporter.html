@@ -3,6 +3,12 @@
 [(#SET{identifiant,[(#VAL{export_bloc})]})]
 [(#SET{icone,[(#CHEMIN{img/export.png}|url_absolue)]})]
 [(#SET{plie,0})]
+[(#REM)
+   équivalences entre parametre vue et table à extraire :
+   - par défaut => commandes
+   - abonnements => contacts_abonnements
+   - contacts => contacts
+][(#ENV{vue}|=={''}|oui)#SET{t,commandes}][(#ENV{vue}|=={'abonnements'}|oui)#SET{t,contacts_abonnements}][(#ENV{vue}|=={'contacts'}|oui)#SET{t,contacts}]
 
 [(#VAL{e}|debut_cadre{#GET{icone},'',[(#VAL{exporter}|bouton_block_depliable{[(#GET{plie}?{#EVAL{true},#EVAL{false}})],#GET{identifiant}})]})]
 
@@ -36,7 +42,7 @@ $(function() {
       }
    }
    function isChecked() {
-      var ids = '[(#ENV{vue,commandes})]';
+      var ids = '[(#GET{t})]';
       var $avertissement = $("#avertissement");
       var $f_export = $("#export");
 
@@ -51,7 +57,7 @@ $(function() {
       $("#resultats input[type='checkbox']").click(isChecked);
 
       $("#export").submit(function(){
-         if ($parametres.attr("value") == '' || $parametres.attr("value") == '[(#ENV{vue,commandes})]'){
+         if ($parametres.attr("value") == '' || $parametres.attr("value") == '[(#GET{t})]'){
             alert('Aucune sélection à exporter.');
             return false;
          }
@@ -62,6 +68,5 @@ $(function() {
          $("#resultats tbody input:checkbox").attr("checked", checked).each(isChecked);
       });
    });
-
 });
 </script>

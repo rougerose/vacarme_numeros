@@ -14,7 +14,7 @@ include_spip('inc/snippets');
 
 function action_exporter(){
 	//global $auteur_session;
-	$arg = _request('arg'); spip_log('arg '.$arg,'export');
+	$arg = _request('arg');
 	$args = explode(":",$arg);
 	$hash = _request('hash');
 	//$id_auteur = $auteur_session['id_auteur'];
@@ -26,7 +26,7 @@ function action_exporter(){
 		$id = $args;
 
 		$f = snippets_fond_exporter($table, false);
-
+      spip_log('f '.$f,'export');
 		if ($f) {
 			include_spip('public/assembler');
 			$out = recuperer_fond($f,array('id'=>$id));
