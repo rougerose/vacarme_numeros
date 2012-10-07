@@ -119,9 +119,15 @@ Le détail de la commande @url_commande@",
 - préciser au dos de votre chèque le numéro de commande : @numero_commande@,
 - envoyer votre chèque à Vacarme, 50 rue Bichat 75010 Paris France.
 
-À réception de votre règlement, votre commande vous parviendra dans les meilleurs délais.",
+À réception de votre règlement, votre commande vous parviendra dans les meilleurs délais :
+- pour un achat d'exemplaires, votre commande sera traitée sous 15 jours ouvrables (maximum) ;
+- pour un abonnement, si votre abonnement débute au numéro disponible au moment de la commande, l’envoi de l’exemplaire sera traité sous quinze jours ouvrables. Si votre abonnement débute au numéro suivant, l’envoi sera traité dès la parution du numéro (le rythme de parution des numéros est trimestriel).",
 
-   'mail_corps_paiement_confirmation' => "Votre paiement est maintenant enregistré. Nous vous faisons parvenir votre commande dans un délai de XXX jours.",
+   'mail_corps_paiement_confirmation' => "Votre paiement est maintenant enregistré.
+
+Votre commande vous parviendra dans les meilleurs délais :
+- pour un achat d'exemplaires, votre commande sera traitée sous 15 jours ouvrables (maximum) ;
+- pour un abonnement, si votre abonnement débute au numéro disponible au moment de la commande, l’envoi de l’exemplaire sera traité sous 15 jours ouvrables. Si votre abonnement débute au numéro suivant, l’envoi sera traité dès la parution du numéro (le rythme de parution des numéros est trimestriel).",
 
    'mail_corps_commande_envoye' => "Votre commande @numero_commande@ a été expédiée. Elle vous parviendra à l'adresse indiquée au moment de l'enregistrement de votre commande.",
 
