@@ -122,6 +122,8 @@ Le détail de la commande @url_commande@",
 À réception de votre règlement, votre commande vous parviendra dans les meilleurs délais.",
 
    'mail_corps_paiement_confirmation' => "Votre paiement est maintenant enregistré. Nous vous faisons parvenir votre commande dans un délai de XXX jours.",
+   
+   'mail_corps_commande_envoye' => "Votre commande @numero_commande@ a été expédiée. Elle vous parviendra à l'adresse indiquée au moment de l'enregistrement de votre commande.",
 
    'mail_corps_paiement_virement' => "Pour cela, veuillez :
 - faire un virement d'un montant total de @total@ euros,

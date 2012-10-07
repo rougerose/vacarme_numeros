@@ -51,7 +51,11 @@ function notifications_vacarme_commande_client_contenu_dist($id, $options, $dest
    // 2-l'url de la commande du client sur son compte
    $url_commande = generer_url_public('compte','section=commandes&id_commande='.$id_commande, true);
 
-   // 3-quel est le statut de la commande : attente ou payé ?
+   // 3-quel est le statut de la commande ?
+   // attente (de réglement) ?
+   // paye
+   // envoye
+   // partiel, retour, retour_partiel et poubelle : ne déclenchent pas de mail
    if ($row['statut'] == 'attente') {
       // cheque ou virement ?
       if ($row['paiement'] == 'cheque') {
@@ -76,6 +80,10 @@ function notifications_vacarme_commande_client_contenu_dist($id, $options, $dest
          $corps_mail = _T('vacarme_commande:mail_corps_paiement_confirmation');
       }
    }
+   if ($row['statut'] == 'envoye') {
+      $corps_mail = _T('vacarme_commande:mail_corps_commande_envoye',array('numero_commande' => $rox['refrence']));
+   }
+   if (preg_match('/partiel|retour_partiel|poubelle/i',$row['statut'])) return;
 
    // Le contenu du message
    $msg .= $intro_mail
