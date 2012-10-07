@@ -122,7 +122,7 @@ Le détail de la commande @url_commande@",
 À réception de votre règlement, votre commande vous parviendra dans les meilleurs délais.",
 
    'mail_corps_paiement_confirmation' => "Votre paiement est maintenant enregistré. Nous vous faisons parvenir votre commande dans un délai de XXX jours.",
-   
+
    'mail_corps_commande_envoye' => "Votre commande @numero_commande@ a été expédiée. Elle vous parviendra à l'adresse indiquée au moment de l'enregistrement de votre commande.",
 
    'mail_corps_paiement_virement' => "Pour cela, veuillez :
@@ -136,15 +136,18 @@ Nos coordonnées bancaires :
 - RIB : 42559 0003 21027499406 37 ;
 - BIC : CCOPFRPPXXX",
 
-   'mail_fin_paiement' => 'Nous vous remercions de votre intérêt pour Vacarme,
-le comité de rédaction',
+   'mail_fin_paiement' => "Nous vous remercions de votre intérêt pour Vacarme,
+le comité de rédaction
+
+---------------
+Pour toutes questions relatives à votre commande, n'hésitez pas à nous contacter : abonnement@vacarme.org ",
 
    'mail_lien_commande' => 'Le détail de votre commande est disponible sur votre compte :
 @url_compte_commande@.',
 
    'mail_sujet_paiement' => 'Vacarme : votre commande @numero_commande@',
 
-   'mail_sujet_paiement_vacarme' => 'Vacarme : la commande @numero_commande@',
+   'mail_sujet_paiement_vacarme' => '[commande.vacarme.org] Commande @numero_commande@ @statut_commande@',
 
    'message_erreur_formulaire_paiement' => "Nous sommes désolés, un problème technique est survenu. Veuillez <a href='?page=contact'>nous contacter</a> en nous précisant le numéro de commande suivant : @numero_commande@. Merci.",
 'message_erreur_paiement' => "Nous sommes désolés, un problème technique est survenu et votre paiement n'a pas été enregistré",

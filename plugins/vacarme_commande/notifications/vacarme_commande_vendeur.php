@@ -2,9 +2,11 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 function notifications_vacarme_commande_vendeur_destinataires_dist($id_commande, $options) {
-	include_spip('inc/config');
-	$config = lire_config('commandes');
-	return $config['vendeur_'.$config['vendeur']];
+	//include_spip('inc/config');
+	//$config = lire_config('commandes');
+	//return $config['vendeur_'.$config['vendeur']];
+   // les notifications vendeurs sont expédiées à auteur 1 (webmaster) + auteur 16 (abonnement)
+   return array(1,16);
 
 }
 
@@ -40,7 +42,7 @@ function notifications_vacarme_commande_vendeur_contenu_dist($id, $options, $des
       ));
 
    $message['texte'] = $msg;
-   $message['court'] = _T('vacarme_commande:mail_sujet_paiement_vacarme',array('numero_commande'=>$row['reference']));
+   $message['court'] = _T('vacarme_commande:mail_sujet_paiement_vacarme',array('numero_commande'=>$row['reference'],'statut_commande'=>$row['statut']));
 
    return $message;
 }
