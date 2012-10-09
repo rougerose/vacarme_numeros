@@ -31,7 +31,10 @@ function action_passer_commande_dist($arg=null) {
    foreach($items as $item) {
       $id_objet = $item['id_objet'];
       $numero = $item['numero'];
-      sql_updateq("spip_commandes_details",array("numero"=>$numero),"id_commande=$id_commande AND id_objet=$id_objet AND objet='abonnement'");
+      $objet = $item['objet'];
+      if ($objet == 'abonnement') {
+         sql_updateq("spip_commandes_details",array("numero"=>$numero),"id_commande=$id_commande AND id_objet=$id_objet AND objet='abonnement'");
+      }
    }
 
    // On cherche l'adresse principale du visiteur
