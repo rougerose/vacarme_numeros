@@ -1,6 +1,9 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
+// debug du plugin
+define('_DEBUG_VACARME',true);
+
 define('_RENOUVELLE_ALEA',3600); // utile de modifier l'aléa pour les sessions ?
 
 // TVA des abonnements

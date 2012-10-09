@@ -11,7 +11,7 @@
 
    function formulaires_abonnement_ajout_panier_verifier_dist($id_abonnement='',$retour=''){
       $erreurs = array();
-      foreach(array('numero') as $champ) {
+      foreach(array('numero','id_abonnement') as $champ) {
          if (!_request($champ)) {
             $erreurs[$champ] = "Cette information est obligatoire !";
          }

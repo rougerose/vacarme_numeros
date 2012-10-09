@@ -20,11 +20,21 @@ function action_remplir_panier($arg=null) {
 		$arg = $securiser_action();
 	}
 
+   // le numero en cours
+   $num_encours = sql_fetsel("reference", "spip_produits", "statut = 'publie' AND id_rubrique = '2' AND reference LIKE '%v%'","","reference DESC");
+   $num_encours = str_replace("v","",$num_encours);
+
 	// On récupère les infos de l'argument
 	@list($objet, $id_objet, $quantite,$numero) = explode('-', $arg);
+   if ($objet == 'produit' ) $numero = '-1';
+   if ($objet == 'abonnement') {
+      if (intval($numero) <= 0) {
+         $numero = intval($num_encours);
+         if (_DEBUG_VACARME) spip_log("action remplir panier $objet $id_objet $numero : numero inférieur ou égal à zéro",'vacarme_debug');
+      }
+   }
 	$id_objet = intval($id_objet);
 	$quantite = intval($quantite) ? intval($quantite) : 1;
-   $numero = intval($numero) ? intval($numero) : 0;
 
 	// Il faut cherche le panier du visiteur en cours
 	include_spip('inc/session');
@@ -36,7 +46,7 @@ function action_remplir_panier($arg=null) {
 	}
 
 	// On ne fait que s'il y a bien un panier existant et un objet valable
-	if ($id_panier > 0 and $objet and $id_objet) {
+	if ($id_panier > 0 and $objet and $id_objet and $numero) {
 		// Il faut maintenant chercher si cet objet précis est *déjà* dans le panier
 		$quantite_deja = intval(sql_getfetsel(
 			'quantite',
