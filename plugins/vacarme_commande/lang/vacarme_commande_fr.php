@@ -218,6 +218,7 @@ Pour toutes questions relatives à votre commande, n'hésitez pas à nous contac
 	'statut_attente'                => 'En attente de réglement',
 	'statut_encours'                => 'En cours',
 	'statut_envoye'                 => 'Envoyé',
+   'statut_erreur'                 => 'Erreur',
 	'statut_label'                  => 'Statut :',
 	'statut_partiel'                => 'Partiellement payé',
 	'statut_paye'                   => 'Payé',

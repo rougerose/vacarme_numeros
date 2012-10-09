@@ -3,6 +3,7 @@
    0,Tous,
    encours,<:vacarme_commande:statut_encours:>,
    attente,<:vacarme_commande:statut_attente:>,
+   erreur,<:vacarme_commande:statut_erreur:>
    paye,<:vacarme_commande:statut_paye:>,
    partiel,<:vacarme_commande:statut_partiel:>,
    envoye,<:vacarme_commande:statut_envoye:>,
@@ -28,6 +29,7 @@
             [<li class="">(#SELF|parametre_url{statut,''}|lien_ou_expose{Tous,#ENV{statut,''}|=={''},ajax})</li>]
             [<li>(#SELF|parametre_url{statut,encours}|lien_ou_expose{<:vacarme_commande:statut_encours:>,#ENV{statut}|=={encours},ajax})</li>]
             [<li>(#SELF|parametre_url{statut,attente}|lien_ou_expose{<:vacarme_commande:statut_attente:>,#ENV{statut}|=={attente},ajax})</li>]
+            [<li>(#SELF|parametre_url{statut,erreur}|lien_ou_expose{<:vacarme_commande:statut_erreur:>,#ENV{statut}|=={erreur},ajax})</li>]
             [<li>(#SELF|parametre_url{statut,paye}|lien_ou_expose{<:vacarme_commande:statut_paye:>,#ENV{statut}|=={paye},ajax})</li>]
             [<li>(#SELF|parametre_url{statut,partiel}|lien_ou_expose{<:vacarme_commande:statut_partiel:>,#ENV{statut}|=={partiel},ajax})</li>]
             [<li>(#SELF|parametre_url{statut,envoye}|lien_ou_expose{<:vacarme_commande:statut_envoye:>,#ENV{statut}|=={envoye},ajax})</li>]
