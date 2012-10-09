@@ -118,7 +118,7 @@
          [(#FORMULAIRE_PAYPAL{#ARRAY{
             custom,payer_commande,
             libelle,Commande #GET{reference},
-            identifiant,#GET{reference},
+            identifiant,#GET{id_commande},
             tva_applicable,#GET{tva_applicable},
             cancel,#URL_PAGE{annulation}|parametre_url{commande,#GET{id_commande}},
             redirect_ok, #URL_ACTION_AUTEUR{
