@@ -1,5 +1,11 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
+// entetes silencieux
+$spip_header_silencieux = 1;
+
+
+// debug du plugin
+define('_DEBUG_VACARME',true);
 
 define('_RENOUVELLE_ALEA',3600); // utile de modifier l'aléa pour les sessions ?
 

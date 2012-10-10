@@ -41,12 +41,50 @@
    // ==============================
    // = pipeline traitement_paypal =
    // ==============================
+   // 20121009 : le traitement paypal se fait uniquement ici (et non plus dans commandes_paypal_pipelines). L'identification ne se fait plus sur la référence de la commande (son numéro) mais sur son identifiant.
    function vacarme_commande_traitement_paypal($flux) {
-      if ( $flux['args']['paypal']['custom'] == 'payer_commande'
-         and $reference = $flux['args']['paypal']['invoice']
-      and $commande = sql_fetsel('id_commande', 'spip_commandes', 'reference = '.sql_quote($reference)) ) {
-         // c'est un paiement par paypal (cqfd)
+      if (_DEBUG_VACARME) spip_log("entrée traitement_paypal",'vacarme_debug');
+      if (
+      $flux['args']['paypal']['custom'] == 'payer_commande'
+         and $id_commande = $flux['args']['paypal']['invoice']
+            and $commande = sql_fetsel('statut, id_auteur', 'spip_commandes', 'id_commande = '.sql_quote($id_commande))
+      ){
+         //$ref = $commande['reference'];
+         //$id_commande = $commande['id_commande'];
+         $statut_commande = $commande['statut'];
+         $statut_paypal = $flux['args']['paypal']['payment_status'];
+         $prix_paypal = $flux['args']['paypal']['mc_gross'];
+         if (_DEBUG_VACARME) spip_log("id_commande : ".$id_commande." id_commande paypal ".$id_commande,'vacarme_debug');
+
+         // Si le statut Paypal est "Pending" on passe juste la commande en attente et on verra plus tard pour le reste
+         if ($statut_paypal == 'Pending'){
+            $statut_nouveau = 'attente';
+         }
+         // Si Paypal est "Completed" on vérifie que le montant correspond au prix de cette commande
+         elseif ($statut_paypal == 'Completed'){
+            $fonction_prix = charger_fonction('prix', 'inc/');
+            $prix_commande = $fonction_prix('commande', $id_commande);
+
+            // Si on a pas assez payé
+            if ($prix_paypal < $prix_commande){
+               $statut_nouveau = 'partiel';
+            }
+            // Sinon c'est bon
+            else{
+               $statut_nouveau = 'paye';
+            }
+         }
+         // Sinon on dit que c'est en erreur
+         else{
+            $statut_nouveau = 'erreur';
+         }
+         // le type de paiement est renseigné dans tous les cas.
          sql_updateq('spip_commandes',array('paiement' => 'paypal'),'id_commande='.$commande['id_commande']);
+
+         if (_DEBUG_VACARME) spip_log("traitement_paypal envoi vers instituer $id_commande-$statut_nouveau",'vacarme_debug');
+         //on institue la commande
+         $action = charger_fonction('instituer_commande', 'action');
+         $action($id_commande."-".$statut_nouveau);
       }
       return $flux;
    }
