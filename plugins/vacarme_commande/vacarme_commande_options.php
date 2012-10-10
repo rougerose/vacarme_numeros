@@ -1,5 +1,8 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
+// entetes silencieux
+$spip_header_silencieux = 1;
+
 
 // debug du plugin
 define('_DEBUG_VACARME',true);
