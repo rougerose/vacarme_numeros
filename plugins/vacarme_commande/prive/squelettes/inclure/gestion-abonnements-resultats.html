@@ -27,7 +27,7 @@
       <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
          <td><input type="checkbox" name="abonnements[]" value="#ID_CONTACTS_ABONNEMENT"></td>
          <td>#ID_CONTACTS_ABONNEMENT</td>
-         <td>#INFO_NOM{auteur, #ID_AUTEUR}</td>
+         <td><BOUCLE_contact(CONTACTS){id_auteur}><a href="[(#URL_ECRIRE{auteur_infos}|parametre_url{id_auteur,#ID_AUTEUR})]">#PRENOM #NOM</a></BOUCLE_contact></td>
          <td>[(#STATUT_ABONNEMENT|lister_statuts)]</td>
          <td>#INFO_TITRE{abonnement,#ID_OBJET}</td>
          <td>[(#DATE|affdate{d/m/y})]</td>

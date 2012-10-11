@@ -56,9 +56,9 @@
             <th>Prénom</th>
             <th>Org.</th>
             <th>Serv.</th>
+            <th>E-mail</th>
             <th>Adresse</th>
-            <th>CP</th>
-            <th>Ville</t>
+            <th>CP Ville</th>
             <th>Pays</th>
             <th>Abonnement(s)</th>
             <th></th>
@@ -82,9 +82,9 @@
             <td>#PRENOM</td>
             <td>#ORGANISATION</td>
             <td>#SERVICE</td>
+            <td>#INFO_EMAIL{auteur,#ID_AUTEUR}</td>
             <td>[(#GET{adresse})]</td>
-            <td>[(#GET{cp})]</td>
-            <td>[(#GET{ville})]</td>
+            <td>[(#GET{cp})][ (#GET{ville})]</td>
             <td>[(#GET{pays})]</td>
             <td><B_abonnements>
                <ul>
