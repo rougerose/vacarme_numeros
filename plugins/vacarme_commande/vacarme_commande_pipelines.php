@@ -79,7 +79,7 @@
             $statut_nouveau = 'erreur';
          }
          // le type de paiement est renseigné dans tous les cas.
-         sql_updateq('spip_commandes',array('paiement' => 'paypal'),'id_commande='.$commande['id_commande']);
+         sql_updateq('spip_commandes',array('paiement' => 'paypal'),'id_commande='.$id_commande);
 
          if (_DEBUG_VACARME) spip_log("traitement_paypal envoi vers instituer $id_commande-$statut_nouveau",'vacarme_debug');
          //on institue la commande
