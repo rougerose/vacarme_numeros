@@ -3,15 +3,15 @@
 numeros:<BOUCLE_numeros(RUBRIQUES){id_parent}{par num titre, titre}{inverse}>
    -
       id: #ID_RUBRIQUE
-      numero: "#TITRE"
+      numero: "[(#TITRE|textebrut|texte_backend)]"
       saison: "[(#DATE|saison)]"
       annee: [(#DATE|annee)]<BOUCLE_prix(MOTS){id_rubrique}{type=@prix}>
       prix: #TITRE</BOUCLE_prix>[
-      descriptif: "(#DESCRIPTIF|textebrut)"]
+      descriptif: "(#DESCRIPTIF|textebrut|texte_backend)"]
       url: ["(#URL_RUBRIQUE|url_absolue)"]
       logo: ["(#LOGO_RUBRIQUE|extraire_attribut{src}|url_absolue)"]<B_sommaire>
       sommaire:<BOUCLE_sommaire(RUBRIQUES){id_parent}{par num titre, titre}>
          -
-            titre: ["(#TITRE|textebrut)"][
-            resume: "(#DESCRIPTIF|textebrut)"]
+            titre: ["(#TITRE|textebrut|texte_backend)"][
+            resume: "(#DESCRIPTIF|textebrut|texte_backend)"]
             url: ["(#URL_RUBRIQUE|url_absolue)"]</BOUCLE_sommaire></BOUCLE_numeros></BOUCLE_index>
